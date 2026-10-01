@@ -11,8 +11,11 @@ public class Plant : MonoBehaviour
 
     public void Grow()
     {
-        stage++;
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = stages[stage];
+        if (stage != 6)
+        {
+            stage++;
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = stages[stage];
+        }
     }
 
     public void PickUp()
