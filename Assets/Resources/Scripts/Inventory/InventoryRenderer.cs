@@ -7,7 +7,19 @@ public class InventoryRenderer : MonoBehaviour
 
     public void DrawCSlot()
     {
-        hotBarObjects[0].GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, 0f);
+        for (int i = 0; i < hotBarObjects.Length; i++)
+        {
+            RectTransform rt = hotBarObjects[i].GetComponent<RectTransform>();
+
+            if (i == inventoryManager.CSlot)
+            {
+                rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -419f);
+            }
+            else
+            {
+                rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -458f);
+            }
+        }
     }
 
 }
