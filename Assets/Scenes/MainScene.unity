@@ -3361,6 +3361,7 @@ MonoBehaviour:
   CurrPlants: []
   NearItem: []
   PumpkinSeedsName: Pumpkin seeds
+  WateringCanName: Watering can
 --- !u!1 &912402700
 GameObject:
   m_ObjectHideFlags: 0

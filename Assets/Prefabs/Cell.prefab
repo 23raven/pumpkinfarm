@@ -54,9 +54,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8bf0f8fbbffdf8b48b9fb1797ee1ac9f, type: 3}
   - {fileID: 21300000, guid: 60d88eac322f6e044af5fe03255876cf, type: 3}
   - {fileID: 21300000, guid: 93dd57fcd20f2c34ea5577113fe2704e, type: 3}
+  deathSprite: {fileID: 21300000, guid: de07625039d83854baa8c3c60029fc33, type: 3}
   NoneStage: {fileID: -606834915135764645, guid: 20df00b2669ace741a51628b5a74b0e9, type: 3}
   stage: 0
   planted: 0
+  watered: 0
 --- !u!212 &7588257666629526985
 SpriteRenderer:
   serializedVersion: 2

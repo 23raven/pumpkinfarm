@@ -41,14 +41,17 @@ public class InventoryRenderer : MonoBehaviour
         foreach (var slot in hotBarObjects)
         {
             Image slotImg = slot.transform.GetChild(0).GetComponent<Image>();
+            TMP_Text quantityText = slot.transform.GetChild(2).GetComponent<TMP_Text>();
 
             if (inventoryManager.hotbar[i].item != null)
             {
                 slotImg.sprite = inventoryManager.hotbar[i].item.icon;
+                quantityText.text = inventoryManager.hotbar[i].quantity.ToString();
             }
             else
             {
                 slotImg.sprite = Resources.Load<Sprite>("Sprites/Emptiness");
+                quantityText.text = "";
             }
 
             i++;

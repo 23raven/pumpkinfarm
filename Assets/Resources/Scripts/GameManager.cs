@@ -24,8 +24,18 @@ public class GameManager : MonoBehaviour
             {
                 if (plant.planted)
                 {
-                    plant.Grow();
+                    if (plant.watered && !plant.dead)
+                    {
+                        plant.Grow();
+                    }
+                    else
+                    {
+                        plant.Death();
+                    }
                 }
+
+                plant.watered = false;
+                plant.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color32(113, 31, 12, 255);
             }
         }
     }

@@ -12,6 +12,7 @@ public class TriggerController : MonoBehaviour
     private bool NearBed;
     [SerializeField] private List<GameObject> NearItem = new();
     [SerializeField] private string PumpkinSeedsName;
+    [SerializeField] private string WateringCanName;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -61,6 +62,12 @@ public class TriggerController : MonoBehaviour
                 else if (CurrPlants[0].stage == 6)
                 {
                     CurrPlants[0].PickUp();
+                }
+
+                if (invManager.hotbar[invManager.CSlot].item != null && invManager.hotbar[invManager.CSlot].item.Itemname == WateringCanName)
+                {
+                    CurrPlants[0].watered = true;
+                    CurrPlants[0].transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.24f, 0.15f, 0.08f);
                 }
             }
 
