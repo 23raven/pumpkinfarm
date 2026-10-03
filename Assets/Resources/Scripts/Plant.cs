@@ -12,12 +12,20 @@ public class Plant : MonoBehaviour
     public bool watered;
     public bool dead;
 
+    //это Pumpkin который будет появляться на последнем Stage и является pickUp предметом
+    [SerializeField] private GameObject pumpkinItem;
+
     public void Grow()
     {
         if (stage != 6)
         {
             stage++;
             this.gameObject.GetComponent<SpriteRenderer>().sprite = stages[stage];
+        }
+
+        if (stage == 6)
+        {
+            pumpkinItem.SetActive(true);
         }
     }
 
@@ -27,6 +35,8 @@ public class Plant : MonoBehaviour
         dead = false;
         stage = 0;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = NoneStage;
+
+        pumpkinItem.SetActive(false);
     }
 
     public void PutDown()
