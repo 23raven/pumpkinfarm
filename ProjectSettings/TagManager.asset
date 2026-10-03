@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bed
   - FieldCell
+  - Item
   layers:
   - Default
   - TransparentFX

@@ -6,9 +6,12 @@ public class TriggerController : MonoBehaviour
     //тут прописывать все взаимодействия игрока с помощью тригеров и у меня стоит пробел как interact тут
 
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private InventoryManager invManager;
 
     [SerializeField] private List<Plant> CurrPlants = new();
     private bool NearBed;
+    [SerializeField] private List<GameObject> NearItem = new();
+    [SerializeField] private string PumpkinSeedsName;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,6 +22,10 @@ public class TriggerController : MonoBehaviour
         else if (other.CompareTag("Bed"))
         {
             NearBed = true;
+        }
+        else if (other.CompareTag("Item"))
+        {
+            NearItem.Add(other.gameObject);
         }
     }
 
@@ -32,6 +39,10 @@ public class TriggerController : MonoBehaviour
         {
             NearBed = false;
         }
+        else if (other.CompareTag("Item"))
+        {
+            NearItem.Remove(other.gameObject);
+        }
     }
 
     private void Update()
@@ -42,7 +53,7 @@ public class TriggerController : MonoBehaviour
             {
                 if (CurrPlants[0].stage != 6)
                 {
-                    if (!CurrPlants[0].planted)
+                    if (!CurrPlants[0].planted && invManager.hotbar[invManager.CSlot].item != null && invManager.hotbar[invManager.CSlot].item.Itemname == PumpkinSeedsName)
                     {
                         CurrPlants[0].PutDown();
                     }
@@ -56,6 +67,12 @@ public class TriggerController : MonoBehaviour
             if (NearBed)
             {
                 gameManager.NextDay();
+            }
+
+            if (NearItem.Count > 0)
+            {
+                invManager.AddItem(NearItem[0].GetComponent<PickUpItem>().item, NearItem[0].GetComponent<PickUpItem>().quantity);
+                Destroy(NearItem[0]);
             }
         }
     }
