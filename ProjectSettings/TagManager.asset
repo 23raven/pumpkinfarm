@@ -7,6 +7,7 @@ TagManager:
   - Bed
   - FieldCell
   - Item
+  - SellArea
   layers:
   - Default
   - TransparentFX

@@ -7,9 +7,13 @@ public class TriggerController : MonoBehaviour
 
     [SerializeField] private GameManager gameManager;
     [SerializeField] private InventoryManager invManager;
+    [SerializeField] private PlayerMovement movement;
+    [SerializeField] private Sell sell;
+    [SerializeField] private GameObject ShopUiObj;
 
     [SerializeField] private List<Plant> CurrPlants = new();
     private bool NearBed;
+    private bool NearShop;
     [SerializeField] private List<GameObject> NearItem = new();
     [SerializeField] private string PumpkinSeedsName;
     [SerializeField] private string WateringCanName;
@@ -28,6 +32,10 @@ public class TriggerController : MonoBehaviour
         {
             NearItem.Add(other.gameObject);
         }
+        else if (other.CompareTag("SellArea"))
+        {
+            NearShop = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -43,6 +51,10 @@ public class TriggerController : MonoBehaviour
         else if (other.CompareTag("Item"))
         {
             NearItem.Remove(other.gameObject);
+        }
+        else if (other.CompareTag("SellArea"))
+        {
+            NearShop = false;
         }
     }
 
@@ -67,7 +79,7 @@ public class TriggerController : MonoBehaviour
                 if (invManager.hotbar[invManager.CSlot].item != null && invManager.hotbar[invManager.CSlot].item.Itemname == WateringCanName)
                 {
                     CurrPlants[0].watered = true;
-                    CurrPlants[0].transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.24f, 0.15f, 0.08f);
+                    CurrPlants[0].transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color32(77, 77, 77, 255);
                 }
             }
 
@@ -80,6 +92,13 @@ public class TriggerController : MonoBehaviour
             {
                 invManager.AddItem(NearItem[0].GetComponent<PickUpItem>().item, NearItem[0].GetComponent<PickUpItem>().quantity);
                 Destroy(NearItem[0]);
+            }
+
+            if (NearShop)
+            {
+                ShopUiObj.SetActive(!ShopUiObj.activeSelf);
+                movement.enabled = !movement.enabled;
+                sell.DrawSell();
             }
         }
     }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour
 {
-    public List<InvSlot> inventory = new();
     public InvSlot[] hotbar = new InvSlot[4];
     public int CSlot;
 
@@ -32,9 +31,24 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void RemoveItem()
+    public void RemoveItem(InvItem item, int quantity)
     {
+        for (int i = 0; i < 4; i++)
+        {
+            if (hotbar[i].item != null && hotbar[i].item.Itemname == item.Itemname)
+            {
+                hotbar[i].quantity -= quantity;
 
+                if (hotbar[i].quantity <= 0)
+                {
+                    hotbar[i].item = null;
+                    hotbar[i].quantity = 0;
+                }
+
+                UpdUI();
+                return;
+            }
+        }
     }
 
     public void Update()

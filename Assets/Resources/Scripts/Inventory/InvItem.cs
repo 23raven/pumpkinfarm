@@ -6,4 +6,7 @@ public class InvItem : ScriptableObject
     public Sprite icon;
     public string Itemname;
     public string description;
+    public bool selleable;
+    public int priceSell;
+    public int priceBuy;
 }

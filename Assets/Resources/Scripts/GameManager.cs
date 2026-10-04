@@ -6,14 +6,38 @@ public class GameManager : MonoBehaviour
 {
     public int day;
     public PlantRow[] plants = new PlantRow[6]; //квадратный массив сделал чтобы можно было обращаться отдельно к каждой клетке
+    public int money;
 
     [SerializeField] private TMP_Text DayText;
+    [SerializeField] private TMP_Text MoneyText;
 
     public void NextDay()
     {
         day++;
         DayText.text = "Day: " + day.ToString();
         GrowPlants();
+    }
+
+    public void DrawMoneyText()
+    {
+        MoneyText.text = "money: " + money.ToString();
+    }
+
+    private void Start()
+    {
+        DrawMoneyText();
+    }
+
+    public void AddMoney(int count)
+    {
+        money += count;
+        DrawMoneyText();
+    }
+
+    public void RemoveMoney(int count)
+    {
+        money -= count;
+        DrawMoneyText();
     }
 
     public void GrowPlants()
@@ -35,7 +59,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 plant.watered = false;
-                plant.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color32(113, 31, 12, 255);
+                plant.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
             }
         }
     }
