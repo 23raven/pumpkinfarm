@@ -65,12 +65,7 @@ public class TriggerController : MonoBehaviour
             if (NearBed)
             {
                 gameManager.NextDay();
-            }
-
-            if (NearItem.Count > 0)
-            {
-                invManager.AddItem(NearItem[0].GetComponent<PickUpItem>().item, NearItem[0].GetComponent<PickUpItem>().quantity);
-                Destroy(NearItem[0]);
+                return;
             }
 
             if (NearShop)
@@ -79,27 +74,45 @@ public class TriggerController : MonoBehaviour
                 movement.enabled = !movement.enabled;
                 sell.DrawSell();
                 sell.DrawBuy();
+                return;
             }
 
             if (CurrPlants.Count > 0)
             {
-                if (CurrPlants[0].stage != 6)
+                Plant currentPlant = CurrPlants[0];
+
+                if (currentPlant.stage == 6)
                 {
-                    if (!CurrPlants[0].planted && invManager.hotbar[invManager.CSlot].item != null && invManager.hotbar[invManager.CSlot].item.Itemname == PumpkinSeedsName)
+                    PickUpItem itemScript = currentPlant.transform.parent.GetChild(0).GetComponent<PickUpItem>();
+
+                    if (itemScript != null)
                     {
-                        CurrPlants[0].PutDown();
+                        invManager.AddItem(itemScript.item, itemScript.quantity);
+                    }
+
+                    currentPlant.PickUp();
+
+                }
+                else if (!currentPlant.planted)
+                {
+                    if (invManager.hotbar[invManager.CSlot].item != null &&
+                        invManager.hotbar[invManager.CSlot].item.Itemname == PumpkinSeedsName)
+                    {
+                        currentPlant.PutDown();
                     }
                 }
-                else if (CurrPlants[0].stage == 6)
-                {
-                    CurrPlants[0].PickUp();
-                }
 
-                if (invManager.hotbar[invManager.CSlot].item != null && invManager.hotbar[invManager.CSlot].item.Itemname == WateringCanName)
+                if (invManager.hotbar[invManager.CSlot].item != null &&
+                    invManager.hotbar[invManager.CSlot].item.Itemname == WateringCanName)
                 {
-                    CurrPlants[0].watered = true;
-                    CurrPlants[0].transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color32(77, 77, 77, 255);
+                    currentPlant.watered = true;
+                    currentPlant.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color32(77, 77, 77, 255);
                 }
+            }
+            else if (NearItem.Count > 0)
+            {
+                invManager.AddItem(NearItem[0].GetComponent<PickUpItem>().item, NearItem[0].GetComponent<PickUpItem>().quantity);
+                Destroy(NearItem[0]);
             }
         }
     }

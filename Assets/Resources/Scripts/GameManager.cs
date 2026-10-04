@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
         day++;
         DayText.text = "Day: " + day.ToString();
         GrowPlants();
+
+        CheckAndMergePumpkins();
     }
 
     public void DrawMoneyText()
@@ -62,6 +64,40 @@ public class GameManager : MonoBehaviour
                 plant.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
             }
         }
+    }
+
+    public void CheckAndMergePumpkins()
+    {
+        for (int y = 0; y < plants.Length - 1; y++)
+        {
+            for (int x = 0; x < plants[y].row.Length - 1; x++)
+            {
+                Plant topLeft = plants[y].row[x];
+                Plant topRight = plants[y + 1].row[x];
+                Plant bottomLeft = plants[y].row[x + 1];
+                Plant bottomRight = plants[y + 1].row[x + 1];
+
+                if (CanMerge(topLeft) && CanMerge(topRight) && CanMerge(bottomLeft) && CanMerge(bottomRight))
+                {
+                    MergeIntoBigPumpkin(topLeft, topRight, bottomLeft, bottomRight);
+                }
+            }
+        }
+    }
+
+    private bool CanMerge(Plant plant)
+    {
+        if (plant == null) return false;
+
+        return plant.planted && !plant.dead && plant.stage == 6;
+    }
+
+    private void MergeIntoBigPumpkin(Plant p1, Plant p2, Plant p3, Plant p4)
+    {
+        p1.ChangeForBig();
+        p2.PickUp();
+        p3.PickUp();
+        p4.PickUp();
     }
 }
 
