@@ -62,6 +62,25 @@ public class TriggerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if (NearBed)
+            {
+                gameManager.NextDay();
+            }
+
+            if (NearItem.Count > 0)
+            {
+                invManager.AddItem(NearItem[0].GetComponent<PickUpItem>().item, NearItem[0].GetComponent<PickUpItem>().quantity);
+                Destroy(NearItem[0]);
+            }
+
+            if (NearShop)
+            {
+                ShopUiObj.SetActive(!ShopUiObj.activeSelf);
+                movement.enabled = !movement.enabled;
+                sell.DrawSell();
+                sell.DrawBuy();
+            }
+
             if (CurrPlants.Count > 0)
             {
                 if (CurrPlants[0].stage != 6)
@@ -81,24 +100,6 @@ public class TriggerController : MonoBehaviour
                     CurrPlants[0].watered = true;
                     CurrPlants[0].transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color32(77, 77, 77, 255);
                 }
-            }
-
-            if (NearBed)
-            {
-                gameManager.NextDay();
-            }
-
-            if (NearItem.Count > 0)
-            {
-                invManager.AddItem(NearItem[0].GetComponent<PickUpItem>().item, NearItem[0].GetComponent<PickUpItem>().quantity);
-                Destroy(NearItem[0]);
-            }
-
-            if (NearShop)
-            {
-                ShopUiObj.SetActive(!ShopUiObj.activeSelf);
-                movement.enabled = !movement.enabled;
-                sell.DrawSell();
             }
         }
     }

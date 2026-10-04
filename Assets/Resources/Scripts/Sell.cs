@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class Sell : MonoBehaviour
 {
@@ -10,14 +11,17 @@ public class Sell : MonoBehaviour
     [SerializeField] private Transform SellContent;
     [SerializeField] private Transform BuyContent;
     [SerializeField] private GameObject SellPrefab;
+    [SerializeField] private GameObject BuyPrefab;
+
+    public List<InvItem> ShopItems = new();
 
     public void DrawSell()
     {
-        ClearChildren();
+        ClearChildrenSell();
 
         for (int i = 0; i < inventoryManager.hotbar.Length; i++)
         {
-            if (inventoryManager.hotbar[i].item.selleable)
+            if (inventoryManager.hotbar[i].item != null && inventoryManager.hotbar[i].item.selleable)
             {
                 GameObject instance = Instantiate(SellPrefab, SellContent);
                 instance.transform.GetChild(0).GetComponent<TMP_Text>().text = inventoryManager.hotbar[i].item.Itemname;
@@ -36,7 +40,27 @@ public class Sell : MonoBehaviour
         }
     }
 
-    private void ClearChildren()
+    public void DrawBuy()
+    {
+        ClearChildrenBuy();
+
+        for (int i = 0; i < ShopItems.Count; i++)
+        {
+            GameObject instance = Instantiate(BuyPrefab, BuyContent);
+            instance.transform.GetChild(0).GetComponent<TMP_Text>().text = ShopItems[i].name;
+            instance.transform.GetChild(1).GetComponent<TMP_Text>().text = "price: " + ShopItems[i].priceBuy.ToString();
+            instance.transform.GetChild(2).GetComponent<Image>().sprite = ShopItems[i].icon;
+
+            instance.GetComponent<BuyPrefabScript>().item = ShopItems[i];
+            instance.GetComponent<BuyPrefabScript>().sell = this;
+            instance.GetComponent<BuyPrefabScript>().gameManager = gameManager;
+            instance.GetComponent<BuyPrefabScript>().inventoryManager = inventoryManager;
+
+            instance.GetComponent<Button>().onClick.AddListener(instance.GetComponent<BuyPrefabScript>().Buy);
+        }
+    }
+
+    private void ClearChildrenSell()
     {
         for (int i = 0; i < SellContent.childCount; i++)
         {
@@ -44,9 +68,12 @@ public class Sell : MonoBehaviour
         }
     }
 
-    public void DrawBuy()
+    private void ClearChildrenBuy()
     {
-
+        for (int i = 0; i < BuyContent.childCount; i++)
+        {
+            Destroy(BuyContent.GetChild(i).gameObject);
+        }
     }
 
     public void SellItem()

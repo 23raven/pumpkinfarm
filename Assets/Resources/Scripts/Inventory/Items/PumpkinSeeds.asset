@@ -15,3 +15,6 @@ MonoBehaviour:
   icon: {fileID: -3828917805364943387, guid: 72f76484c3182c645a8ce6e8784359ad, type: 3}
   Itemname: Pumpkin seeds
   description: 
+  selleable: 0
+  priceSell: 2
+  priceBuy: 4
