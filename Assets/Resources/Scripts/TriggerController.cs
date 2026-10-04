@@ -14,6 +14,7 @@ public class TriggerController : MonoBehaviour
     [SerializeField] private List<Plant> CurrPlants = new();
     private bool NearBed;
     private bool NearShop;
+    private bool NearCarvingTable;
     [SerializeField] private List<GameObject> NearItem = new();
     [SerializeField] private string PumpkinSeedsName;
     [SerializeField] private string WateringCanName;
@@ -36,6 +37,10 @@ public class TriggerController : MonoBehaviour
         {
             NearShop = true;
         }
+        else if (other.CompareTag("CarvingArea"))
+        {
+            NearCarvingTable = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -55,6 +60,10 @@ public class TriggerController : MonoBehaviour
         else if (other.CompareTag("SellArea"))
         {
             NearShop = false;
+        }
+        else if (other.CompareTag("CarvingArea"))
+        {
+            NearCarvingTable = false;
         }
     }
 

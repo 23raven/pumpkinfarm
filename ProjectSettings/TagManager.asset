@@ -8,6 +8,7 @@ TagManager:
   - FieldCell
   - Item
   - SellArea
+  - CarvingArea
   layers:
   - Default
   - TransparentFX
