@@ -9,6 +9,7 @@ TagManager:
   - Item
   - SellArea
   - CarvingArea
+  - npc
   layers:
   - Default
   - TransparentFX

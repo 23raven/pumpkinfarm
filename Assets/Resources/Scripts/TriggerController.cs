@@ -7,6 +7,7 @@ public class TriggerController : MonoBehaviour
 
     [SerializeField] private GameManager gameManager;
     [SerializeField] private InventoryManager invManager;
+    [SerializeField] private DialogRenderer dialogRenderer;
     [SerializeField] private PlayerMovement movement;
     [SerializeField] private Sell sell;
     [SerializeField] private GameObject ShopUiObj;
@@ -15,6 +16,7 @@ public class TriggerController : MonoBehaviour
     private bool NearBed;
     private bool NearShop;
     private bool NearCarvingTable;
+    private Dialog dialog;
     [SerializeField] private List<GameObject> NearItem = new();
     [SerializeField] private string PumpkinSeedsName;
     [SerializeField] private string WateringCanName;
@@ -41,6 +43,10 @@ public class TriggerController : MonoBehaviour
         {
             NearCarvingTable = true;
         }
+        else if (other.CompareTag("npc"))
+        {
+            dialog = other.gameObject.GetComponent<Npc>().dialog;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -65,6 +71,10 @@ public class TriggerController : MonoBehaviour
         {
             NearCarvingTable = false;
         }
+        else if (other.CompareTag("npc"))
+        {
+            dialog = null;
+        }
     }
 
     private void Update()
@@ -84,6 +94,13 @@ public class TriggerController : MonoBehaviour
                 sell.DrawSell();
                 sell.DrawBuy();
                 return;
+            }
+
+            if (dialog != null)
+            {
+                dialogRenderer.CurrentPhrase = 0;
+                dialogRenderer.Current_dialog = dialog;
+                dialogRenderer.gameObject.SetActive(true);
             }
 
             if (CurrPlants.Count > 0)
