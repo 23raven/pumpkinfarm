@@ -11,6 +11,7 @@ public class TriggerController : MonoBehaviour
     [SerializeField] private PlayerMovement movement;
     [SerializeField] private Sell sell;
     [SerializeField] private GameObject ShopUiObj;
+    [SerializeField] private GameObject CarvingUiObj;
 
     [SerializeField] private List<Plant> CurrPlants = new();
     private bool NearBed;
@@ -101,6 +102,12 @@ public class TriggerController : MonoBehaviour
                 dialogRenderer.CurrentPhrase = 0;
                 dialogRenderer.Current_dialog = dialog;
                 dialogRenderer.gameObject.SetActive(true);
+            }
+
+            if (NearCarvingTable)
+            {
+                movement.enabled = !movement.enabled;
+                CarvingUiObj.SetActive(!CarvingUiObj.activeSelf);
             }
 
             if (CurrPlants.Count > 0)

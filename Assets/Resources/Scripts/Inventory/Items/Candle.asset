@@ -18,3 +18,5 @@ MonoBehaviour:
   selleable: 1
   priceSell: 3
   priceBuy: 5
+  ornament: 0
+  tags: 01000000

@@ -15,3 +15,8 @@ MonoBehaviour:
   icon: {fileID: 2688690046039215365, guid: 2f92ffc682366804882bbe8709befb94, type: 3}
   Itemname: Watering can
   description: 
+  selleable: 0
+  priceSell: 0
+  priceBuy: 0
+  ornament: 0
+  tags: 01000000

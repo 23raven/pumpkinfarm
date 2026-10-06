@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "InvItem", menuName = "Scriptable Objects/InvItem")]
 public class InvItem : ScriptableObject
@@ -10,6 +12,7 @@ public class InvItem : ScriptableObject
     public int priceSell;
     public int priceBuy;
     public Ornaments ornament;
+    public List<Tags> tags = new();
 }
 
 public enum Ornaments //это типо орнаменты дл€ вырезани€ по тыкве
@@ -23,4 +26,10 @@ public enum Ornaments //это типо орнаменты дл€ вырезани€ по тыкве
     PukingFace,
     SpititFace,
     NoFace
+}
+
+public enum Tags //сделал специально тэги чтобы можно было выдел€ть обьекты например в системе вырезани€ чтобы показывало только тыквы
+{
+    Pumkin,
+    Item
 }
