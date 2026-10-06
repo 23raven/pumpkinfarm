@@ -1,19 +1,28 @@
 fileFormatVersion: 2
-guid: d400369b4cd9dd545bd109f9c5afbe95
+guid: 9ff1030ec4d35de46a5e85ecf749acf1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1484934246045532605
-    second: CafeHouse_0
+      213: 7574678691971985589
+    second: char53_0
   - first:
-      213: 3901875390979522247
-    second: CafeHouse_1
+      213: 3705863232548194303
+    second: char53_1
   - first:
-      213: 5893072135358263463
-    second: CafeHouse_2
+      213: 4287530397800764434
+    second: char53_2
   - first:
-      213: -8202740609087332668
-    second: CafeHouse_3
+      213: -1617444410303554384
+    second: char53_3
+  - first:
+      213: -1106921228231206957
+    second: char53_4
+  - first:
+      213: 644631972577845548
+    second: char53_5
+  - first:
+      213: -3228612751542511717
+    second: char53_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -55,7 +64,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -122,13 +131,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CafeHouse_0
+      name: char53_0
       rect:
         serializedVersion: 2
-        x: 107
-        y: 210
-        width: 696
-        height: 600
+        x: 377
+        y: 283
+        width: 257
+        height: 438
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 34eb4a5bb24746be0800000000000000
-      internalID: -1484934246045532605
+      spriteID: 5b0f5b2532aae1960800000000000000
+      internalID: 7574678691971985589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CafeHouse_1
+      name: char53_1
       rect:
         serializedVersion: 2
-        x: 203
-        y: 208
-        width: 6
-        height: 6
+        x: 1379
+        y: 283
+        width: 253
+        height: 435
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7ce3c2dbefe362630800000000000000
-      internalID: 3901875390979522247
+      spriteID: ff7473ab9fedd6330800000000000000
+      internalID: 3705863232548194303
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CafeHouse_2
+      name: char53_2
       rect:
         serializedVersion: 2
-        x: 649
-        y: 195
-        width: 13
-        height: 10
+        x: 2377
+        y: 283
+        width: 246
+        height: 435
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +190,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7a038cf52e568c150800000000000000
-      internalID: 5893072135358263463
+      spriteID: 2149a943e2e508b30800000000000000
+      internalID: 4287530397800764434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CafeHouse_3
+      name: char53_3
       rect:
         serializedVersion: 2
-        x: 214
-        y: 147
-        width: 22
-        height: 20
+        x: 3377
+        y: 281
+        width: 247
+        height: 439
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,8 +212,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4ce9da240e20a2e80800000000000000
-      internalID: -8202740609087332668
+      spriteID: 0bc5aefd0eead89e0800000000000000
+      internalID: -1617444410303554384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: char53_4
+      rect:
+        serializedVersion: 2
+        x: 4376
+        y: 283
+        width: 252
+        height: 434
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d790f4f10d63a0f0800000000000000
+      internalID: -1106921228231206957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: char53_5
+      rect:
+        serializedVersion: 2
+        x: 5378
+        y: 285
+        width: 257
+        height: 436
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c21ac581d5132f800800000000000000
+      internalID: 644631972577845548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: char53_6
+      rect:
+        serializedVersion: 2
+        x: 6378
+        y: 285
+        width: 257
+        height: 436
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b971303fec9a133d0800000000000000
+      internalID: -3228612751542511717
       vertices: []
       indices: 
       edges: []
@@ -223,10 +298,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CafeHouse_0: -1484934246045532605
-      CafeHouse_1: 3901875390979522247
-      CafeHouse_2: 5893072135358263463
-      CafeHouse_3: -8202740609087332668
+      char53_0: 7574678691971985589
+      char53_1: 3705863232548194303
+      char53_2: 4287530397800764434
+      char53_3: -1617444410303554384
+      char53_4: -1106921228231206957
+      char53_5: 644631972577845548
+      char53_6: -3228612751542511717
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
