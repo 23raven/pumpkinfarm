@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SellPrefabScript : MonoBehaviour
+public class SellPrefabScript : MonoBehaviour //скрипт для клика в магазине
 {
     public InvItem item;
     public int quantity;

@@ -9,7 +9,7 @@ public class InventoryRenderer : MonoBehaviour
 
     [SerializeField] private GameObject[] hotBarObjects = new GameObject[4];
 
-    public void DrawCSlot()
+    public void DrawCSlot() //рендерим текущие слоты и показываем как выделен
     {
         for (int i = 0; i < hotBarObjects.Length; i++)
         {

@@ -25,13 +25,13 @@ public class Plant : MonoBehaviour
             this.gameObject.GetComponent<SpriteRenderer>().sprite = stages[stage];
         }
 
-        if (stage == 6 && !dead)
+        if (stage == 6 && !dead) //пофиксил чтобы если тыква мертвая не появлялся предмет
         {
             pumpkinItem.SetActive(true);
         }
     }
 
-    public void ChangeForBig()
+    public void ChangeForBig() //переключение от маленькой к большой
     {
         this.transform.localScale = bigPumpkin.scale;
         this.transform.localPosition = bigPumpkin.pos;
@@ -43,7 +43,7 @@ public class Plant : MonoBehaviour
         this.transform.parent.GetChild(0).GetComponent<PickUpItem>().quantity = 8;
     }
 
-    public void ChangeForBasic()
+    public void ChangeForBasic() //переключение от большого к маленькой тыкве
     {
         this.transform.localScale = basic.scale;
         this.transform.localPosition = basic.pos;

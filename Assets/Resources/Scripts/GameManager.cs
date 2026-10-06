@@ -66,12 +66,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //честно сам не очень понимаю как я это сделал просто проходимся по каждой клетке и проверяем ее
     public void CheckAndMergePumpkins()
     {
         for (int y = 0; y < plants.Length - 1; y++)
         {
             for (int x = 0; x < plants[y].row.Length - 1; x++)
             {
+                //получаем клетки
                 Plant topLeft = plants[y].row[x];
                 Plant topRight = plants[y + 1].row[x];
                 Plant bottomLeft = plants[y].row[x + 1];
@@ -85,6 +87,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //вспомогательный метод для проверки
     private bool CanMerge(Plant plant)
     {
         if (plant == null) return false;
@@ -92,6 +95,7 @@ public class GameManager : MonoBehaviour
         return plant.planted && !plant.dead && plant.stage == 6;
     }
 
+    //вынес метод для обьеденения тыкв может понадобится для расширения механики
     private void MergeIntoBigPumpkin(Plant p1, Plant p2, Plant p3, Plant p4)
     {
         p1.ChangeForBig();

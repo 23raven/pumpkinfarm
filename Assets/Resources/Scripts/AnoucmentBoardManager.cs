@@ -2,13 +2,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class AnoucmentBoardManager : MonoBehaviour
+public class AnoucmentBoardManager : MonoBehaviour //скрипт для управления доской обьявления
 {
     [SerializeField] private Transform[] poses = new Transform[6]; //это позиции на которые буду клеиться листовки
 
     [SerializeField] private GameObject AnnoucmentPrefab;
-    public GameObject[] AnnoucmentsObj = new GameObject[6];
-    public Annoucment[] CurrentAnnoucments = new Annoucment[6];
+    public GameObject[] AnnoucmentsObj = new GameObject[6]; //это текущие обьекты 
+    public Annoucment[] CurrentAnnoucments = new Annoucment[6]; //это данные
 
     public void AddAnnoucment(Annoucment announce)
     {
@@ -19,11 +19,14 @@ public class AnoucmentBoardManager : MonoBehaviour
                 CurrentAnnoucments[i] = announce;
             }
         }
+
+        RenderAnnoucments();
     }
 
     public void RemoveAnnoucmentAt(int index)
     {
-        CurrentAnnoucments[index] = null;
+        CurrentAnnoucments[index] = new Annoucment { exist = false, label = "", text = ""};
+        RenderAnnoucments();
     }
 
     public void RenderAnnoucments()

@@ -5,12 +5,15 @@ using UnityEngine.UI;
 
 public class CarvingManager : MonoBehaviour
 {
+    //вот тут ссылки на другие скрипты
     [SerializeField] private InventoryManager invManager;
 
+    //я люблю разделать переменные в скриптах например отделять обьекты как тут
     [SerializeField] private Transform PumpkinInvContent;
     [SerializeField] private Transform OrnamentsInvContent;
     [SerializeField] private GameObject SelectedItemGameObject;
 
+    //а тут уже префабы
     [SerializeField] private GameObject PumpkinInvPrefab;
     [SerializeField] private GameObject OrnamentsInvPrefab;
 
@@ -25,11 +28,13 @@ public class CarvingManager : MonoBehaviour
         {
             if (invManager.hotbar[i].item != null && IsPumpkin(invManager.hotbar[i].item))
             {
+                //настройка слота в инвентаре тыкв
                 GameObject instance = Instantiate(PumpkinInvPrefab, PumpkinInvContent);
                 instance.transform.GetChild(1).GetComponent<TMP_Text>().text = invManager.hotbar[i].item.Itemname;
                 instance.transform.GetChild(2).GetComponent<TMP_Text>().text = invManager.hotbar[i].item.ornament.ToString();
                 instance.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().sprite = invManager.hotbar[i].item.icon;
 
+                //настройка компонента и назначение клика
                 instance.GetComponent<PumpkinInvButtonScript>().item = invManager.hotbar[i].item;
                 instance.GetComponent<PumpkinInvButtonScript>().carvingManager = this;
 
@@ -51,6 +56,7 @@ public class CarvingManager : MonoBehaviour
         return false;
     }
 
+    //вспомогательные методы для очистки интерфейса
     private void ClearPumpkins()
     {
         for (int i = 0; i < PumpkinInvContent.childCount; i++)
@@ -73,6 +79,7 @@ public class CarvingManager : MonoBehaviour
 
         for (int i = 0; i < allowed_ornaments.Count; i++)
         {
+            //тоже самое что и до этого
             GameObject instance = Instantiate(OrnamentsInvPrefab, OrnamentsInvContent);
             instance.transform.GetChild(1).GetComponent<TMP_Text>().text = allowed_ornaments[i].ornament.ToString();
             instance.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().sprite = allowed_ornaments[i].icon;
@@ -84,12 +91,12 @@ public class CarvingManager : MonoBehaviour
         }
     }
 
-    public void DrawPrototype()
+    public void DrawPrototype() //как анна нарисует лица сделаю
     {
 
     }
 
-    public void DrawSelected()
+    public void DrawSelected() //настраиваем и включаем выключаем основываюсь на выбранном предмете
     {
         if (SelectedItem != null)
         {
