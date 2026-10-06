@@ -12,11 +12,13 @@ public class TriggerController : MonoBehaviour
     [SerializeField] private Sell sell;
     [SerializeField] private GameObject ShopUiObj;
     [SerializeField] private GameObject CarvingUiObj;
+    [SerializeField] private GameObject EventBoardObjUi;
 
     [SerializeField] private List<Plant> CurrPlants = new();
     private bool NearBed;
     private bool NearShop;
     private bool NearCarvingTable;
+    private bool NearEventBoard;
     private Dialog dialog;
     [SerializeField] private List<GameObject> NearItem = new();
     [SerializeField] private string PumpkinSeedsName;
@@ -48,6 +50,10 @@ public class TriggerController : MonoBehaviour
         {
             dialog = other.gameObject.GetComponent<Npc>().dialog;
         }
+        else if (other.CompareTag("EventArea"))
+        {
+            NearEventBoard = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -75,6 +81,10 @@ public class TriggerController : MonoBehaviour
         else if (other.CompareTag("npc"))
         {
             dialog = null;
+        }
+        else if (other.CompareTag("EventArea"))
+        {
+            NearEventBoard = false;
         }
     }
 
@@ -108,6 +118,12 @@ public class TriggerController : MonoBehaviour
             {
                 movement.enabled = !movement.enabled;
                 CarvingUiObj.SetActive(!CarvingUiObj.activeSelf);
+            }
+
+            if (NearEventBoard)
+            {
+                movement.enabled = !movement.enabled;
+                EventBoardObjUi.SetActive(!EventBoardObjUi.activeSelf);
             }
 
             if (CurrPlants.Count > 0)

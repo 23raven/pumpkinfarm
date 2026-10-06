@@ -10,6 +10,7 @@ TagManager:
   - SellArea
   - CarvingArea
   - npc
+  - EventArea
   layers:
   - Default
   - TransparentFX

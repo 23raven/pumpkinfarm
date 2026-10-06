@@ -25,7 +25,7 @@ public class Plant : MonoBehaviour
             this.gameObject.GetComponent<SpriteRenderer>().sprite = stages[stage];
         }
 
-        if (stage == 6)
+        if (stage == 6 && !dead)
         {
             pumpkinItem.SetActive(true);
         }
