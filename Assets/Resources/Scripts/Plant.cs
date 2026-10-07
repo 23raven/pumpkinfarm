@@ -7,12 +7,14 @@ public class Plant : MonoBehaviour
     [SerializeField] private List<Sprite> stages = new();
     [SerializeField] private Sprite deathSprite;
     [SerializeField] private Sprite NoneStage;
+    [SerializeField] private Sprite UnPlowedSoilSprite;
     [SerializeField] private BigStage bigPumpkin = new();
     [SerializeField] private BigStage basic = new();
     public int stage;
     public bool planted;
     public bool watered;
     public bool dead;
+    public bool plowed;
 
     //это Pumpkin который будет появляться на последнем Stage и является pickUp предметом
     [SerializeField] private GameObject pumpkinItem;
@@ -59,6 +61,8 @@ public class Plant : MonoBehaviour
     {
         planted = false;
         dead = false;
+        plowed = false;
+        transform.parent.GetComponent<SpriteRenderer>().sprite = UnPlowedSoilSprite;
         stage = 0;
         this.gameObject.GetComponent<SpriteRenderer>().sprite = NoneStage;
         ChangeForBasic();

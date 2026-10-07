@@ -6,25 +6,20 @@ using UnityEngine.UI;
 public class CarvingManager : MonoBehaviour
 {
     // Ссылки на другие скрипты
-    [Header("Менеджеры")]
-    public InventoryManager invManager; // Изменил на public для удобства кнопок
+    public InventoryManager invManager;
 
     // Объекты UI и контейнеры
-    [Header("UI Контейнеры")]
     [SerializeField] private Transform PumpkinInvContent;
     [SerializeField] private Transform OrnamentsInvContent;
     [SerializeField] private GameObject SelectedItemGameObject;
 
     // Префабы элементов UI
-    [Header("Prefabs")]
     [SerializeField] private GameObject PumpkinInvPrefab;
     [SerializeField] private GameObject OrnamentsInvPrefab;
 
-    [Header("Данные")]
     public List<Ornament> allowed_ornaments = new();
-    public InvItem SelectedItem; // Текущая выбранная ОДНА тыква
+    public InvItem SelectedItem;
 
-    // Вспомогательные переменные, чтобы знать, из какого слота хотбара мы взяли тыкву
     [HideInInspector] public int selectedSlotIndex = -1;
 
     public void DrawPumkinInventory()
@@ -37,15 +32,12 @@ public class CarvingManager : MonoBehaviour
 
             if (slot.item != null && IsPumpkin(slot.item))
             {
-                // Рисуем каждую тыкву из стака как отдельную кнопку
                 for (int q = 0; q < slot.quantity; q++)
                 {
                     GameObject instance = Instantiate(PumpkinInvPrefab, PumpkinInvContent);
 
-                    // Настройка текста и картинки
                     instance.transform.GetChild(1).GetComponent<TMP_Text>().text = slot.item.Itemname;
 
-                    // ИСПРАВЛЕНО: Возвращаем вывод названия орнамента вместо цифры "1"
                     instance.transform.GetChild(2).GetComponent<TMP_Text>().text = slot.item.ornament.ToString();
 
                     instance.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().sprite = slot.item.icon;
@@ -56,7 +48,6 @@ public class CarvingManager : MonoBehaviour
                         buttonScript.carvingManager = this;
                     }
 
-                    // Передаем в листенер индекс слота, чтобы знать, откуда забирать тыкву
                     int slotIndex = i;
                     if (instance.TryGetComponent<Button>(out var button))
                     {
@@ -67,10 +58,8 @@ public class CarvingManager : MonoBehaviour
         }
     }
 
-    // Логика клика по тыкве в интерфейсе стола
     private void OnPumpkinClick(InvItem clickedItem, int slotIndex)
     {
-        // Если кликнули по той же тыкве (отмена выбора)
         if (SelectedItem != null && selectedSlotIndex == slotIndex && SelectedItem.ornament == clickedItem.ornament)
         {
             SelectedItem = null;
@@ -78,7 +67,6 @@ public class CarvingManager : MonoBehaviour
         }
         else
         {
-            // Выбираем ОДНУ тыкву. Клонируем её сразу, чтобы это был отдельный уникальный предмет
             SelectedItem = Instantiate(clickedItem);
             selectedSlotIndex = slotIndex;
         }

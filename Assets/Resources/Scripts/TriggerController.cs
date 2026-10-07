@@ -14,6 +14,7 @@ public class TriggerController : MonoBehaviour
     [SerializeField] private GameObject CarvingUiObj;
     [SerializeField] private GameObject EventBoardObjUi;
     [SerializeField] private GameObject PostUiObj;
+    [SerializeField] private Sprite PlowedSoilSprite;
 
     [SerializeField] private List<Plant> CurrPlants = new();
     private bool NearBed;
@@ -25,6 +26,7 @@ public class TriggerController : MonoBehaviour
     [SerializeField] private List<GameObject> NearItem = new();
     [SerializeField] private string PumpkinSeedsName;
     [SerializeField] private string WateringCanName;
+    [SerializeField] private string HoeName;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -158,7 +160,7 @@ public class TriggerController : MonoBehaviour
                     currentPlant.PickUp();
 
                 }
-                else if (!currentPlant.planted)
+                else if (!currentPlant.planted && currentPlant.plowed)
                 {
                     if (invManager.hotbar[invManager.CSlot].item != null &&
                         invManager.hotbar[invManager.CSlot].item.Itemname == PumpkinSeedsName)
@@ -168,10 +170,17 @@ public class TriggerController : MonoBehaviour
                 }
 
                 if (invManager.hotbar[invManager.CSlot].item != null &&
-                    invManager.hotbar[invManager.CSlot].item.Itemname == WateringCanName)
+                    invManager.hotbar[invManager.CSlot].item.Itemname == WateringCanName && currentPlant.plowed)
                 {
                     currentPlant.watered = true;
                     currentPlant.transform.parent.gameObject.GetComponent<SpriteRenderer>().color = new Color32(77, 77, 77, 255);
+                }
+
+                if (invManager.hotbar[invManager.CSlot].item != null &&
+                    invManager.hotbar[invManager.CSlot].item.Itemname == HoeName)
+                {
+                    currentPlant.plowed = true;
+                    currentPlant.transform.parent.GetComponent<SpriteRenderer>().sprite = PlowedSoilSprite;
                 }
             }
             else if (NearItem.Count > 0)

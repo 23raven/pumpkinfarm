@@ -40,8 +40,6 @@ public class PostManager : MonoBehaviour
             instance.GetComponent<Button>().onClick.AddListener(instance.GetComponent<TodayDeliverPrefabScript>().Select);
         }
     }
-
-    // ИСПРАВЛЕНО: Безопасное удаление UI элементов с конца списка (без зависаний)
     private void ClearTodayDelivers()
     {
         for (int i = TodayDeliversContent.childCount - 1; i >= 0; i--)
@@ -88,40 +86,32 @@ public class PostManager : MonoBehaviour
     {
         RenderTodayDelivers();
     }
-
-    // ИСПРАВЛЕНО: Полная переработка логики проверки и отправки
     public void SendPost()
     {
         if (SelectedPost == null) { return; }
 
-        // Шаг 1: Проверяем, есть ли у игрока абсолютно ВСЕ нужные предметы
         bool hasAllItems = true;
         for (int i = 0; i < SelectedPost.requirments.Count; i++)
         {
             if (!inventoryManager.HasItem(SelectedPost.requirments[i].item, SelectedPost.requirments[i].quantity))
             {
                 hasAllItems = false;
-                break; // Если хотя бы одного предмета нет, прерываем проверку
+                break;
             }
         }
 
-        // Шаг 2: Если предметов хватает — списываем их, даем деньги и удаляем посылку
         if (hasAllItems)
         {
-            // Списываем все предметы из инвентаря
             for (int i = 0; i < SelectedPost.requirments.Count; i++)
             {
                 inventoryManager.RemoveItem(SelectedPost.requirments[i].item, SelectedPost.requirments[i].quantity);
             }
 
-            // Начисляем деньги за посылку
             gameManager.AddMoney(SelectedPost.cost);
 
-            // Удаляем посылку из списков
             TodayDelivers.Remove(SelectedPost);
             SelectedPost = null;
 
-            // Обновляем UI
             RenderSelectedDeliver();
             RenderTodayDelivers();
         }
