@@ -5,20 +5,27 @@ using UnityEngine.UI;
 
 public class CarvingManager : MonoBehaviour
 {
-    //вот тут ссылки на другие скрипты
-    [SerializeField] private InventoryManager invManager;
+    // Ссылки на другие скрипты
+    [Header("Менеджеры")]
+    public InventoryManager invManager; // Изменил на public для удобства кнопок
 
-    //я люблю разделать переменные в скриптах например отделять обьекты как тут
+    // Объекты UI и контейнеры
+    [Header("UI Контейнеры")]
     [SerializeField] private Transform PumpkinInvContent;
     [SerializeField] private Transform OrnamentsInvContent;
     [SerializeField] private GameObject SelectedItemGameObject;
 
-    //а тут уже префабы
+    // Префабы элементов UI
+    [Header("Prefabs")]
     [SerializeField] private GameObject PumpkinInvPrefab;
     [SerializeField] private GameObject OrnamentsInvPrefab;
 
-    public List<Ornament> allowed_ornaments = new(); //это лист доступных орнаментов сделал чтобы реализовать покупку орнаментов в будущем
-    public InvItem SelectedItem;
+    [Header("Данные")]
+    public List<Ornament> allowed_ornaments = new();
+    public InvItem SelectedItem; // Текущая выбранная ОДНА тыква
+
+    // Вспомогательные переменные, чтобы знать, из какого слота хотбара мы взяли тыкву
+    [HideInInspector] public int selectedSlotIndex = -1;
 
     public void DrawPumkinInventory()
     {
@@ -26,77 +33,110 @@ public class CarvingManager : MonoBehaviour
 
         for (int i = 0; i < invManager.hotbar.Length; i++)
         {
-            if (invManager.hotbar[i].item != null && IsPumpkin(invManager.hotbar[i].item))
+            var slot = invManager.hotbar[i];
+
+            if (slot.item != null && IsPumpkin(slot.item))
             {
-                //настройка слота в инвентаре тыкв
-                GameObject instance = Instantiate(PumpkinInvPrefab, PumpkinInvContent);
-                instance.transform.GetChild(1).GetComponent<TMP_Text>().text = invManager.hotbar[i].item.Itemname;
-                instance.transform.GetChild(2).GetComponent<TMP_Text>().text = invManager.hotbar[i].item.ornament.ToString();
-                instance.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().sprite = invManager.hotbar[i].item.icon;
+                // Рисуем каждую тыкву из стака как отдельную кнопку
+                for (int q = 0; q < slot.quantity; q++)
+                {
+                    GameObject instance = Instantiate(PumpkinInvPrefab, PumpkinInvContent);
 
-                //настройка компонента и назначение клика
-                instance.GetComponent<PumpkinInvButtonScript>().item = invManager.hotbar[i].item;
-                instance.GetComponent<PumpkinInvButtonScript>().carvingManager = this;
+                    // Настройка текста и картинки
+                    instance.transform.GetChild(1).GetComponent<TMP_Text>().text = slot.item.Itemname;
 
-                instance.GetComponent<Button>().onClick.AddListener(instance.GetComponent<PumpkinInvButtonScript>().Select);
+                    // ИСПРАВЛЕНО: Возвращаем вывод названия орнамента вместо цифры "1"
+                    instance.transform.GetChild(2).GetComponent<TMP_Text>().text = slot.item.ornament.ToString();
+
+                    instance.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().sprite = slot.item.icon;
+
+                    if (instance.TryGetComponent<PumpkinInvButtonScript>(out var buttonScript))
+                    {
+                        buttonScript.item = slot.item;
+                        buttonScript.carvingManager = this;
+                    }
+
+                    // Передаем в листенер индекс слота, чтобы знать, откуда забирать тыкву
+                    int slotIndex = i;
+                    if (instance.TryGetComponent<Button>(out var button))
+                    {
+                        button.onClick.AddListener(() => OnPumpkinClick(slot.item, slotIndex));
+                    }
+                }
             }
         }
     }
 
-    private bool IsPumpkin(InvItem item) //вспомогательная функция чтобы проверить является прдемет тыквой
+    // Логика клика по тыкве в интерфейсе стола
+    private void OnPumpkinClick(InvItem clickedItem, int slotIndex)
+    {
+        // Если кликнули по той же тыкве (отмена выбора)
+        if (SelectedItem != null && selectedSlotIndex == slotIndex && SelectedItem.ornament == clickedItem.ornament)
+        {
+            SelectedItem = null;
+            selectedSlotIndex = -1;
+        }
+        else
+        {
+            // Выбираем ОДНУ тыкву. Клонируем её сразу, чтобы это был отдельный уникальный предмет
+            SelectedItem = Instantiate(clickedItem);
+            selectedSlotIndex = slotIndex;
+        }
+
+        DrawSelected();
+    }
+
+    private bool IsPumpkin(InvItem item)
     {
         foreach (Tags tag in item.tags)
         {
-            if (tag == Tags.Pumkin)
-            {
-                return true;
-            }
+            if (tag == Tags.Pumkin) return true;
         }
-
         return false;
     }
 
-    //вспомогательные методы для очистки интерфейса
     private void ClearPumpkins()
     {
-        for (int i = 0; i < PumpkinInvContent.childCount; i++)
+        for (int i = PumpkinInvContent.childCount - 1; i >= 0; i--)
         {
-            Destroy(PumpkinInvContent.GetChild(0).gameObject);
+            Destroy(PumpkinInvContent.GetChild(i).gameObject);
         }
     }
 
     private void ClearOrnaments()
     {
-        for (int i = 0; i < OrnamentsInvContent.childCount; i++)
+        for (int i = OrnamentsInvContent.childCount - 1; i >= 0; i--)
         {
-            Destroy(OrnamentsInvContent.GetChild(0).gameObject);
+            Destroy(OrnamentsInvContent.GetChild(i).gameObject);
         }
     }
 
-    public void DrawOrnaments() //отрисовать список орнаментов
+    public void DrawOrnaments()
     {
         ClearOrnaments();
 
         for (int i = 0; i < allowed_ornaments.Count; i++)
         {
-            //тоже самое что и до этого
             GameObject instance = Instantiate(OrnamentsInvPrefab, OrnamentsInvContent);
             instance.transform.GetChild(1).GetComponent<TMP_Text>().text = allowed_ornaments[i].ornament.ToString();
             instance.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().sprite = allowed_ornaments[i].icon;
 
-            instance.GetComponent<OrnamentsPrefabButtonClick>().Ornament = allowed_ornaments[i].ornament;
-            instance.GetComponent<OrnamentsPrefabButtonClick>().carvingManager = this;
+            if (instance.TryGetComponent<OrnamentsPrefabButtonClick>(out var buttonScript))
+            {
+                buttonScript.Ornament = allowed_ornaments[i].ornament;
+                buttonScript.carvingManager = this;
+            }
 
-            instance.GetComponent<Button>().onClick.AddListener(instance.GetComponent<OrnamentsPrefabButtonClick>().ChangeOrnament);
+            if (instance.TryGetComponent<Button>(out var button))
+            {
+                button.onClick.AddListener(buttonScript.ChangeOrnament);
+            }
         }
     }
 
-    public void DrawPrototype() //как анна нарисует лица сделаю
-    {
+    public void DrawPrototype() { }
 
-    }
-
-    public void DrawSelected() //настраиваем и включаем выключаем основываюсь на выбранном предмете
+    public void DrawSelected()
     {
         if (SelectedItem != null)
         {
@@ -111,14 +151,16 @@ public class CarvingManager : MonoBehaviour
         }
     }
 
-    private void OnEnable() //отрисовываем при включение обьекта
+    private void OnEnable()
     {
+        SelectedItem = null;
+        selectedSlotIndex = -1;
         DrawOrnaments();
         DrawPrototype();
         DrawPumkinInventory();
+        DrawSelected();
     }
 }
-
 [System.Serializable]
 public class Ornament //класс чтобы я мог добавить иконки орнаментам
 {

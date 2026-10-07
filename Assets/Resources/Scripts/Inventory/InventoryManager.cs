@@ -12,7 +12,7 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            if (hotbar[i].item != null && hotbar[i].item.Itemname == item.Itemname)
+            if (hotbar[i].item != null && hotbar[i].item.Itemname == item.Itemname && hotbar[i].item.ornament == item.ornament)
             {
                 hotbar[i].quantity += quantity;
                 UpdUI();
@@ -35,7 +35,7 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            if (hotbar[i].item != null && hotbar[i].item.Itemname == item.Itemname)
+            if (hotbar[i].item != null && hotbar[i].item.Itemname == item.Itemname && hotbar[i].item.ornament == item.ornament)
             {
                 hotbar[i].quantity -= quantity;
 
@@ -51,9 +51,35 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public bool HasItem(InvItem item, int requiredQuantity)
+    {
+        if (item == null) return false;
+
+        int currentCount = GetItemCount(item);
+
+        return currentCount >= requiredQuantity;
+    }
+
+    public int GetItemCount(InvItem item)
+    {
+        if (item == null) return 0;
+
+        int totalCount = 0;
+
+        for (int i = 0; i < hotbar.Length; i++)
+        {
+            if (hotbar[i].item != null && hotbar[i].item.Itemname == item.Itemname && hotbar[i].item.ornament == item.ornament)
+            {
+                totalCount += hotbar[i].quantity;
+            }
+        }
+
+        return totalCount;
+    }
+
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             CSlot = 0;
             UpdUI();
@@ -75,7 +101,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private void UpdUI()
+    public void UpdUI()
     {
         inventoryRenderer.DrawCSlot();
         inventoryRenderer.DrawSlots();
