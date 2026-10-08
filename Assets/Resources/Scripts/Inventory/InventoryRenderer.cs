@@ -7,12 +7,32 @@ public class InventoryRenderer : MonoBehaviour
     [SerializeField] private InventoryManager inventoryManager;
     [SerializeField] private TMP_Text hotbarText;
 
-    [SerializeField] private GameObject[] hotBarObjects = new GameObject[4];
+    // В инспекторе закинь сюда ВСЕ возможные слоты UI (минимум 6 штук на будущее)
+    [SerializeField] private GameObject[] hotBarObjects;
 
-    public void DrawCSlot() //рендерим текущие слоты и показываем как выделен
+    private void Start()
+    {
+        // При старте принудительно обновляем UI, чтобы спрятать лишние слоты
+        if (inventoryManager != null)
+        {
+            inventoryManager.UpdUI();
+        }
+    }
+
+    public void DrawCSlot()
     {
         for (int i = 0; i < hotBarObjects.Length; i++)
         {
+            // Если этот UI слот превышает текущий размер инвентаря — выключаем его отображение
+            if (i >= inventoryManager.hotbar.Length)
+            {
+                hotBarObjects[i].SetActive(false);
+                continue;
+            }
+
+            // Если слот доступен игроку — включаем его
+            hotBarObjects[i].SetActive(true);
+
             RectTransform rt = hotBarObjects[i].GetComponent<RectTransform>();
 
             if (i == inventoryManager.CSlot)
@@ -25,7 +45,8 @@ public class InventoryRenderer : MonoBehaviour
             }
         }
 
-        if (inventoryManager.hotbar[inventoryManager.CSlot].item != null)
+        // Проверка на случай, если текущий выбранный слот вдруг пустой или за границами массива
+        if (inventoryManager.CSlot < inventoryManager.hotbar.Length && inventoryManager.hotbar[inventoryManager.CSlot].item != null)
         {
             hotbarText.text = inventoryManager.hotbar[inventoryManager.CSlot].item.Itemname;
         }
@@ -37,11 +58,16 @@ public class InventoryRenderer : MonoBehaviour
 
     public void DrawSlots()
     {
-        int i = 0;
-        foreach (var slot in hotBarObjects)
+        for (int i = 0; i < hotBarObjects.Length; i++)
         {
-            Image slotImg = slot.transform.GetChild(0).GetComponent<Image>();
-            TMP_Text quantityText = slot.transform.GetChild(2).GetComponent<TMP_Text>();
+            // Защита: не рендерим UI слоты, если инвентарь игрока до них ещё не дорос
+            if (i >= inventoryManager.hotbar.Length)
+            {
+                continue;
+            }
+
+            Image slotImg = hotBarObjects[i].transform.GetChild(0).GetComponent<Image>();
+            TMP_Text quantityText = hotBarObjects[i].transform.GetChild(2).GetComponent<TMP_Text>();
 
             if (inventoryManager.hotbar[i].item != null)
             {
@@ -53,9 +79,6 @@ public class InventoryRenderer : MonoBehaviour
                 slotImg.sprite = Resources.Load<Sprite>("Sprites/Emptiness");
                 quantityText.text = "";
             }
-
-            i++;
         }
     }
-
 }

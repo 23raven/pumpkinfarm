@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 624e3b347687c6d4aae301fc3de4aa8c, type: 3}
-  m_Name: Candle
+  m_Name: BackPack
   m_EditorClassIdentifier: Assembly-CSharp::InvItem
-  icon: {fileID: -3398421622079447038, guid: a0d836d7ebb3d4548b0f44aaf4dc25e3, type: 3}
-  Itemname: Candle
+  icon: {fileID: 3144314509466690173, guid: 88c9a25400a086f4a931e871ffa50060, type: 3}
+  Itemname: Backpack
   description: 
-  selleable: 1
-  priceSell: 3
-  priceBuy: 5
+  selleable: 0
+  priceSell: 0
+  priceBuy: 40
   ornament: 0
-  tags: 01000000
-  Drop: {fileID: 7640488033788773039, guid: 129e8f5fe01c4824e84041be8c761e82, type: 3}
+  tags: 
+  Drop: {fileID: 239831848497460680, guid: 9809ef9680c4a8243b2dfe9559bb2fd9, type: 3}

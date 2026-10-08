@@ -13,6 +13,7 @@ public class InvItem : ScriptableObject
     public int priceBuy;
     public Ornaments ornament;
     public List<Tags> tags = new();
+    public GameObject Drop; //это предмет который будет лежать на карте
 }
 
 public enum Ornaments //это типо орнаменты для вырезания по тыкве

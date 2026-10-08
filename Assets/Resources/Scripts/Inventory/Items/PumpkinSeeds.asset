@@ -20,3 +20,4 @@ MonoBehaviour:
   priceBuy: 4
   ornament: 0
   tags: 01000000
+  Drop: {fileID: 8217497347634187272, guid: 2def1600efc8c2c45b4d85e026e1f6b7, type: 3}
