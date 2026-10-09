@@ -3,13 +3,12 @@ using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour
 {
-    public InvSlot[] hotbar = new InvSlot[2]; // Изначально 2 слота
+    public InvSlot[] hotbar = new InvSlot[2];
     public int CSlot;
 
     [SerializeField] private InvItem BackpackItem;
     [SerializeField] private InventoryRenderer inventoryRenderer;
 
-    // Ссылка на трансформ игрока (перетащи объект игрока сюда в инспекторе)
     [SerializeField] private Transform playerTransform;
 
     private int backpackUseCount = 0;
@@ -21,7 +20,6 @@ public class InventoryManager : MonoBehaviour
             hotbar[i] = new InvSlot();
         }
 
-        // Авто-поиск игрока, если забыл перетащить его в инспекторе (по тегу "Player")
         if (playerTransform == null)
         {
             GameObject playerObj = GameObject.FindWithTag("Player");
@@ -31,7 +29,6 @@ public class InventoryManager : MonoBehaviour
             }
             else
             {
-                // Если тега нет, используем объект, на котором висит этот скрипт
                 playerTransform = transform;
             }
         }
@@ -39,7 +36,6 @@ public class InventoryManager : MonoBehaviour
 
     public bool AddItem(InvItem item, int quantity)
     {
-        // 1. Проверяем возможность стака предметов
         for (int i = 0; i < hotbar.Length; i++)
         {
             if (hotbar[i] != null && hotbar[i].item != null && hotbar[i].item.Itemname == item.Itemname && hotbar[i].item.ornament == item.ornament)
@@ -50,7 +46,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        // 2. Ищем свободное место
         for (int i = 0; i < hotbar.Length; i++)
         {
             if (hotbar[i] == null || hotbar[i].item == null)
@@ -61,7 +56,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        // 3. Если инвентарь полон — выбрасываем текущий предмет и ставим новый
         DropCurrentItem();
 
         hotbar[CSlot] = new InvSlot { item = item, quantity = quantity };
@@ -81,15 +75,10 @@ public class InventoryManager : MonoBehaviour
 
         if (itemToDrop.Drop != null)
         {
-            // Вычисляем позицию строго у ног игрока:
-            // Берем координаты игрока, сдвигаем на 1 метр вперед (playerTransform.forward) 
-            // и приподнимаем всего на 0.1-0.2 метра, чтобы он красиво лежал на земле
             Vector3 dropPosition = playerTransform.position;
 
-            // Создаем физический объект на сцене у ног игрока
             GameObject droppedObj = Instantiate(itemToDrop.Drop, dropPosition, Quaternion.identity);
 
-            // Передаем данные в PickUpItem
             if (droppedObj.TryGetComponent<PickUpItem>(out PickUpItem pickUp))
             {
                 pickUp.item = itemToDrop;

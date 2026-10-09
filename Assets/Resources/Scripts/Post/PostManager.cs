@@ -109,8 +109,16 @@ public class PostManager : MonoBehaviour
 
         if (hasAllItems)
         {
-            GameObject instance = Instantiate(CartPrefab, CartSpawnPos.position, Quaternion.identity);
-            CurrentCart = instance;
+            for (int i = 0; i < CurrentDelivering.requirments.Count; i++)
+            {
+                inventoryManager.RemoveItem(CurrentDelivering.requirments[i].item, CurrentDelivering.requirments[i].quantity);
+            }
+
+            if (CurrentCart == null)
+            {
+                GameObject instance = Instantiate(CartPrefab, CartSpawnPos.position, Quaternion.identity);
+                CurrentCart = instance;
+            }
 
             Delivering = true;
             CurrentDelivering = SelectedPost;
@@ -119,11 +127,6 @@ public class PostManager : MonoBehaviour
 
     public void GetPostAward()
     {
-        for (int i = 0; i < CurrentDelivering.requirments.Count; i++)
-        {
-            inventoryManager.RemoveItem(CurrentDelivering.requirments[i].item, CurrentDelivering.requirments[i].quantity);
-        }
-
         Destroy(CurrentCart);
         CurrentCart = null;
         WithCart = false;

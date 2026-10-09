@@ -31396,6 +31396,7 @@ MonoBehaviour:
   EventBoardObjUi: {fileID: 653049954}
   PostUiObj: {fileID: 1287476253}
   PlowedSoilSprite: {fileID: -9506349, guid: 84bfdd326696a7f42868b91e4e6727da, type: 3}
+  PlayerTransform: {fileID: 3073483479129068460}
   CurrPlants: []
   NearItem: []
   PumpkinSeedsName: Pumpkin seeds

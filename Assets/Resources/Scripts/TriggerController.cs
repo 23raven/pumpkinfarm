@@ -16,6 +16,7 @@ public class TriggerController : MonoBehaviour
     [SerializeField] private GameObject EventBoardObjUi;
     [SerializeField] private GameObject PostUiObj;
     [SerializeField] private Sprite PlowedSoilSprite;
+    [SerializeField] private Transform PlayerTransform;
 
     [SerializeField] private List<Plant> CurrPlants = new();
     private bool NearBed;
@@ -177,7 +178,7 @@ public class TriggerController : MonoBehaviour
             if (cart != null)
             {
                 cart.enabled = !cart.enabled;
-                cart.target = movement.transform;
+                cart.SetTarget(PlayerTransform);
 
                 if (postManager.Delivering)
                 {
