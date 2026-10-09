@@ -12,6 +12,8 @@ TagManager:
   - npc
   - EventArea
   - PostArea
+  - Cart
+  - DeliverArea
   layers:
   - Default
   - TransparentFX

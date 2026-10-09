@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
+using System.Runtime.CompilerServices;
 
 public class PostManager : MonoBehaviour
 {
@@ -10,12 +11,18 @@ public class PostManager : MonoBehaviour
 
     [SerializeField] private Transform TodayDeliversContent;
     [SerializeField] private Transform SelectedDeliverContent;
+    [SerializeField] private Transform CartSpawnPos;
 
     [SerializeField] private GameObject TodayDeliversPrefab;
     [SerializeField] private GameObject SelectedDeliverPrefab;
+    [SerializeField] private GameObject CartPrefab;
 
     public List<Post> TodayDelivers = new();
     public Post SelectedPost;
+    public bool Delivering;
+    public bool WithCart;
+    private GameObject CurrentCart;
+    public Post CurrentDelivering;
 
     public void RenderTodayDelivers()
     {
@@ -77,7 +84,7 @@ public class PostManager : MonoBehaviour
         else
         {
             SelectedDeliverContent.parent.parent.parent.GetChild(2).GetComponent<TMP_Text>().text = "";
-            SelectedDeliverContent.parent.parent.parent.GetChild(4).GetChild(0).gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Emptiness"); // Убран лишний слэш в начале пути
+            SelectedDeliverContent.parent.parent.parent.GetChild(4).GetChild(0).gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Emptiness");
             SelectedDeliverContent.parent.parent.parent.GetChild(3).gameObject.GetComponent<TMP_Text>().text = "";
         }
     }
@@ -102,23 +109,34 @@ public class PostManager : MonoBehaviour
 
         if (hasAllItems)
         {
-            for (int i = 0; i < SelectedPost.requirments.Count; i++)
-            {
-                inventoryManager.RemoveItem(SelectedPost.requirments[i].item, SelectedPost.requirments[i].quantity);
-            }
+            GameObject instance = Instantiate(CartPrefab, CartSpawnPos.position, Quaternion.identity);
+            CurrentCart = instance;
 
-            gameManager.AddMoney(SelectedPost.cost);
-
-            TodayDelivers.Remove(SelectedPost);
-            SelectedPost = null;
-
-            RenderSelectedDeliver();
-            RenderTodayDelivers();
+            Delivering = true;
+            CurrentDelivering = SelectedPost;
         }
-        else
+    }
+
+    public void GetPostAward()
+    {
+        for (int i = 0; i < CurrentDelivering.requirments.Count; i++)
         {
-            Debug.Log("Недостаточно предметов в инвентаре для отправки этой посылки!");
+            inventoryManager.RemoveItem(CurrentDelivering.requirments[i].item, CurrentDelivering.requirments[i].quantity);
         }
+
+        Destroy(CurrentCart);
+        CurrentCart = null;
+        WithCart = false;
+
+        gameManager.AddMoney(CurrentDelivering.cost);
+
+        TodayDelivers.Remove(CurrentDelivering);
+        SelectedPost = null;
+        CurrentDelivering = null;
+        Delivering = false;
+
+        RenderSelectedDeliver();
+        RenderTodayDelivers();
     }
 }
 [System.Serializable]
@@ -128,6 +146,7 @@ public class Post
     public Sprite icon;
     public int cost;
     public List<Requitment> requirments = new();
+    public Transform DeliverPos;
 }
 
 [System.Serializable]

@@ -252,6 +252,84 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &30861919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 30861920}
+  - component: {fileID: 30861921}
+  m_Layer: 0
+  m_Name: DeliveryHitbox
+  m_TagString: DeliverArea
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &30861920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30861919}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.616, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1605162666}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &30861921
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30861919}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.04913993}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 0.2277981}
+  m_EdgeRadius: 0
 --- !u!114 &64546658 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2779778322557954827, guid: cb6ffc04e8ebe6e4c94a3036e866e10d, type: 3}
@@ -2872,7 +2950,8 @@ Transform:
   m_LocalPosition: {x: 6.55, y: 3.3814, z: 0}
   m_LocalScale: {x: 3.5173128, y: 2.0029, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2096690935}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &507883671
@@ -11431,8 +11510,10 @@ MonoBehaviour:
   gameManager: {fileID: 932617741}
   TodayDeliversContent: {fileID: 131654529}
   SelectedDeliverContent: {fileID: 304322938}
+  CartSpawnPos: {fileID: 2096690935}
   TodayDeliversPrefab: {fileID: 2496088427279951372, guid: 9e64682af496fea42b4476b97e7fdd7d, type: 3}
   SelectedDeliverPrefab: {fileID: 5408592200004298168, guid: ccaca1a6d27fed84faf71c94fefa8fb1, type: 3}
+  CartPrefab: {fileID: 2607485152518345652, guid: c151a1dccd281554385add7dcfe798fc, type: 3}
   TodayDelivers:
   - reciever: Orekhin
     icon: {fileID: 7920881274043725066, guid: 7a34dedc60b99ca4e85f036172130583, type: 3}
@@ -11442,11 +11523,21 @@ MonoBehaviour:
       quantity: 1
     - item: {fileID: 11400000, guid: 0d9b58a9a1083da4298368363c07bf33, type: 2}
       quantity: 1
+    DeliverPos: {fileID: 30861920}
   SelectedPost:
     reciever: 
     icon: {fileID: 0}
     cost: 0
     requirments: []
+    DeliverPos: {fileID: 0}
+  Delivering: 0
+  WithCart: 0
+  CurrentDelivering:
+    reciever: 
+    icon: {fileID: 0}
+    cost: 0
+    requirments: []
+    DeliverPos: {fileID: 0}
 --- !u!1001 &1298638432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12531,7 +12622,7 @@ GameObject:
   - component: {fileID: 1605162666}
   - component: {fileID: 1605162667}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: House 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12549,7 +12640,8 @@ Transform:
   m_LocalPosition: {x: -16.71, y: -33.79, z: 0}
   m_LocalScale: {x: 6.715924, y: 9.482933, z: 8.362375}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 30861920}
   m_Father: {fileID: 211076134}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1605162667
@@ -30364,6 +30456,37 @@ Transform:
   - {fileID: 1661505653}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2096690934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2096690935}
+  m_Layer: 0
+  m_Name: CartSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2096690935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096690934}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.472, y: -1.247, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 502770787}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2105047232
 GameObject:
   m_ObjectHideFlags: 0
@@ -31265,6 +31388,7 @@ MonoBehaviour:
   gameManager: {fileID: 932617741}
   invManager: {fileID: 5677839835149619770}
   dialogRenderer: {fileID: 1891645149143702972}
+  postManager: {fileID: 1287476255}
   movement: {fileID: 3126314653416484976}
   sell: {fileID: 8430863890702213737}
   ShopUiObj: {fileID: 3949163391343748701}

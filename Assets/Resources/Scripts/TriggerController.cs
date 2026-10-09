@@ -8,6 +8,7 @@ public class TriggerController : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private InventoryManager invManager;
     [SerializeField] private DialogRenderer dialogRenderer;
+    [SerializeField] private PostManager postManager;
     [SerializeField] private PlayerMovement movement;
     [SerializeField] private Sell sell;
     [SerializeField] private GameObject ShopUiObj;
@@ -22,7 +23,9 @@ public class TriggerController : MonoBehaviour
     private bool NearCarvingTable;
     private bool NearEventBoard;
     private bool NearPostArea;
+    private GameObject NearDeliverArea;
     private Dialog dialog;
+    private CartFollow cart;
     [SerializeField] private List<GameObject> NearItem = new();
     [SerializeField] private string PumpkinSeedsName;
     [SerializeField] private string WateringCanName;
@@ -62,6 +65,14 @@ public class TriggerController : MonoBehaviour
         {
             NearPostArea = true;
         }
+        else if (other.CompareTag("Cart"))
+        {
+            cart = other.gameObject.GetComponent<CartFollow>();
+        }
+        else if (other.CompareTag("DeliverArea"))
+        {
+            NearDeliverArea = other.gameObject;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -97,6 +108,14 @@ public class TriggerController : MonoBehaviour
         else if (other.CompareTag("PostArea"))
         {
             NearPostArea = false;
+        }
+        else if (other.CompareTag("Cart"))
+        {
+            cart = null;
+        }
+        else if (other.CompareTag("DeliverArea"))
+        {
+            NearDeliverArea = null;
         }
     }
 
@@ -142,6 +161,28 @@ public class TriggerController : MonoBehaviour
             {
                 movement.enabled = !movement.enabled;
                 PostUiObj.SetActive(!PostUiObj.activeSelf);
+            }
+
+            if (NearDeliverArea != null)
+            {
+                if (postManager.Delivering && postManager.WithCart)
+                {
+                    if (postManager.CurrentDelivering.DeliverPos.gameObject.name == NearDeliverArea.name)
+                    {
+                        postManager.GetPostAward();
+                    }
+                }
+            }
+
+            if (cart != null)
+            {
+                cart.enabled = !cart.enabled;
+                cart.target = movement.transform;
+
+                if (postManager.Delivering)
+                {
+                    postManager.WithCart = !postManager.WithCart;
+                }
             }
 
             if (CurrPlants.Count > 0)
