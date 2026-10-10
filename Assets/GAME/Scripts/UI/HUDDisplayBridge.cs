@@ -67,17 +67,24 @@ public class HUDDisplayBridge : MonoBehaviour
         {
             HUDTextKey key = InventoryKeys[i];
 
+            string marker =
+                i == message.SelectedSlotIndex ? "> " : "";
+
             if (i >= message.Slots.Length)
             {
-                Publish(key, $"Slot {i + 1}\nUnavailable");
+                Publish(
+                    key,
+                    $"{marker}Slot {i + 1}\nUnavailable"
+                );
+
                 continue;
             }
 
             InventorySlotData slot = message.Slots[i];
 
             string text = slot.IsEmpty
-                ? $"Slot {i + 1}\nEmpty"
-                : $"Slot {i + 1}\n{slot.Item.DisplayName} x{slot.Quantity}";
+                ? $"{marker}Slot {i + 1}\nEmpty"
+                : $"{marker}Slot {i + 1}\n{slot.Item.DisplayName} x{slot.Quantity}";
 
             Publish(key, text);
         }

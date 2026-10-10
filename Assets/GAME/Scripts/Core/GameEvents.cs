@@ -100,10 +100,14 @@ public readonly struct InventorySlotData
 public readonly struct InventoryChangedEvent
 {
     public InventorySlotData[] Slots { get; }
+    public int SelectedSlotIndex { get; }
 
-    public InventoryChangedEvent(InventorySlotData[] slots)
+    public InventoryChangedEvent(
+        InventorySlotData[] slots,
+        int selectedSlotIndex)
     {
         Slots = slots;
+        SelectedSlotIndex = selectedSlotIndex;
     }
 }
 

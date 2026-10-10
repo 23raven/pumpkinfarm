@@ -9,6 +9,24 @@ public class InventoryService : MonoBehaviour
     private readonly List<InventorySlot> slots =
         new List<InventorySlot>();
 
+    public int SelectedSlotIndex { get; private set; }
+
+    public ItemDefinition SelectedItem
+    {
+        get
+        {
+            InitializeSlots();
+
+            if (SelectedSlotIndex < 0 ||
+                SelectedSlotIndex >= slots.Count)
+            {
+                return null;
+            }
+
+            return slots[SelectedSlotIndex].Item;
+        }
+    }
+
     public IReadOnlyList<InventorySlot> Slots
     {
         get
@@ -52,6 +70,22 @@ public class InventoryService : MonoBehaviour
 
         for (int i = 0; i < Mathf.Max(1, slotCount); i++)
             slots.Add(new InventorySlot());
+    }
+
+    public bool SelectSlot(int index)
+    {
+        InitializeSlots();
+
+        if (index < 0 || index >= slots.Count)
+            return false;
+
+        if (SelectedSlotIndex == index)
+            return true;
+
+        SelectedSlotIndex = index;
+        PublishChanged();
+
+        return true;
     }
 
     public int AddItem(ItemDefinition item, int amount)
@@ -177,7 +211,9 @@ public class InventoryService : MonoBehaviour
             );
         }
 
-        GameEvents.Publish(new InventoryChangedEvent(snapshot));
+        GameEvents.Publish(
+    new InventoryChangedEvent(snapshot, SelectedSlotIndex)
+);
     }
 }
 

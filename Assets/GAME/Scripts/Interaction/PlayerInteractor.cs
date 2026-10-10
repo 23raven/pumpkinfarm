@@ -2,7 +2,14 @@ using UnityEngine;
 
 public class PlayerInteractor : MonoBehaviour
 {
-    [SerializeField] private float interactionRadius = 1.5f;
+    [Header("Interaction")]
+    [SerializeField] private Transform interactionPoint;
+    [SerializeField, Min(0.1f)] private float interactionRadius = 0.8f;
+
+    public Vector3 InteractionPosition =>
+        interactionPoint != null
+            ? interactionPoint.position
+            : transform.position;
 
     private void Update()
     {
@@ -10,7 +17,7 @@ public class PlayerInteractor : MonoBehaviour
             return;
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(
-            transform.position,
+            InteractionPosition,
             interactionRadius
         );
 
@@ -24,15 +31,12 @@ public class PlayerInteractor : MonoBehaviour
 
             foreach (MonoBehaviour component in components)
             {
-                IInteractable interactable =
-                    component as IInteractable;
-
-                if (interactable == null)
+                if (!(component is IInteractable interactable))
                     continue;
 
                 float distance = Vector2.Distance(
-                    transform.position,
-                    hit.ClosestPoint(transform.position)
+                    InteractionPosition,
+                    hit.ClosestPoint(InteractionPosition)
                 );
 
                 if (distance < nearestDistance)
@@ -51,9 +55,10 @@ public class PlayerInteractor : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
 
-        Gizmos.DrawWireSphere(
-            transform.position,
-            interactionRadius
-        );
+        Vector3 position = interactionPoint != null
+            ? interactionPoint.position
+            : transform.position;
+
+        Gizmos.DrawWireSphere(position, interactionRadius);
     }
 }
