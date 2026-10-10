@@ -16,3 +16,5 @@ MonoBehaviour:
   harvestItem: {fileID: 11400000, guid: 8ea429b081b8798498be4500dffefce8, type: 2}
   daysToGrow: 3
   harvestAmount: 1
+  growingTile: {fileID: 11400000, guid: a42571c92c0a4b343b68b05e2327ea81, type: 2}
+  readyTile: {fileID: 11400000, guid: 92dd5c507691c6d4786b051857708bad, type: 2}

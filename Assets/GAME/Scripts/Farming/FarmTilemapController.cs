@@ -8,7 +8,6 @@ public class FarmTilemapController : MonoBehaviour, IInteractable
     [Header("Tiles")]
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private TileBase tilledTile;
-    [SerializeField] private TileBase plantedTile;
 
     [Header("Crops")]
     [SerializeField] private CropDefinition[] availableCrops;
@@ -20,94 +19,55 @@ public class FarmTilemapController : MonoBehaviour, IInteractable
     private readonly HashSet<Vector3Int> tilledCells =
         new HashSet<Vector3Int>();
 
-    private readonly Dictionary<Vector3Int, CropDefinition> plantedCells =
-        new Dictionary<Vector3Int, CropDefinition>();
+    private readonly Dictionary<Vector3Int, PlantedCrop> plantedCells =
+        new Dictionary<Vector3Int, PlantedCrop>();
+
+    private sealed class PlantedCrop
+    {
+        public CropDefinition Definition;
+        public int PlantedOnDay;
+        public int HarvestRemaining;
+        public bool IsReady;
+    }
 
     private void Awake()
     {
         if (tilemap == null)
             tilemap = GetComponent<Tilemap>();
 
-        if (targetPreview != null && targetPreview.sprite != null)
+        if (tilemap != null &&
+            targetPreview != null &&
+            targetPreview.sprite != null)
         {
             Vector3 cellSize = tilemap.cellSize;
             Vector3 spriteSize = targetPreview.sprite.bounds.size;
 
-            targetPreview.transform.localScale = new Vector3(
-                cellSize.x / spriteSize.x,
-                cellSize.y / spriteSize.y,
-                1f
-            );
+            if (spriteSize.x > 0f && spriteSize.y > 0f)
+            {
+                targetPreview.transform.localScale = new Vector3(
+                    cellSize.x / spriteSize.x,
+                    cellSize.y / spriteSize.y,
+                    1f
+                );
+            }
 
             targetPreview.enabled = false;
         }
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.Subscribe<DayChangedEvent>(OnDayChanged);
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.Unsubscribe<DayChangedEvent>(OnDayChanged);
     }
 
     private void Update()
     {
         UpdateTargetPreview();
-    }
-
-    private void UpdateTargetPreview()
-    {
-        if (targetPreview == null || player == null || tilemap == null)
-            return;
-
-        IDirectionalInteractor directional =
-            player.GetComponent(typeof(IDirectionalInteractor))
-            as IDirectionalInteractor;
-
-        if (directional == null)
-        {
-            targetPreview.enabled = false;
-            return;
-        }
-
-        PlayerInteractor playerInteractor =
-        player.GetComponent<PlayerInteractor>();
-
-        Vector3 interactionPosition = playerInteractor != null
-            ? playerInteractor.InteractionPosition
-            : player.position;
-
-        Vector3Int cell = GetTargetCell(
-            interactionPosition,
-            directional.FacingDirection
-        );
-
-        bool canInteract = CanInteractWithCell(cell);
-
-        targetPreview.enabled = canInteract;
-
-        if (canInteract)
-            targetPreview.transform.position = tilemap.GetCellCenterWorld(cell);
-    }
-
-    private bool CanInteractWithCell(Vector3Int cell)
-    {
-        if (!tilemap.HasTile(cell))
-            return false;
-
-        GameServices services = GameServices.Instance;
-
-        if (services == null ||
-            !services.TryGet<InventoryService>(
-                out InventoryService inventory))
-            return false;
-
-        ItemDefinition selectedItem = inventory.SelectedItem;
-
-        if (selectedItem == null)
-            return false;
-
-        if (selectedItem.ItemId == "hoe")
-            return !tilledCells.Contains(cell);
-
-        CropDefinition crop = FindCropForSeed(selectedItem);
-
-        return crop != null
-            && tilledCells.Contains(cell)
-            && !plantedCells.ContainsKey(cell);
     }
 
     public void Interact(GameObject interactor)
@@ -125,14 +85,6 @@ public class FarmTilemapController : MonoBehaviour, IInteractable
             return;
         }
 
-        ItemDefinition selectedItem = inventory.SelectedItem;
-
-        if (selectedItem == null)
-        {
-            Debug.Log("Select a tool or seeds first.");
-            return;
-        }
-
         IDirectionalInteractor directional =
             interactor.GetComponent(typeof(IDirectionalInteractor))
             as IDirectionalInteractor;
@@ -140,12 +92,7 @@ public class FarmTilemapController : MonoBehaviour, IInteractable
         if (directional == null)
             return;
 
-        PlayerInteractor playerInteractor =
-        interactor.GetComponent<PlayerInteractor>();
-
-        Vector3 interactionPosition = playerInteractor != null
-            ? playerInteractor.InteractionPosition
-            : interactor.transform.position;
+        Vector3 interactionPosition = GetInteractionPosition(interactor);
 
         Vector3Int cell = GetTargetCell(
             interactionPosition,
@@ -155,6 +102,22 @@ public class FarmTilemapController : MonoBehaviour, IInteractable
         if (!tilemap.HasTile(cell))
         {
             Debug.Log("There is no tillable soil here.");
+            return;
+        }
+
+        // A mature crop can be harvested with any selected item.
+        if (plantedCells.TryGetValue(cell, out PlantedCrop planted) &&
+            planted.IsReady)
+        {
+            TryHarvest(cell, planted, inventory);
+            return;
+        }
+
+        ItemDefinition selectedItem = inventory.SelectedItem;
+
+        if (selectedItem == null)
+        {
+            Debug.Log("Select a tool or seeds first.");
             return;
         }
 
@@ -213,9 +176,25 @@ public class FarmTilemapController : MonoBehaviour, IInteractable
             return;
         }
 
-        if (crop.SeedItem == null || crop.HarvestItem == null)
+        if (crop.SeedItem == null ||
+            crop.HarvestItem == null ||
+            crop.GrowingTile == null ||
+            crop.ReadyTile == null)
         {
-            Debug.LogWarning("Crop definition is incomplete.", crop);
+            Debug.LogWarning(
+                "Crop definition is missing an item or visual Tile.",
+                crop
+            );
+            return;
+        }
+
+        GameServices services = GameServices.Instance;
+
+        if (services == null ||
+            !services.TryGet<DayCycleService>(
+                out DayCycleService dayCycle))
+        {
+            Debug.LogWarning("DayCycleService is unavailable.", this);
             return;
         }
 
@@ -225,20 +204,89 @@ public class FarmTilemapController : MonoBehaviour, IInteractable
             return;
         }
 
-        plantedCells.Add(cell, crop);
-
-        if (plantedTile != null)
+        plantedCells.Add(cell, new PlantedCrop
         {
-            tilemap.SetTile(cell, plantedTile);
-            tilemap.RefreshTile(cell);
-        }
+            Definition = crop,
+            PlantedOnDay = dayCycle.CurrentDay,
+            HarvestRemaining = crop.HarvestAmount,
+            IsReady = false
+        });
+
+        tilemap.SetTile(cell, crop.GrowingTile);
+        tilemap.RefreshTile(cell);
 
         Debug.Log($"Planted {crop.SeedItem.DisplayName}.");
     }
 
+    private void OnDayChanged(DayChangedEvent message)
+    {
+        foreach (KeyValuePair<Vector3Int, PlantedCrop> entry
+                 in plantedCells)
+        {
+            PlantedCrop planted = entry.Value;
+
+            if (planted.IsReady)
+                continue;
+
+            int elapsedDays = message.Day - planted.PlantedOnDay;
+
+            if (elapsedDays < planted.Definition.DaysToGrow)
+                continue;
+
+            planted.IsReady = true;
+
+            tilemap.SetTile(
+                entry.Key,
+                planted.Definition.ReadyTile
+            );
+
+            tilemap.RefreshTile(entry.Key);
+
+            Debug.Log(
+                $"{planted.Definition.HarvestItem.DisplayName} is ready!"
+            );
+        }
+    }
+
+    private void TryHarvest(
+        Vector3Int cell,
+        PlantedCrop planted,
+        InventoryService inventory)
+    {
+        ItemDefinition harvestItem = planted.Definition.HarvestItem;
+
+        int remaining = inventory.AddItem(
+            harvestItem,
+            planted.HarvestRemaining
+        );
+
+        int collected = planted.HarvestRemaining - remaining;
+
+        planted.HarvestRemaining = remaining;
+
+        if (collected > 0)
+        {
+            Debug.Log(
+                $"Harvested {collected} {harvestItem.DisplayName}."
+            );
+        }
+
+        if (remaining > 0)
+        {
+            Debug.Log("Inventory is full. Harvest the remaining crop later.");
+            return;
+        }
+
+        plantedCells.Remove(cell);
+
+        // The soil remains tilled and can be used again.
+        tilemap.SetTile(cell, tilledTile);
+        tilemap.RefreshTile(cell);
+    }
+
     private CropDefinition FindCropForSeed(ItemDefinition item)
     {
-        if (availableCrops == null)
+        if (availableCrops == null || item == null)
             return null;
 
         foreach (CropDefinition crop in availableCrops)
@@ -248,6 +296,85 @@ public class FarmTilemapController : MonoBehaviour, IInteractable
         }
 
         return null;
+    }
+
+    private void UpdateTargetPreview()
+    {
+        if (targetPreview == null || player == null || tilemap == null)
+            return;
+
+        IDirectionalInteractor directional =
+            player.GetComponent(typeof(IDirectionalInteractor))
+            as IDirectionalInteractor;
+
+        if (directional == null)
+        {
+            targetPreview.enabled = false;
+            return;
+        }
+
+        Vector3 interactionPosition = GetInteractionPosition(player.gameObject);
+
+        Vector3Int cell = GetTargetCell(
+            interactionPosition,
+            directional.FacingDirection
+        );
+
+        bool canInteract = CanInteractWithCell(cell);
+
+        targetPreview.enabled = canInteract;
+
+        if (canInteract)
+        {
+            targetPreview.transform.position =
+                tilemap.GetCellCenterWorld(cell);
+        }
+    }
+
+    private bool CanInteractWithCell(Vector3Int cell)
+    {
+        if (!tilemap.HasTile(cell))
+            return false;
+
+        // Mature crops can always be targeted for harvesting.
+        if (plantedCells.TryGetValue(cell, out PlantedCrop planted) &&
+            planted.IsReady)
+        {
+            return true;
+        }
+
+        GameServices services = GameServices.Instance;
+
+        if (services == null ||
+            !services.TryGet<InventoryService>(
+                out InventoryService inventory))
+        {
+            return false;
+        }
+
+        ItemDefinition selectedItem = inventory.SelectedItem;
+
+        if (selectedItem == null)
+            return false;
+
+        if (selectedItem.ItemId == "hoe")
+            return !tilledCells.Contains(cell);
+
+        CropDefinition crop = FindCropForSeed(selectedItem);
+
+        return crop != null &&
+               tilledCells.Contains(cell) &&
+               !plantedCells.ContainsKey(cell);
+    }
+
+    private Vector3 GetInteractionPosition(GameObject interactor)
+    {
+        PlayerInteractor playerInteractor =
+            interactor.GetComponent<PlayerInteractor>();
+
+        return playerInteractor != null
+            ? playerInteractor.InteractionPosition
+            : interactor.transform.position;
     }
 
     private Vector3Int GetTargetCell(
