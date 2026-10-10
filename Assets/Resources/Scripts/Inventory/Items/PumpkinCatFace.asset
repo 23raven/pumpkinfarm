@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624e3b347687c6d4aae301fc3de4aa8c, type: 3}
   m_Name: PumpkinCatFace
   m_EditorClassIdentifier: Assembly-CSharp::InvItem
-  icon: {fileID: 21300000, guid: 98175d46377bce543925a45575405023, type: 3}
+  icon: {fileID: -6028852163024860675, guid: e31f8fffe7927f54083b19ce03825cf4, type: 3}
   Itemname: Pumpkin
   description: 
   selleable: 1

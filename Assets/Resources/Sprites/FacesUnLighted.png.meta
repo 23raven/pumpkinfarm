@@ -1,0 +1,329 @@
+fileFormatVersion: 2
+guid: fd4bc75ff6843d949b5c79eace8d52f9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7655121165479155091
+    second: FacesUnLighted_0
+  - first:
+      213: 2127709746255163418
+    second: FacesUnLighted_1
+  - first:
+      213: -7956461477551660692
+    second: FacesUnLighted_2
+  - first:
+      213: -607814566898802987
+    second: FacesUnLighted_3
+  - first:
+      213: -1500339972385117588
+    second: FacesUnLighted_4
+  - first:
+      213: -8762683392149648832
+    second: FacesUnLighted_5
+  - first:
+      213: 1408040344569991920
+    second: FacesUnLighted_6
+  - first:
+      213: 230921349405728998
+    second: FacesUnLighted_7
+  - first:
+      213: 3560912865254193116
+    second: FacesUnLighted_8
+  - first:
+      213: -4183880088931004867
+    second: FacesUnLighted_9
+  - first:
+      213: -8562239908756488303
+    second: FacesUnLighted_10
+  - first:
+      213: 1308200671863852328
+    second: FacesUnLighted_11
+  - first:
+      213: 7792620124191734702
+    second: FacesUnLighted_12
+  - first:
+      213: -2778458808095978391
+    second: FacesUnLighted_13
+  - first:
+      213: 3322966222880260119
+    second: FacesUnLighted_14
+  - first:
+      213: 8153351883640127326
+    second: FacesUnLighted_15
+  - first:
+      213: 5618811888401192783
+    second: FacesUnLighted_16
+  - first:
+      213: -7163396736755181994
+    second: FacesUnLighted_17
+  - first:
+      213: -2201720713106409993
+    second: FacesUnLighted_18
+  - first:
+      213: 6344411199228539662
+    second: FacesUnLighted_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FacesUnLighted_0
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 748
+        width: 174
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39595f434247c3a60800000000000000
+      internalID: 7655121165479155091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FacesUnLighted_7
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 752
+        width: 173
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e0e16a6eb5643300800000000000000
+      internalID: 230921349405728998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FacesUnLighted_12
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 587
+        width: 181
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eab320447b2f42c60800000000000000
+      internalID: 7792620124191734702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FacesUnLighted_13
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 593
+        width: 163
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96c42685f6ee079d0800000000000000
+      internalID: -2778458808095978391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FacesUnLighted_16
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 385
+        width: 157
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4715eb84a70afd40800000000000000
+      internalID: 5618811888401192783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FacesUnLighted_17
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 195
+        width: 201
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 656d3880f90869c90800000000000000
+      internalID: -7163396736755181994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 0f71291b333960b4199bc07a56302da2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FacesUnLighted_0: 7655121165479155091
+      FacesUnLighted_1: 2127709746255163418
+      FacesUnLighted_10: -8562239908756488303
+      FacesUnLighted_11: 1308200671863852328
+      FacesUnLighted_12: 7792620124191734702
+      FacesUnLighted_13: -2778458808095978391
+      FacesUnLighted_14: 3322966222880260119
+      FacesUnLighted_15: 8153351883640127326
+      FacesUnLighted_16: 5618811888401192783
+      FacesUnLighted_17: -7163396736755181994
+      FacesUnLighted_18: -2201720713106409993
+      FacesUnLighted_19: 6344411199228539662
+      FacesUnLighted_2: -7956461477551660692
+      FacesUnLighted_3: -607814566898802987
+      FacesUnLighted_4: -1500339972385117588
+      FacesUnLighted_5: -8762683392149648832
+      FacesUnLighted_6: 1408040344569991920
+      FacesUnLighted_7: 230921349405728998
+      FacesUnLighted_8: 3560912865254193116
+      FacesUnLighted_9: -4183880088931004867
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
