@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryService : MonoBehaviour
 {
     [SerializeField, Min(1)]
-    private int slotCount = 12;
+    private int slotCount = 2;
 
     private readonly List<InventorySlot> slots =
         new List<InventorySlot>();
@@ -19,8 +18,6 @@ public class InventoryService : MonoBehaviour
         }
     }
 
-    public event Action InventoryChanged;
-
     private void Awake()
     {
         InitializeSlots();
@@ -28,22 +25,24 @@ public class InventoryService : MonoBehaviour
 
     private void OnEnable()
     {
-        if (GameServices.Instance == null)
+        GameServices services = GameServices.Instance;
+
+        if (services == null)
         {
-            Debug.LogError(
-                "GameServices is missing from the scene.",
-                this
-            );
+            Debug.LogError("GameServices is missing.", this);
             return;
         }
 
-        GameServices.Instance.Register(this);
+        if (services.Register(this))
+            PublishChanged();
     }
 
     private void OnDisable()
     {
-        if (GameServices.Instance != null)
-            GameServices.Instance.Unregister(this);
+        GameServices services = GameServices.Instance;
+
+        if (services != null)
+            services.Unregister(this);
     }
 
     private void InitializeSlots()
@@ -51,12 +50,8 @@ public class InventoryService : MonoBehaviour
         if (slots.Count > 0)
             return;
 
-        int count = Mathf.Max(1, slotCount);
-
-        for (int i = 0; i < count; i++)
-        {
+        for (int i = 0; i < Mathf.Max(1, slotCount); i++)
             slots.Add(new InventorySlot());
-        }
     }
 
     public int AddItem(ItemDefinition item, int amount)
@@ -72,7 +67,7 @@ public class InventoryService : MonoBehaviour
         int remaining = amount;
         int maxStack = Mathf.Max(1, item.MaxStackSize);
 
-        // First, fill existing stacks.
+        // Fill existing stacks first.
         foreach (InventorySlot slot in slots)
         {
             if (slot.IsEmpty || slot.Item != item)
@@ -92,7 +87,7 @@ public class InventoryService : MonoBehaviour
                 break;
         }
 
-        // Then, use empty slots.
+        // Then fill empty slots.
         foreach (InventorySlot slot in slots)
         {
             if (remaining == 0)
@@ -108,7 +103,7 @@ public class InventoryService : MonoBehaviour
         }
 
         if (remaining < amount)
-            InventoryChanged?.Invoke();
+            PublishChanged();
 
         return remaining;
     }
@@ -151,12 +146,9 @@ public class InventoryService : MonoBehaviour
             if (slot.Item != item)
                 continue;
 
-            int removed = Mathf.Min(
-                slot.Quantity,
-                remaining
-            );
-
+            int removed = Mathf.Min(slot.Quantity, remaining);
             int newQuantity = slot.Quantity - removed;
+
             remaining -= removed;
 
             if (newQuantity == 0)
@@ -168,8 +160,24 @@ public class InventoryService : MonoBehaviour
                 break;
         }
 
-        InventoryChanged?.Invoke();
+        PublishChanged();
         return true;
+    }
+
+    private void PublishChanged()
+    {
+        InventorySlotData[] snapshot =
+            new InventorySlotData[slots.Count];
+
+        for (int i = 0; i < slots.Count; i++)
+        {
+            snapshot[i] = new InventorySlotData(
+                slots[i].Item,
+                slots[i].Quantity
+            );
+        }
+
+        GameEvents.Publish(new InventoryChangedEvent(snapshot));
     }
 }
 

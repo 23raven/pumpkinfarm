@@ -17,14 +17,15 @@ public class PickupItem : MonoBehaviour, IInteractable
             return;
         }
 
-        InventoryService inventory =
-            interactor.GetComponent<InventoryService>();
+        GameServices services = GameServices.Instance;
 
-        if (inventory == null)
+        if (services == null ||
+            !services.TryGet<InventoryService>(
+                out InventoryService inventory))
         {
             Debug.LogWarning(
-                "PickupItem: InventoryService not found on interactor.",
-                interactor
+                "PickupItem: InventoryService is unavailable.",
+                this
             );
 
             return;

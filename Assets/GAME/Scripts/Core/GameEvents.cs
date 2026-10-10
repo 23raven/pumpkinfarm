@@ -82,3 +82,37 @@ public readonly struct WalletBalanceEvent
         Balance = balance;
     }
 }
+
+public readonly struct InventorySlotData
+{
+    public ItemDefinition Item { get; }
+    public int Quantity { get; }
+
+    public bool IsEmpty => Item == null || Quantity <= 0;
+
+    public InventorySlotData(ItemDefinition item, int quantity)
+    {
+        Item = item;
+        Quantity = quantity;
+    }
+}
+
+public readonly struct InventoryChangedEvent
+{
+    public InventorySlotData[] Slots { get; }
+
+    public InventoryChangedEvent(InventorySlotData[] slots)
+    {
+        Slots = slots;
+    }
+}
+
+public readonly struct DayChangedEvent
+{
+    public int Day { get; }
+
+    public DayChangedEvent(int day)
+    {
+        Day = day;
+    }
+}
