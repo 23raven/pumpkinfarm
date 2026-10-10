@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class TestInteractable : MonoBehaviour, IInteractable
 {
-    public void Interact()
+    public void Interact(GameObject interactor)
     {
-        Debug.Log("Взаимодействие с объектом: " + gameObject.name);
+        Debug.Log(
+            interactor.name + " interacted with " + gameObject.name
+        );
     }
 }

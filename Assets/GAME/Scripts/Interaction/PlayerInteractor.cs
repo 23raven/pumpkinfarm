@@ -44,12 +44,13 @@ public class PlayerInteractor : MonoBehaviour
         }
 
         if (nearest != null)
-            nearest.Interact();
+            nearest.Interact(gameObject);
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
+
         Gizmos.DrawWireSphere(
             transform.position,
             interactionRadius

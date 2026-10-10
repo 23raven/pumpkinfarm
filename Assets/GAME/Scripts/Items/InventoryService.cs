@@ -26,6 +26,26 @@ public class InventoryService : MonoBehaviour
         InitializeSlots();
     }
 
+    private void OnEnable()
+    {
+        if (GameServices.Instance == null)
+        {
+            Debug.LogError(
+                "GameServices is missing from the scene.",
+                this
+            );
+            return;
+        }
+
+        GameServices.Instance.Register(this);
+    }
+
+    private void OnDisable()
+    {
+        if (GameServices.Instance != null)
+            GameServices.Instance.Unregister(this);
+    }
+
     private void InitializeSlots()
     {
         if (slots.Count > 0)
