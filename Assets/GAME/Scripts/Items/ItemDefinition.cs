@@ -13,6 +13,7 @@ public class ItemDefinition : ScriptableObject
 
     [Header("Visuals")]
     [SerializeField] private Sprite icon;
+    [SerializeField] private PickupItem worldPrefab;
 
     [Header("Inventory")]
     [SerializeField, Min(1)] private int maxStackSize = 99;
@@ -20,6 +21,7 @@ public class ItemDefinition : ScriptableObject
     public string ItemId => itemId;
     public string DisplayName => displayName;
     public string Description => description;
-    public Sprite Icon => icon;
     public int MaxStackSize => maxStackSize;
+    public Sprite Icon => icon;
+    public PickupItem WorldPrefab => worldPrefab;
 }

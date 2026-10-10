@@ -63,8 +63,15 @@ public class FarmTilemapController : MonoBehaviour, IInteractable
             return;
         }
 
+        PlayerInteractor playerInteractor =
+        player.GetComponent<PlayerInteractor>();
+
+        Vector3 interactionPosition = playerInteractor != null
+            ? playerInteractor.InteractionPosition
+            : player.position;
+
         Vector3Int cell = GetTargetCell(
-            player.position,
+            interactionPosition,
             directional.FacingDirection
         );
 
@@ -133,8 +140,15 @@ public class FarmTilemapController : MonoBehaviour, IInteractable
         if (directional == null)
             return;
 
+        PlayerInteractor playerInteractor =
+        interactor.GetComponent<PlayerInteractor>();
+
+        Vector3 interactionPosition = playerInteractor != null
+            ? playerInteractor.InteractionPosition
+            : interactor.transform.position;
+
         Vector3Int cell = GetTargetCell(
-            interactor.transform.position,
+            interactionPosition,
             directional.FacingDirection
         );
 

@@ -88,6 +88,36 @@ public class InventoryService : MonoBehaviour
         return true;
     }
 
+    public bool TryRemoveSelectedSlot(
+    out ItemDefinition item,
+    out int quantity)
+    {
+        InitializeSlots();
+
+        item = null;
+        quantity = 0;
+
+        if (SelectedSlotIndex < 0 ||
+            SelectedSlotIndex >= slots.Count)
+        {
+            return false;
+        }
+
+        InventorySlot slot = slots[SelectedSlotIndex];
+
+        if (slot.IsEmpty)
+            return false;
+
+        item = slot.Item;
+        quantity = slot.Quantity;
+
+        slot.Clear();
+
+        PublishChanged();
+
+        return true;
+    }
+
     public int AddItem(ItemDefinition item, int amount)
     {
         if (amount <= 0)

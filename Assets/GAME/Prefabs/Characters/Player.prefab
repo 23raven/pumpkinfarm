@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 6804241492428093328}
   - component: {fileID: 763358616569182828}
   - component: {fileID: 2054812619880314317}
+  - component: {fileID: 1956439280149644399}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -254,3 +255,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa811f8f7eb04e04c8f67ef5783582a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySelectionController
+--- !u!114 &1956439280149644399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9136557530135843534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354f28c14825a6948aff1718a973fc4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerItemDropController
+  droppedItemPrefab: {fileID: 3473094897317893511, guid: e8b52c5c480b3314fbbdd11af45fdec0, type: 3}
+  dropDistance: 0.9

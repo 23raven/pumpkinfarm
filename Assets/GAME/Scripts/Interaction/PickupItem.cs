@@ -5,6 +5,19 @@ public class PickupItem : MonoBehaviour, IInteractable
     [SerializeField] private ItemDefinition item;
     [SerializeField, Min(1)] private int amount = 1;
 
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    public void Initialize(ItemDefinition definition, int quantity)
+    {
+        item = definition;
+        amount = Mathf.Max(1, quantity);
+    }
+
     public void Interact(GameObject interactor)
     {
         if (interactor == null || item == null)
