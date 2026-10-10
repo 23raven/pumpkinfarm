@@ -15,5 +15,6 @@ MonoBehaviour:
   itemId: pumpkin
   displayName: Pumpkin
   description: A ripe pumpkin
-  icon: {fileID: 0}
+  icon: {fileID: 4303480455652667151, guid: 305e233002090784096982060bc2a609, type: 3}
+  worldPrefab: {fileID: 2117937790895669250, guid: 85395e48294c3254388ebc6030dc5467, type: 3}
   maxStackSize: 1

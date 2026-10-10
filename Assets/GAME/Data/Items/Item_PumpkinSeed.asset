@@ -16,4 +16,5 @@ MonoBehaviour:
   displayName: Pumpkin Seed
   description: Seeds for growing pumpkins
   icon: {fileID: 0}
+  worldPrefab: {fileID: 7822892840035358679, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
   maxStackSize: 3

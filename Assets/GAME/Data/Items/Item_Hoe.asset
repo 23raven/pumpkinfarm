@@ -16,4 +16,5 @@ MonoBehaviour:
   displayName: Hoe
   description: A tool for tilling soil
   icon: {fileID: 21300000, guid: 7b2396c0234136c49a9ea6ee41ea6033, type: 3}
+  worldPrefab: {fileID: 5766551407209968340, guid: d137aa8b0dbd7044ea438e8e8d06c432, type: 3}
   maxStackSize: 1
