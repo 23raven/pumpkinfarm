@@ -16,10 +16,13 @@ public class TrigContr : MonoBehaviour
     private bool NearBed;
     private bool NearShop;
     private bool NearCarvingTable;
+    private bool NearEventBoard;
+    private bool NearPostArea;
     private Dialog dialog;
     [SerializeField] private List<GameObject> NearItem = new();
     [SerializeField] private string PumpkinSeedsName = "Pumpkin seeds";
     [SerializeField] private string WateringCanName = "Watering can";
+    [SerializeField] private string HoeName = "Hoe";
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -46,6 +49,14 @@ public class TrigContr : MonoBehaviour
         else if (other.CompareTag("npc"))
         {
             dialog = other.gameObject.GetComponent<Npc>().dialog;
+        }
+        else if (other.CompareTag("EventArea"))
+        {
+            NearEventBoard = true;
+        }
+        else if (other.CompareTag("PostArea"))
+        {
+            NearPostArea = true;
         }
     }
 
@@ -74,6 +85,14 @@ public class TrigContr : MonoBehaviour
         else if (other.CompareTag("npc"))
         {
             dialog = null;
+        }
+        else if (other.CompareTag("EventArea"))
+        {
+            NearEventBoard = false;
+        }
+        else if (other.CompareTag("PostArea"))
+        {
+            NearPostArea = false;
         }
     }
 

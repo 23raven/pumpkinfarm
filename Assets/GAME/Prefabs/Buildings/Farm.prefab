@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 5225192301631921168}
   - component: {fileID: 8262795240822674991}
   m_Layer: 0
-  m_Name: FARM
+  m_Name: Farm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
