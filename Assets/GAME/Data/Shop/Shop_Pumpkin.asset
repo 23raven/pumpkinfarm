@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38df2a60b73d2db43a0a224e5f39d664, type: 3}
+  m_Name: Shop_Pumpkin
+  m_EditorClassIdentifier: Assembly-CSharp::ShopProductDefinition
+  productId: Shop_Pumpkin
+  item: {fileID: 11400000, guid: 8ea429b081b8798498be4500dffefce8, type: 2}
+  buyPrice: 30
+  sellPrice: 15
+  canBuy: 0
+  canSell: 1

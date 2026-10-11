@@ -19,6 +19,12 @@ public class PlayerController2D : MonoBehaviour, IDirectionalInteractor
 
     private void Update()
     {
+        if (GameplayInputGate.IsBlocked)
+        {
+            movement = Vector2.zero;
+            return;
+        }
+
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
@@ -40,6 +46,9 @@ public class PlayerController2D : MonoBehaviour, IDirectionalInteractor
 
     private void FixedUpdate()
     {
+        if (GameplayInputGate.IsBlocked)
+            return;
+
         rb.MovePosition(
             rb.position + movement * moveSpeed * Time.fixedDeltaTime
         );

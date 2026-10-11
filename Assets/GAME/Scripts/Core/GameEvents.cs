@@ -120,3 +120,47 @@ public readonly struct DayChangedEvent
         Day = day;
     }
 }
+
+public readonly struct ShopTransactionEvent
+{
+    public bool Success { get; }
+    public string ProductId { get; }
+    public string Message { get; }
+
+    public ShopTransactionEvent(
+        bool success,
+        string productId,
+        string message)
+    {
+        Success = success;
+        ProductId = productId;
+        Message = message;
+    }
+}
+
+public readonly struct ShopOpenedEvent
+{
+    public ShopCatalog Catalog { get; }
+
+    public ShopOpenedEvent(ShopCatalog catalog)
+    {
+        Catalog = catalog;
+    }
+}
+
+public readonly struct ShopTransactionRequestedEvent
+{
+    public ShopProductDefinition Product { get; }
+    public int Quantity { get; }
+    public bool IsPurchase { get; }
+
+    public ShopTransactionRequestedEvent(
+        ShopProductDefinition product,
+        int quantity,
+        bool isPurchase)
+    {
+        Product = product;
+        Quantity = quantity;
+        IsPurchase = isPurchase;
+    }
+}

@@ -13,6 +13,9 @@ public class PlayerInteractor : MonoBehaviour
 
     private void Update()
     {
+        if (GameplayInputGate.IsBlocked)
+            return;
+
         if (!Input.GetKeyDown(KeyCode.Space))
             return;
 

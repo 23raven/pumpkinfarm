@@ -2,17 +2,50 @@ using UnityEngine;
 
 public class InventorySelectionController : MonoBehaviour
 {
+    private static readonly KeyCode[] NumberKeys =
+    {
+        KeyCode.Alpha1,
+        KeyCode.Alpha2,
+        KeyCode.Alpha3,
+        KeyCode.Alpha4,
+        KeyCode.Alpha5,
+        KeyCode.Alpha6,
+        KeyCode.Alpha7,
+        KeyCode.Alpha8,
+        KeyCode.Alpha9
+    };
+
+    private static readonly KeyCode[] KeypadKeys =
+    {
+        KeyCode.Keypad1,
+        KeyCode.Keypad2,
+        KeyCode.Keypad3,
+        KeyCode.Keypad4,
+        KeyCode.Keypad5,
+        KeyCode.Keypad6,
+        KeyCode.Keypad7,
+        KeyCode.Keypad8,
+        KeyCode.Keypad9
+    };
+
     private void Update()
     {
-        bool slot1Pressed =
-            Input.GetKeyDown(KeyCode.Alpha1) ||
-            Input.GetKeyDown(KeyCode.Keypad1);
+        if (GameplayInputGate.IsBlocked)
+            return;
 
-        bool slot2Pressed =
-            Input.GetKeyDown(KeyCode.Alpha2) ||
-            Input.GetKeyDown(KeyCode.Keypad2);
+        int selectedIndex = -1;
 
-        if (!slot1Pressed && !slot2Pressed)
+        for (int i = 0; i < NumberKeys.Length; i++)
+        {
+            if (Input.GetKeyDown(NumberKeys[i]) ||
+                Input.GetKeyDown(KeypadKeys[i]))
+            {
+                selectedIndex = i;
+                break;
+            }
+        }
+
+        if (selectedIndex < 0)
             return;
 
         GameServices services = GameServices.Instance;
@@ -21,17 +54,9 @@ public class InventorySelectionController : MonoBehaviour
             !services.TryGet<InventoryService>(
                 out InventoryService inventory))
         {
-            Debug.LogWarning("InventoryService is unavailable.");
             return;
         }
 
-        if (slot1Pressed)
-        {
-            inventory.SelectSlot(0);
-        }
-        else if (slot2Pressed)
-        {
-            inventory.SelectSlot(1);
-        }
+        inventory.SelectSlot(selectedIndex);
     }
 }

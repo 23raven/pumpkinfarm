@@ -17,6 +17,9 @@ public class PlayerItemDropController : MonoBehaviour
 
     private void Update()
     {
+        if (GameplayInputGate.IsBlocked)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Q))
             DropSelectedItem();
     }

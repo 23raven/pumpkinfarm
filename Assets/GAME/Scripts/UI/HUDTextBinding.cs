@@ -7,7 +7,8 @@ public enum HUDTextKey
     WalletBalance,
     InventorySlot1,
     InventorySlot2,
-    CurrentDay
+    CurrentDay,
+    InventoryContents
 }
 
 public class HUDTextBinding : MonoBehaviour

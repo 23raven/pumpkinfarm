@@ -3,11 +3,33 @@ using UnityEngine;
 
 public class InventoryService : MonoBehaviour
 {
+    [Header("Inventory")]
     [SerializeField, Min(1)]
     private int slotCount = 2;
 
     private readonly List<InventorySlot> slots =
         new List<InventorySlot>();
+
+    private readonly Dictionary<string, int> capacityBonuses =
+        new Dictionary<string, int>();
+
+    public int Capacity
+    {
+        get
+        {
+            InitializeSlots();
+            return slots.Count;
+        }
+    }
+
+    public IReadOnlyList<InventorySlot> Slots
+    {
+        get
+        {
+            InitializeSlots();
+            return slots;
+        }
+    }
 
     public int SelectedSlotIndex { get; private set; }
 
@@ -24,15 +46,6 @@ public class InventoryService : MonoBehaviour
             }
 
             return slots[SelectedSlotIndex].Item;
-        }
-    }
-
-    public IReadOnlyList<InventorySlot> Slots
-    {
-        get
-        {
-            InitializeSlots();
-            return slots;
         }
     }
 
@@ -63,13 +76,77 @@ public class InventoryService : MonoBehaviour
             services.Unregister(this);
     }
 
+    private int CalculateCapacity()
+    {
+        int capacity = Mathf.Max(1, slotCount);
+
+        foreach (int bonus in capacityBonuses.Values)
+            capacity += Mathf.Max(0, bonus);
+
+        return capacity;
+    }
+
     private void InitializeSlots()
     {
-        if (slots.Count > 0)
-            return;
+        int targetCapacity = CalculateCapacity();
 
-        for (int i = 0; i < Mathf.Max(1, slotCount); i++)
+        // Never discard occupied slots when capacity changes.
+        for (int i = targetCapacity; i < slots.Count; i++)
+        {
+            if (!slots[i].IsEmpty)
+                targetCapacity = i + 1;
+        }
+
+        while (slots.Count < targetCapacity)
             slots.Add(new InventorySlot());
+
+        while (slots.Count > targetCapacity)
+            slots.RemoveAt(slots.Count - 1);
+
+        if (SelectedSlotIndex >= slots.Count)
+            SelectedSlotIndex = slots.Count - 1;
+    }
+
+    public bool SetCapacityBonus(string sourceId, int extraSlots)
+    {
+        if (string.IsNullOrWhiteSpace(sourceId) || extraSlots < 0)
+            return false;
+
+        InitializeSlots();
+
+        bool hadPrevious =
+            capacityBonuses.TryGetValue(sourceId, out int previousBonus);
+
+        if (extraSlots == 0)
+            capacityBonuses.Remove(sourceId);
+        else
+            capacityBonuses[sourceId] = extraSlots;
+
+        int targetCapacity = CalculateCapacity();
+
+        // Refuse to shrink if occupied slots would be lost.
+        for (int i = targetCapacity; i < slots.Count; i++)
+        {
+            if (!slots[i].IsEmpty)
+            {
+                if (hadPrevious)
+                    capacityBonuses[sourceId] = previousBonus;
+                else
+                    capacityBonuses.Remove(sourceId);
+
+                Debug.LogWarning(
+                    "Cannot reduce inventory capacity while higher slots contain items.",
+                    this
+                );
+
+                return false;
+            }
+        }
+
+        InitializeSlots();
+        PublishChanged();
+
+        return true;
     }
 
     public bool SelectSlot(int index)
@@ -89,8 +166,8 @@ public class InventoryService : MonoBehaviour
     }
 
     public bool TryRemoveSelectedSlot(
-    out ItemDefinition item,
-    out int quantity)
+        out ItemDefinition item,
+        out int quantity)
     {
         InitializeSlots();
 
@@ -172,6 +249,26 @@ public class InventoryService : MonoBehaviour
         return remaining;
     }
 
+    public int GetAvailableSpace(ItemDefinition item)
+    {
+        if (item == null)
+            return 0;
+
+        InitializeSlots();
+
+        int maxStack = Mathf.Max(1, item.MaxStackSize);
+        int available = 0;
+
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.IsEmpty)
+                available += maxStack;
+            else if (slot.Item == item)
+                available += Mathf.Max(0, maxStack - slot.Quantity);
+        }
+
+        return available;
+    }
     public int GetItemCount(ItemDefinition item)
     {
         if (item == null)
@@ -230,6 +327,8 @@ public class InventoryService : MonoBehaviour
 
     private void PublishChanged()
     {
+        InitializeSlots();
+
         InventorySlotData[] snapshot =
             new InventorySlotData[slots.Count];
 
@@ -242,8 +341,8 @@ public class InventoryService : MonoBehaviour
         }
 
         GameEvents.Publish(
-    new InventoryChangedEvent(snapshot, SelectedSlotIndex)
-);
+            new InventoryChangedEvent(snapshot, SelectedSlotIndex)
+        );
     }
 }
 

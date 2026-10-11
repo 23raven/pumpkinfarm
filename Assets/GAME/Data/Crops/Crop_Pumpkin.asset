@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CropDefinition
   seedItem: {fileID: 11400000, guid: 42445940b30052942b81e5fe1e3a91c4, type: 2}
   harvestItem: {fileID: 11400000, guid: 8ea429b081b8798498be4500dffefce8, type: 2}
-  daysToGrow: 3
   harvestAmount: 1
-  growingTile: {fileID: 11400000, guid: a42571c92c0a4b343b68b05e2327ea81, type: 2}
-  readyTile: {fileID: 11400000, guid: 92dd5c507691c6d4786b051857708bad, type: 2}
+  growthSprites:
+  - {fileID: 865198075, guid: 84bfdd326696a7f42868b91e4e6727da, type: 3}
+  - {fileID: 2086572445, guid: 84bfdd326696a7f42868b91e4e6727da, type: 3}
+  - {fileID: 360618159, guid: 2ef0ef882fff72c4fbf1409850ecbbec, type: 3}
+  - {fileID: 1532752074, guid: 84bfdd326696a7f42868b91e4e6727da, type: 3}

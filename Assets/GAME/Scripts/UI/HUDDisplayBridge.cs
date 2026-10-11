@@ -63,31 +63,31 @@ public class HUDDisplayBridge : MonoBehaviour
         if (message.Slots == null)
             return;
 
-        for (int i = 0; i < InventoryKeys.Length; i++)
+        string[] lines = new string[message.Slots.Length];
+
+        for (int i = 0; i < message.Slots.Length; i++)
         {
-            HUDTextKey key = InventoryKeys[i];
-
-            string marker =
-                i == message.SelectedSlotIndex ? "> " : "";
-
-            if (i >= message.Slots.Length)
-            {
-                Publish(
-                    key,
-                    $"{marker}Slot {i + 1}\nUnavailable"
-                );
-
-                continue;
-            }
-
             InventorySlotData slot = message.Slots[i];
 
-            string text = slot.IsEmpty
-                ? $"{marker}Slot {i + 1}\nEmpty"
-                : $"{marker}Slot {i + 1}\n{slot.Item.DisplayName} x{slot.Quantity}";
+            string marker =
+                i == message.SelectedSlotIndex ? "> " : "  ";
 
-            Publish(key, text);
+            if (slot.IsEmpty)
+            {
+                lines[i] = $"{marker}Slot {i + 1}: Empty";
+            }
+            else
+            {
+                lines[i] =
+                    $"{marker}Slot {i + 1}: " +
+                    $"{slot.Item.DisplayName} x{slot.Quantity}";
+            }
         }
+
+        Publish(
+            HUDTextKey.InventoryContents,
+            string.Join("\n", lines)
+        );
     }
 
     private void OnRefreshRequested(HUDRefreshRequestedEvent message)
