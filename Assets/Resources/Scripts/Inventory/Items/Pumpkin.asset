@@ -21,3 +21,5 @@ MonoBehaviour:
   ornament: 8
   tags: 00000000
   Drop: {fileID: 5407307229234759474, guid: 1125b28424670d3409bb7cd9f733e61b, type: 3}
+  decoration: 5
+  color: 5

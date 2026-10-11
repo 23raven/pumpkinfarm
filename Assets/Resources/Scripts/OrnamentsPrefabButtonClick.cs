@@ -3,7 +3,7 @@ using UnityEngine;
 public class OrnamentsPrefabButtonClick : MonoBehaviour
 {
     public CarvingManager carvingManager;
-    public Ornaments Ornament;
+    public Ornament Ornament;
 
     public void ChangeOrnament()
     {
@@ -20,9 +20,21 @@ public class OrnamentsPrefabButtonClick : MonoBehaviour
             }
         }
 
-        carvingManager.SelectedItem.ornament = Ornament;
+        if (Ornament.editType == EditType.Ornament)
+        {
+            carvingManager.SelectedItem.ornament = Ornament.ornament;
+        }
+        else if (Ornament.editType == EditType.Color)
+        {
+            carvingManager.SelectedItem.color = Ornament.pumpkinColor;
+        }
+        else if (Ornament.editType == EditType.Decoration)
+        {
+            carvingManager.SelectedItem.decoration = Ornament.decoration;
+        }
 
-        carvingManager.invManager.AddItem(carvingManager.SelectedItem, 1);
+
+            carvingManager.invManager.AddItem(carvingManager.SelectedItem, 1);
 
         carvingManager.SelectedItem = null;
         carvingManager.selectedSlotIndex = -1;

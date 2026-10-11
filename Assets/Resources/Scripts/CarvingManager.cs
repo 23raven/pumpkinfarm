@@ -39,6 +39,8 @@ public class CarvingManager : MonoBehaviour
                     instance.transform.GetChild(1).GetComponent<TMP_Text>().text = slot.item.Itemname;
 
                     instance.transform.GetChild(2).GetComponent<TMP_Text>().text = slot.item.ornament.ToString();
+                    instance.transform.GetChild(3).GetComponent<TMP_Text>().text = slot.item.color.ToString();
+                    instance.transform.GetChild(4).GetComponent<TMP_Text>().text = slot.item.decoration.ToString();
 
                     instance.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().sprite = slot.item.icon;
 
@@ -106,12 +108,25 @@ public class CarvingManager : MonoBehaviour
         for (int i = 0; i < allowed_ornaments.Count; i++)
         {
             GameObject instance = Instantiate(OrnamentsInvPrefab, OrnamentsInvContent);
-            instance.transform.GetChild(1).GetComponent<TMP_Text>().text = allowed_ornaments[i].ornament.ToString();
+
+            if (allowed_ornaments[i].editType == EditType.Ornament)
+            {
+                instance.transform.GetChild(1).GetComponent<TMP_Text>().text = allowed_ornaments[i].ornament.ToString();
+            }
+            else if (allowed_ornaments[i].editType == EditType.Decoration)
+            {
+                instance.transform.GetChild(1).GetComponent<TMP_Text>().text = allowed_ornaments[i].decoration.ToString();
+            }
+            else if (allowed_ornaments[i].editType == EditType.Color)
+            {
+                instance.transform.GetChild(1).GetComponent<TMP_Text>().text = allowed_ornaments[i].pumpkinColor.ToString();
+            }
+
             instance.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().sprite = allowed_ornaments[i].icon;
 
             if (instance.TryGetComponent<OrnamentsPrefabButtonClick>(out var buttonScript))
             {
-                buttonScript.Ornament = allowed_ornaments[i].ornament;
+                buttonScript.Ornament = allowed_ornaments[i];
                 buttonScript.carvingManager = this;
             }
 
@@ -132,6 +147,8 @@ public class CarvingManager : MonoBehaviour
             SelectedItemGameObject.transform.GetChild(0).GetComponent<Image>().sprite = SelectedItem.icon;
             SelectedItemGameObject.transform.GetChild(1).GetComponent<TMP_Text>().text = SelectedItem.Itemname;
             SelectedItemGameObject.transform.GetChild(2).GetComponent<TMP_Text>().text = SelectedItem.ornament.ToString();
+            SelectedItemGameObject.transform.GetChild(3).GetComponent<TMP_Text>().text = SelectedItem.color.ToString();
+            SelectedItemGameObject.transform.GetChild(4).GetComponent<TMP_Text>().text = SelectedItem.decoration.ToString();
         }
         else
         {
@@ -153,5 +170,15 @@ public class CarvingManager : MonoBehaviour
 public class Ornament //класс чтобы я мог добавить иконки орнаментам
 {
     public Sprite icon;
+    public EditType editType;
     public Ornaments ornament;
+    public PumpkinColor pumpkinColor;
+    public Decoration decoration;
+}
+
+public enum EditType
+{
+    Ornament,
+    Color,
+    Decoration
 }
