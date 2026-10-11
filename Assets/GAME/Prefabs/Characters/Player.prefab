@@ -169,7 +169,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1219118974363688847
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -267,5 +267,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354f28c14825a6948aff1718a973fc4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerItemDropController
-  droppedItemPrefab: {fileID: 3473094897317893511, guid: e8b52c5c480b3314fbbdd11af45fdec0, type: 3}
   dropDistance: 0.9

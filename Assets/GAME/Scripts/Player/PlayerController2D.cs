@@ -3,11 +3,14 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController2D : MonoBehaviour, IDirectionalInteractor
 {
+    [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField, Range(0.1f, 1f)] private float cartSpeedMultiplier = 0.75f;
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Vector2 movement;
+    private bool cartHitched;
 
     public Vector2 FacingDirection { get; private set; } = Vector2.left;
 
@@ -15,6 +18,24 @@ public class PlayerController2D : MonoBehaviour, IDirectionalInteractor
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.Subscribe<CartStateChangedEvent>(OnCartStateChanged);
+
+        if (GameEvents.TryGetLatest<CartStateChangedEvent>(out var state))
+            cartHitched = state.HasCart && state.IsHitched;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.Unsubscribe<CartStateChangedEvent>(OnCartStateChanged);
+    }
+
+    private void OnCartStateChanged(CartStateChangedEvent message)
+    {
+        cartHitched = message.HasCart && message.IsHitched;
     }
 
     private void Update()
@@ -27,14 +48,11 @@ public class PlayerController2D : MonoBehaviour, IDirectionalInteractor
 
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-
         movement = new Vector2(x, y).normalized;
 
-        // Remember the last cardinal direction.
         if (x != 0)
         {
             FacingDirection = new Vector2(Mathf.Sign(x), 0f);
-
             if (spriteRenderer != null)
                 spriteRenderer.flipX = x > 0;
         }
@@ -49,8 +67,7 @@ public class PlayerController2D : MonoBehaviour, IDirectionalInteractor
         if (GameplayInputGate.IsBlocked)
             return;
 
-        rb.MovePosition(
-            rb.position + movement * moveSpeed * Time.fixedDeltaTime
-        );
+        float speed = moveSpeed * (cartHitched ? cartSpeedMultiplier : 1f);
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 }

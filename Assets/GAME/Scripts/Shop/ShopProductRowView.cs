@@ -36,18 +36,13 @@ public class ShopProductRowView : MonoBehaviour
             return;
 
         if (productName != null)
-        {
-            productName.text = product.Item != null
-                ? product.Item.DisplayName
-                : product.name;
-        }
+            productName.text = product.DisplayName;
 
         if (buyButton != null)
         {
             buyButton.interactable = product.CanBuy;
 
             TMP_Text label = buyButton.GetComponentInChildren<TMP_Text>();
-
             if (label != null)
                 label.text = $"Buy ({product.BuyPrice})";
         }
@@ -57,7 +52,6 @@ public class ShopProductRowView : MonoBehaviour
             sellButton.interactable = product.CanSell;
 
             TMP_Text label = sellButton.GetComponentInChildren<TMP_Text>();
-
             if (label != null)
                 label.text = $"Sell ({product.SellPrice})";
         }

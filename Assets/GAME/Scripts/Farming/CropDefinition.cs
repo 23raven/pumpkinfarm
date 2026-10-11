@@ -17,24 +17,15 @@ public class CropDefinition : ScriptableObject
     [Tooltip("Sprites ordered from newly planted to fully grown.")]
     [SerializeField] private Sprite[] growthSprites;
 
+    [Header("Withered")]
+    [SerializeField] private Sprite witheredSprite;
+
     public ItemDefinition SeedItem => seedItem;
     public ItemDefinition HarvestItem => harvestItem;
     public int HarvestAmount => harvestAmount;
+    public Sprite WitheredSprite => witheredSprite;
 
-    public int GrowthStageCount =>
-        growthSprites == null ? 0 : growthSprites.Length;
-
-    public Sprite GetGrowthSprite(int stage)
-    {
-        if (growthSprites == null ||
-            stage < 0 ||
-            stage >= growthSprites.Length)
-        {
-            return null;
-        }
-
-        return growthSprites[stage];
-    }
+    public int GrowthStageCount => growthSprites == null ? 0 : growthSprites.Length;
 
     public bool HasValidGrowthSprites
     {
@@ -51,5 +42,13 @@ public class CropDefinition : ScriptableObject
 
             return true;
         }
+    }
+
+    public Sprite GetGrowthSprite(int stage)
+    {
+        if (growthSprites == null || stage < 0 || stage >= growthSprites.Length)
+            return null;
+
+        return growthSprites[stage];
     }
 }
