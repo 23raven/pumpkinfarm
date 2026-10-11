@@ -14,6 +14,8 @@ public class InvItem : ScriptableObject
     public Ornaments ornament;
     public List<Tags> tags = new();
     public GameObject Drop; //это предмет который будет лежать на карте
+    public Decoration decoration;
+    public PumpkinColor color;
 }
 
 public enum Ornaments //это типо орнаменты для вырезания по тыкве
@@ -33,4 +35,24 @@ public enum Tags //сделал специально тэги чтобы можно было выделять обьекты напр
 {
     Pumkin,
     Item
+}
+
+public enum Decoration
+{
+    eyePatch,
+    Cylinder,
+    cobweb,
+    horns,
+    knife,
+    NoDecoration
+}
+
+public enum PumpkinColor
+{
+    Red,
+    Yellow,
+    LightGreen,
+    Green,
+    Blue,
+    Orange
 }
