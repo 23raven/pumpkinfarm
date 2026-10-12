@@ -123,8 +123,8 @@ public class InventorySlotCardView : MonoBehaviour,
     {
         isDragging = false;
 
-        if (GameplayInputGate.IsBlocked || !isAccessible || slotData.IsEmpty ||
-            owner == null || dragCanvas == null)
+        if ((GameplayInputGate.IsBlocked && !StoragePanelController.IsOpen) ||
+            !isAccessible || slotData.IsEmpty || owner == null || dragCanvas == null)
         {
             return;
         }
@@ -205,14 +205,22 @@ public class InventorySlotCardView : MonoBehaviour,
         if (!isAccessible || owner == null || eventData.pointerDrag == null)
             return;
 
+        // Dragging from a storage card into this player slot transfers the whole stack.
+        StorageSlotCardView storageSource =
+            eventData.pointerDrag.GetComponent<StorageSlotCardView>();
+
+        if (storageSource != null)
+        {
+            storageSource.TransferToPlayer(slotIndex);
+            return;
+        }
+
         InventorySlotCardView source =
             eventData.pointerDrag.GetComponent<InventorySlotCardView>();
 
         if (source == null || source == this || source.owner != owner ||
             !source.IsAccessible)
-        {
             return;
-        }
 
         owner.SwapSlots(source.SlotIndex, slotIndex);
     }

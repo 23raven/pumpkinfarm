@@ -52,7 +52,6 @@ public class InventoryService : MonoBehaviour
         get
         {
             InitializeSlots();
-
             if (SelectedSlotIndex < 0 || SelectedSlotIndex >= slots.Count)
                 return null;
 
@@ -137,7 +136,6 @@ public class InventoryService : MonoBehaviour
         }
 
         InitializeSlots();
-
         bool hadPrevious = capacityBonuses.TryGetValue(sourceId, out CapacityBonus previous);
 
         if (extraSlots == 0)
@@ -167,7 +165,6 @@ public class InventoryService : MonoBehaviour
     public bool SelectSlot(int index)
     {
         InitializeSlots();
-
         if (index < 0 || index >= slots.Count || !IsAccessible(slots[index]))
             return false;
 
@@ -186,14 +183,10 @@ public class InventoryService : MonoBehaviour
         if (firstIndex < 0 || firstIndex >= slots.Count ||
             secondIndex < 0 || secondIndex >= slots.Count ||
             firstIndex == secondIndex)
-        {
             return false;
-        }
 
         InventorySlot first = slots[firstIndex];
         InventorySlot second = slots[secondIndex];
-
-        // Parked cart slots keep their contents but cannot be manipulated.
         if (!IsAccessible(first) || !IsAccessible(second))
             return false;
 
@@ -219,7 +212,6 @@ public class InventoryService : MonoBehaviour
     public bool SelectNextAccessibleSlot(int direction)
     {
         InitializeSlots();
-
         if (slots.Count == 0 || direction == 0)
             return false;
 
@@ -229,9 +221,7 @@ public class InventoryService : MonoBehaviour
         for (int offset = 1; offset <= slots.Count; offset++)
         {
             int index = (start + step * offset) % slots.Count;
-            if (index < 0)
-                index += slots.Count;
-
+            if (index < 0) index += slots.Count;
             if (IsAccessible(slots[index]))
                 return SelectSlot(index);
         }
@@ -259,13 +249,77 @@ public class InventoryService : MonoBehaviour
         return true;
     }
 
+    // Storage-transfer API: reads only an accessible player's slot.
+    public bool TryGetSlotContents(int index, out ItemDefinition item, out int quantity)
+    {
+        InitializeSlots();
+        item = null;
+        quantity = 0;
+
+        if (index < 0 || index >= slots.Count || !IsAccessible(slots[index]))
+            return false;
+
+        item = slots[index].Item;
+        quantity = slots[index].Quantity;
+        return true;
+    }
+
+    public bool CanAcceptAtSlot(int index, ItemDefinition item, int quantity)
+    {
+        InitializeSlots();
+        if (item == null || quantity <= 0 || index < 0 || index >= slots.Count)
+            return false;
+
+        InventorySlot slot = slots[index];
+        if (!IsAccessible(slot))
+            return false;
+
+        int maxStack = Mathf.Max(1, item.MaxStackSize);
+        if (slot.IsEmpty)
+            return quantity <= maxStack;
+
+        return slot.Item == item && slot.Quantity + quantity <= maxStack;
+    }
+
+    public bool TryAddToSlot(int index, ItemDefinition item, int quantity)
+    {
+        if (!CanAcceptAtSlot(index, item, quantity))
+            return false;
+
+        InventorySlot slot = slots[index];
+        if (slot.IsEmpty)
+            slot.Set(item, quantity);
+        else
+            slot.Set(item, slot.Quantity + quantity);
+
+        PublishChanged();
+        return true;
+    }
+
+    public bool TryTakeFromSlot(int index, out ItemDefinition item, out int quantity)
+    {
+        InitializeSlots();
+        item = null;
+        quantity = 0;
+
+        if (index < 0 || index >= slots.Count)
+            return false;
+
+        InventorySlot slot = slots[index];
+        if (!IsAccessible(slot) || slot.IsEmpty)
+            return false;
+
+        item = slot.Item;
+        quantity = slot.Quantity;
+        slot.Clear();
+        PublishChanged();
+        return true;
+    }
+
     public int AddItem(ItemDefinition item, int amount)
     {
-        if (amount <= 0)
-            return 0;
-        if (item == null)
-            return amount;
-
+        if (amount <= 0) return 0;
+        if (item == null) return amount;
         InitializeSlots();
 
         int remaining = amount;
@@ -277,71 +331,54 @@ public class InventoryService : MonoBehaviour
                 continue;
 
             int available = maxStack - slot.Quantity;
-            if (available <= 0)
-                continue;
+            if (available <= 0) continue;
 
             int added = Mathf.Min(available, remaining);
             slot.Set(item, slot.Quantity + added);
             remaining -= added;
-            if (remaining == 0)
-                break;
+            if (remaining == 0) break;
         }
 
         foreach (InventorySlot slot in slots)
         {
-            if (remaining == 0)
-                break;
-            if (!IsAccessible(slot) || !slot.IsEmpty)
-                continue;
+            if (remaining == 0) break;
+            if (!IsAccessible(slot) || !slot.IsEmpty) continue;
 
             int added = Mathf.Min(maxStack, remaining);
             slot.Set(item, added);
             remaining -= added;
         }
 
-        if (remaining < amount)
-            PublishChanged();
-
+        if (remaining < amount) PublishChanged();
         return remaining;
     }
 
     public int GetAvailableSpace(ItemDefinition item)
     {
-        if (item == null)
-            return 0;
-
+        if (item == null) return 0;
         InitializeSlots();
+
         int maxStack = Mathf.Max(1, item.MaxStackSize);
         int available = 0;
-
         foreach (InventorySlot slot in slots)
         {
-            if (!IsAccessible(slot))
-                continue;
-
-            if (slot.IsEmpty)
-                available += maxStack;
-            else if (slot.Item == item)
-                available += Mathf.Max(0, maxStack - slot.Quantity);
+            if (!IsAccessible(slot)) continue;
+            if (slot.IsEmpty) available += maxStack;
+            else if (slot.Item == item) available += Mathf.Max(0, maxStack - slot.Quantity);
         }
-
         return available;
     }
 
     public int GetItemCount(ItemDefinition item)
     {
-        if (item == null)
-            return 0;
-
+        if (item == null) return 0;
         InitializeSlots();
         int total = 0;
-
         foreach (InventorySlot slot in slots)
         {
             if (IsAccessible(slot) && slot.Item == item)
                 total += slot.Quantity;
         }
-
         return total;
     }
 
@@ -356,23 +393,18 @@ public class InventoryService : MonoBehaviour
             return false;
 
         int remaining = amount;
-
         foreach (InventorySlot slot in slots)
         {
-            if (!IsAccessible(slot) || slot.Item != item)
-                continue;
+            if (!IsAccessible(slot) || slot.Item != item) continue;
 
             int removed = Mathf.Min(slot.Quantity, remaining);
             int newQuantity = slot.Quantity - removed;
             remaining -= removed;
 
-            if (newQuantity == 0)
-                slot.Clear();
-            else
-                slot.Set(item, newQuantity);
+            if (newQuantity == 0) slot.Clear();
+            else slot.Set(item, newQuantity);
 
-            if (remaining == 0)
-                break;
+            if (remaining == 0) break;
         }
 
         PublishChanged();
@@ -394,15 +426,12 @@ public class InventoryService : MonoBehaviour
                 return;
             }
         }
-
         SelectedSlotIndex = 0;
     }
 
     private void InitializeSlots()
     {
-        if (IsLayoutCurrent())
-            return;
-
+        if (IsLayoutCurrent()) return;
         if (!TryRebuildSlots())
             Debug.LogWarning("Inventory layout could not be rebuilt without losing items.", this);
     }
@@ -412,18 +441,13 @@ public class InventoryService : MonoBehaviour
         int baseCount = Mathf.Max(1, slotCount);
         int backpackCount = 0;
         int cartCount = 0;
-
         foreach (CapacityBonus bonus in capacityBonuses.Values)
         {
-            if (bonus.Group == InventorySlotGroup.Backpack)
-                backpackCount += bonus.SlotCount;
-            else if (bonus.Group == InventorySlotGroup.Cart)
-                cartCount += bonus.SlotCount;
+            if (bonus.Group == InventorySlotGroup.Backpack) backpackCount += bonus.SlotCount;
+            else if (bonus.Group == InventorySlotGroup.Cart) cartCount += bonus.SlotCount;
         }
 
-        if (slots.Count != baseCount + backpackCount + cartCount)
-            return false;
-
+        if (slots.Count != baseCount + backpackCount + cartCount) return false;
         int index = 0;
         for (int i = 0; i < baseCount; i++, index++)
             if (slots[index].Group != InventorySlotGroup.Base) return false;
@@ -431,7 +455,6 @@ public class InventoryService : MonoBehaviour
             if (slots[index].Group != InventorySlotGroup.Backpack) return false;
         for (int i = 0; i < cartCount; i++, index++)
             if (slots[index].Group != InventorySlotGroup.Cart) return false;
-
         return true;
     }
 
@@ -443,7 +466,6 @@ public class InventoryService : MonoBehaviour
             { InventorySlotGroup.Backpack, 0 },
             { InventorySlotGroup.Cart, 0 }
         };
-
         foreach (CapacityBonus bonus in capacityBonuses.Values)
             targetCounts[bonus.Group] += bonus.SlotCount;
 
@@ -453,26 +475,19 @@ public class InventoryService : MonoBehaviour
             { InventorySlotGroup.Backpack, new List<InventorySlot>() },
             { InventorySlotGroup.Cart, new List<InventorySlot>() }
         };
-
-        foreach (InventorySlot slot in slots)
-            existing[slot.Group].Add(slot);
+        foreach (InventorySlot slot in slots) existing[slot.Group].Add(slot);
 
         foreach (InventorySlotGroup group in new[]
                  { InventorySlotGroup.Base, InventorySlotGroup.Backpack, InventorySlotGroup.Cart })
         {
             List<InventorySlot> groupSlots = existing[group];
             int target = targetCounts[group];
-
             for (int i = target; i < groupSlots.Count; i++)
-            {
-                if (!groupSlots[i].IsEmpty)
-                    return false;
-            }
+                if (!groupSlots[i].IsEmpty) return false;
         }
 
         InventorySlot selectedSlot = SelectedSlotIndex >= 0 && SelectedSlotIndex < slots.Count
-            ? slots[SelectedSlotIndex]
-            : null;
+            ? slots[SelectedSlotIndex] : null;
 
         var rebuilt = new List<InventorySlot>();
         InventorySlotGroup[] order =
@@ -481,61 +496,41 @@ public class InventoryService : MonoBehaviour
             InventorySlotGroup.Backpack,
             InventorySlotGroup.Cart
         };
-
         foreach (InventorySlotGroup group in order)
         {
             List<InventorySlot> groupSlots = existing[group];
             int target = targetCounts[group];
-
             for (int i = 0; i < target; i++)
-            {
-                rebuilt.Add(i < groupSlots.Count
-                    ? groupSlots[i]
-                    : new InventorySlot(group));
-            }
+                rebuilt.Add(i < groupSlots.Count ? groupSlots[i] : new InventorySlot(group));
         }
 
         slots.Clear();
         slots.AddRange(rebuilt);
-
         if (selectedSlot != null)
         {
             int selectedIndex = slots.IndexOf(selectedSlot);
-            if (selectedIndex >= 0)
-                SelectedSlotIndex = selectedIndex;
+            if (selectedIndex >= 0) SelectedSlotIndex = selectedIndex;
         }
-
-        if (slots.Count == 0)
-            SelectedSlotIndex = 0;
-        else
-            SelectedSlotIndex = Mathf.Clamp(SelectedSlotIndex, 0, slots.Count - 1);
-
+        if (slots.Count == 0) SelectedSlotIndex = 0;
+        else SelectedSlotIndex = Mathf.Clamp(SelectedSlotIndex, 0, slots.Count - 1);
         if (SelectedSlotIndex < slots.Count && !IsAccessible(slots[SelectedSlotIndex]))
             SelectFirstAccessibleSlot();
-
         return true;
     }
 
     private void PublishChanged()
     {
         InitializeSlots();
-
         InventorySlotData[] snapshot = new InventorySlotData[slots.Count];
-        InventorySlotDisplayData[] displaySnapshot =
-            new InventorySlotDisplayData[slots.Count];
+        InventorySlotDisplayData[] displaySnapshot = new InventorySlotDisplayData[slots.Count];
 
         for (int i = 0; i < slots.Count; i++)
         {
             InventorySlot slot = slots[i];
             snapshot[i] = new InventorySlotData(slot.Item, slot.Quantity);
             displaySnapshot[i] = new InventorySlotDisplayData(
-                slot.Item,
-                slot.Quantity,
-                slot.Group,
-                IsAccessible(slot)
-            );
+                slot.Item, slot.Quantity, slot.Group, IsAccessible(slot));
         }
-
         GameEvents.Publish(new InventoryChangedEvent(snapshot, SelectedSlotIndex));
         GameEvents.Publish(new InventoryLayoutChangedEvent(displaySnapshot, SelectedSlotIndex));
     }
