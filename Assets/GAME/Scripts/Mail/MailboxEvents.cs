@@ -23,3 +23,15 @@ public readonly struct MailReceivedEvent
         Message = message;
     }
 }
+
+public readonly struct MailReadEvent
+{
+    public MailMessageData Message { get; }
+
+    public MailReadEvent(MailMessageData message)
+    {
+        Message = message;
+    }
+}
+
+public readonly struct MailboxOpenRequestedEvent { }

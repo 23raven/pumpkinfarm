@@ -3,6 +3,23 @@ using UnityEngine;
 public class SalesSourceStation : MonoBehaviour, IInteractable
 {
     [SerializeField] private DemandSourceDefinition source;
+    [SerializeField] private GameObject activeOrderIndicator;
+
+    private void OnEnable()
+    {
+        GameEvents.Subscribe<DailyOrdersChangedEvent>(OnOrdersChanged);
+        RefreshIndicator();
+    }
+
+    private void Start()
+    {
+        RefreshIndicator();
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.Unsubscribe<DailyOrdersChangedEvent>(OnOrdersChanged);
+    }
 
     public void Interact(GameObject interactor)
     {
@@ -21,5 +38,24 @@ public class SalesSourceStation : MonoBehaviour, IInteractable
         }
 
         orders.TryFulfill(source.SourceId);
+    }
+
+    private void OnOrdersChanged(DailyOrdersChangedEvent message)
+    {
+        RefreshIndicator();
+    }
+
+    private void RefreshIndicator()
+    {
+        if (activeOrderIndicator == null)
+            return;
+
+        GameServices services = GameServices.Instance;
+        bool hasOrder = source != null &&
+                        services != null &&
+                        services.TryGet<DailyOrderService>(out DailyOrderService orders) &&
+                        orders.HasActiveOrder(source.SourceId);
+
+        activeOrderIndicator.SetActive(hasOrder);
     }
 }

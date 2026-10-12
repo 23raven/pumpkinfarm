@@ -20,6 +20,8 @@ public class DailyOrderService : MonoBehaviour
     private int currentDay = -1;
     private bool ordersVisible;
 
+    public bool OrdersVisible => ordersVisible;
+
     private void OnEnable()
     {
         GameServices services = GameServices.Instance;
@@ -30,7 +32,10 @@ public class DailyOrderService : MonoBehaviour
         }
 
         if (services.Register(this))
+        {
             GameEvents.Subscribe<DayChangedEvent>(OnDayChanged);
+            GameEvents.Subscribe<MailReadEvent>(OnMailRead);
+        }
     }
 
     private void Start()
@@ -48,6 +53,8 @@ public class DailyOrderService : MonoBehaviour
     private void OnDisable()
     {
         GameEvents.Unsubscribe<DayChangedEvent>(OnDayChanged);
+        GameEvents.Unsubscribe<MailReadEvent>(OnMailRead);
+
         GameServices services = GameServices.Instance;
         if (services != null)
             services.Unregister(this);
@@ -56,6 +63,19 @@ public class DailyOrderService : MonoBehaviour
     private void OnDayChanged(DayChangedEvent message)
     {
         GenerateForDayIfNeeded(message.Day);
+    }
+
+    private void OnMailRead(MailReadEvent message)
+    {
+        if (ordersVisible || currentDay < 1)
+            return;
+
+        string expectedMailId = $"daily-orders-{currentDay}";
+        if (message.Message.Id != expectedMailId)
+            return;
+
+        ordersVisible = true;
+        PublishOrdersChanged();
     }
 
     private void GenerateForDayIfNeeded(int day)
@@ -130,6 +150,7 @@ public class DailyOrderService : MonoBehaviour
                 "DailyOrderService: MailboxService is unavailable; orders remain hidden until mail can be delivered.",
                 this
             );
+            PublishOrdersChanged();
             return;
         }
 
@@ -151,7 +172,8 @@ public class DailyOrderService : MonoBehaviour
             body = string.Join("\n", lines);
         }
 
-        // Deliver mail first. Orders are only revealed after this notification.
+        // Receiving mail only lights up the mailbox. Orders stay hidden until
+        // the player opens the mailbox and explicitly reads this message.
         mailbox.Receive(new MailMessageData(
             $"daily-orders-{currentDay}",
             currentDay,
@@ -159,15 +181,23 @@ public class DailyOrderService : MonoBehaviour
             body
         ));
 
-        ordersVisible = true;
         PublishOrdersChanged();
+    }
+
+    public bool HasActiveOrder(string sourceId)
+    {
+        if (!ordersVisible || string.IsNullOrWhiteSpace(sourceId))
+            return false;
+
+        return activeOrders.Exists(order =>
+            order.SourceId == sourceId && !order.IsCompleted);
     }
 
     public bool TryFulfill(string sourceId)
     {
         if (!ordersVisible)
         {
-            Debug.Log("Orders have not arrived by mail yet.");
+            Debug.Log("Read today's order mail before delivering goods.");
             return false;
         }
 

@@ -23,8 +23,9 @@ public class HUDDisplayBridge : MonoBehaviour
         GameEvents.Subscribe<InventoryLayoutChangedEvent>(OnInventoryChanged);
         GameEvents.Subscribe<DayChangedEvent>(OnDayChanged);
         GameEvents.Subscribe<HUDRefreshRequestedEvent>(OnRefreshRequested);
-        GameEvents.Subscribe<MailReceivedEvent>(OnMailReceived);
         GameEvents.Subscribe<DailyOrdersChangedEvent>(OnDailyOrdersChanged);
+        Publish(HUDTextKey.OrderProgress, string.Empty);
+        Publish(HUDTextKey.ActiveOrders, string.Empty);
         RefreshLatest();
     }
 
@@ -34,7 +35,6 @@ public class HUDDisplayBridge : MonoBehaviour
         GameEvents.Unsubscribe<InventoryLayoutChangedEvent>(OnInventoryChanged);
         GameEvents.Unsubscribe<DayChangedEvent>(OnDayChanged);
         GameEvents.Unsubscribe<HUDRefreshRequestedEvent>(OnRefreshRequested);
-        GameEvents.Unsubscribe<MailReceivedEvent>(OnMailReceived);
         GameEvents.Unsubscribe<DailyOrdersChangedEvent>(OnDailyOrdersChanged);
     }
 
@@ -88,19 +88,13 @@ public class HUDDisplayBridge : MonoBehaviour
         Publish(HUDTextKey.InventoryContents, string.Join("\n", lines));
     }
 
-    private void OnMailReceived(MailReceivedEvent message)
-    {
-        Publish(
-            HUDTextKey.MailNotification,
-            $"New mail: {message.Message.Subject}\n{message.Message.Body}"
-        );
-    }
-
     private void OnDailyOrdersChanged(DailyOrdersChangedEvent message)
     {
+        // Order progress and orders are deliberately hidden until the player
+        // reads the current day's order mail at the mailbox.
         if (!message.IsVisible)
         {
-            Publish(HUDTextKey.OrderProgress, "Orders: waiting for mail");
+            Publish(HUDTextKey.OrderProgress, string.Empty);
             Publish(HUDTextKey.ActiveOrders, string.Empty);
             return;
         }
@@ -148,8 +142,6 @@ public class HUDDisplayBridge : MonoBehaviour
             OnDayChanged(day);
         if (GameEvents.TryGetLatest<DailyOrdersChangedEvent>(out var orders))
             OnDailyOrdersChanged(orders);
-        if (GameEvents.TryGetLatest<MailReceivedEvent>(out var mail))
-            OnMailReceived(mail);
     }
 
     private void Publish(HUDTextKey key, string text)
