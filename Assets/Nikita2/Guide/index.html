@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Pumpkin Farm — справочник проекта</title>
+  <meta name="description" content="Краткий справочник проекта Pumpkin Farm: архитектура, скрипты, зависимости и настройка объектов в Unity.">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <div class="topline"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="На главную">
+      <span class="brand-mark">P</span>
+      <span><strong>Pumpkin Farm</strong><small>Справочник проекта</small></span>
+    </a>
+    <div class="header-actions">
+      <span class="version-pill"><span class="status-dot"></span> Рабочая архитектура</span>
+      <button class="icon-button mobile-menu" id="menuToggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <div class="layout" id="top">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-label">Путеводитель</div>
+      <nav class="side-nav" aria-label="Разделы сайта">
+        <a class="active" href="#overview"><span class="nav-icon">⌂</span>Обзор</a>
+        <a href="#how-to-play"><span class="nav-icon">▶</span>Как играть</a>
+        <a href="#architecture"><span class="nav-icon">⌘</span>Карта модулей</a>
+        <a href="#scene"><span class="nav-icon">▦</span>Собрать уровень</a>
+        <a href="#scripts"><span class="nav-icon">{ }</span>Скрипты</a>
+        <a href="#prefabs"><span class="nav-icon">▣</span>Папка Prefabs</a>
+        <a href="#extend-content"><span class="nav-icon">＋</span>Новый контент</a>
+        <a href="#debug"><span class="nav-icon">⚑</span>Если что-то сломалось</a>
+        <a href="#legacy"><span class="nav-icon">↺</span>Старый код</a>
+      </nav>
+      <div class="sidebar-note">
+        <div class="sidebar-note-icon">i</div>
+        <div><strong>Главное правило</strong><p>Настраивай префабы и связи в Inspector, а не создавай новые версии одного и того же менеджера.</p></div>
+      </div>
+      <div class="sidebar-foot">Pumpkin Farm · Unity 2D<br>Контент игры — English</div>
+    </aside>
+
+    <main class="main-content">
+      <section class="hero section-anchor" id="overview">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="green-line"></span> PUMPKIN FARM · UNITY 2D</div>
+          <h1>Pumpkin Farm<br><span>Устройство проекта.</span></h1>
+          <p class="hero-lead">Карта систем, скриптов и зависимостей. Найди компонент, проверь обязательные связи и собери сцену без лишних догадок.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#architecture">Смотреть архитектуру <span>→</span></a>
+            <a class="button secondary" href="#scripts">Найти скрипт</a>
+          </div>
+          <div class="hero-footnote"><span class="tiny-badge">Для команды</span> Написано простым языком; английские имена классов сохранены как в Unity.</div>
+        </div>
+        <div class="hero-art" aria-label="Стилизованная иллюстрация игры">
+          <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+          <div class="art-ground"></div>
+          <div class="art-sun"></div>
+          <div class="art-pumpkin pumpkin-back"><i></i><b></b><em></em></div>
+          <div class="art-pumpkin pumpkin-front"><i></i><b></b><em></em></div>
+          <div class="art-leaf leaf-one"></div><div class="art-leaf leaf-two"></div>
+          <div class="art-caption"><span>GAME LOOP</span><strong>Plant · Care · Harvest · Trade</strong></div>
+        </div>
+      </section>
+
+      <section class="metrics-row" aria-label="Краткая информация">
+        <div class="metric"><span class="metric-number">GameServices</span><span class="metric-label">поиск игровых сервисов</span></div>
+        <div class="metric"><span class="metric-number">GameEvents</span><span class="metric-label">обмен событиями</span></div>
+        <div class="metric"><span class="metric-number">SO</span><span class="metric-label">данные отдельно от логики</span></div>
+        <div class="metric metric-wide"><span class="metric-number">Prefabs</span><span class="metric-label">заготовки текущего прототипа</span></div>
+      </section>
+
+      <section class="intro-grid content-section">
+        <div class="section-title-block">
+          <div class="eyebrow">ПЕРЕД НАЧАЛОМ</div>
+          <h2>Как пользоваться</h2>
+          <p>Найди объект или скрипт. Проверь, куда его добавить и какие ссылки обязательны.</p>
+        </div>
+        <div class="intro-cards">
+          <article class="info-card"><span class="card-number">01</span><h3>Найди объект</h3><p><code>GameSystems</code>, <code>PF_Player</code>, <code>GameHUD</code> или здание.</p></article>
+          <article class="info-card"><span class="card-number">02</span><h3>Проверь связи</h3><p>Отдельно указано, что обязательно, а что можно не назначать.</p></article>
+          <article class="info-card"><span class="card-number">03</span><h3>Проверь в Unity</h3><p>Подключай по одному модулю и сразу запускай Play Mode.</p></article>
+        </div>
+      </section>
+
+      <section class="content-section how-to-play" id="how-to-play">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">БЫСТРАЯ ПАМЯТКА</div>
+            <h2>Как играть</h2>
+            <p>Управление и основной игровой цикл — всё в одном месте.</p>
+          </div>
+          <span class="section-count">CONTROLS</span>
+        </div>
+
+        <div class="controls-grid">
+          <article class="control-card control-movement">
+            <div class="control-icon">↕</div>
+            <div class="control-title">Движение</div>
+            <div class="key-row"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div>
+            <p>Ходи по уровню. Диагональное движение тоже работает.</p>
+          </article>
+          <article class="control-card control-action">
+            <div class="control-icon">␣</div>
+            <div class="control-title">Взаимодействие</div>
+            <div class="key-row"><kbd class="key-wide">SPACE</kbd></div>
+            <p>Используй выбранный инструмент, открывай здания, читай почту и сдавай заказы.</p>
+          </article>
+          <article class="control-card control-inventory">
+            <div class="control-icon">▦</div>
+            <div class="control-title">Выбор предмета</div>
+            <div class="key-row"><kbd>1–9</kbd><span>или</span><kbd>колесо мыши</kbd></div>
+            <p>Выбери нужный слот. Мотыга вспахивает землю, семена сажаются, лейка поливает.</p>
+          </article>
+          <article class="control-card control-drop">
+            <div class="control-icon">↓</div>
+            <div class="control-title">Выбросить предметы</div>
+            <div class="key-row"><kbd>Q</kbd></div>
+            <p>Выбрасывает всю стопку из активного слота. Предметы можно подобрать снова.</p>
+          </article>
+          <article class="control-card control-cart">
+            <div class="control-icon">▰</div>
+            <div class="control-title">Тележка</div>
+            <div class="key-row"><kbd>G</kbd></div>
+            <p>Отцепи тележку или запряги её рядом. Груз остаётся внутри; с тележкой игрок движется медленнее.</p>
+          </article>
+          <article class="control-card control-drag">
+            <div class="control-icon">⤧</div>
+            <div class="control-title">Карточки и хранение</div>
+            <div class="key-row"><kbd>Drag &amp; Drop</kbd></div>
+            <p>Перетаскивай карточки, меняй предметы местами или перемещай их в склад и обратно.</p>
+          </article>
+        </div>
+
+        <div class="play-loop-grid">
+          <article class="play-loop-card farm-loop">
+            <div class="play-loop-kicker">ФЕРМА</div>
+            <h3>Вырастить тыкву</h3>
+            <ol>
+              <li>Выбери <code>Hoe</code> и вспаши клетку.</li>
+              <li>Выбери семена и посади их.</li>
+              <li>Поливай растение каждый игровой день.</li>
+              <li>Собери зрелую тыкву. Забытая без воды тыква завянет — убери её мотыгой.</li>
+            </ol>
+          </article>
+          <article class="play-loop-card mail-loop">
+            <div class="play-loop-kicker">ПОЧТА И ЗАКАЗЫ</div>
+            <h3>Получить оплату</h3>
+            <ol>
+              <li>Загорелся значок на почтовом ящике — подойди и нажми <kbd>SPACE</kbd>.</li>
+              <li>Нажми <code>Read</code>. Только после прочтения заказ появится на HUD.</li>
+              <li>Найди здание с индикатором активного заказа и принеси нужные предметы.</li>
+              <li>Выполни заказ, получи деньги и дождись новых писем в следующие игровые дни.</li>
+            </ol>
+          </article>
+          <article class="play-loop-card trade-loop">
+            <div class="play-loop-kicker">МАГАЗИН И СКЛАД</div>
+            <h3>Покупать и хранить</h3>
+            <ol>
+              <li>Подойди к магазину или хранилищу и нажми <kbd>SPACE</kbd>.</li>
+              <li>В магазине покупай и продавай товары. Открытое окно блокирует движение.</li>
+              <li>Склад используй для предметов, которые не нужны прямо сейчас.</li>
+              <li>Закрывай окно его кнопкой <code>Close</code>. Письмо закрывается кнопкой <code>Read</code>.</li>
+            </ol>
+          </article>
+        </div>
+        <div class="play-note"><strong>Важно:</strong> активный слот определяет, что произойдёт при взаимодействии. Перед нажатием <kbd>SPACE</kbd> проверь подсветку клетки и выбранный предмет.</div>
+      </section>
+
+      <section class="content-section" id="architecture">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">КАРТА ПРОЕКТА</div>
+            <h2>Модули и связи</h2>
+            <p>В каждой карточке — нужные скрипты и их роль. Нажми на модуль, чтобы отфильтровать справочник.</p>
+          </div>
+          <span class="section-count">КАРТА 01</span>
+        </div>
+
+        <div class="architecture-flow" aria-label="Общий поток работы игры">
+          <div class="flow-box flow-data"><span class="flow-number">01</span><strong>Данные</strong><small>ScriptableObject · настройки</small></div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box flow-world"><span class="flow-number">02</span><strong>Объекты мира</strong><small>игрок · здания · Tilemap</small></div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box flow-rules"><span class="flow-number">03</span><strong>Игровые правила</strong><small>инвентарь · ферма · магазин</small></div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-box flow-ui"><span class="flow-number">04</span><strong>Интерфейс</strong><small>HUD · карточки · окна</small></div>
+        </div>
+        <p class="flow-note"><b>Как идёт связь:</b> игрок вызывает <code>IInteractable</code>; системы получают нужные сервисы через <code>GameServices</code>; события идут через <code>GameEvents</code>; UI показывает результат. <code>GameplayInputGate</code> временно блокирует управление, когда открыто окно.</p>
+
+        <div class="architecture-module-grid">
+          <button type="button" class="architecture-module accent-dark" data-jump="core" data-filter-module="core">
+            <span class="module-kicker"><span>ОСНОВА</span><span>01</span></span>
+            <h3>Общие механизмы</h3>
+            <p class="module-purpose">Связывают системы, но не выполняют всю игру за них.</p>
+            <div class="script-role-list">
+              <div><code>GameServices</code><span>Находит сервис по типу.</span></div>
+              <div><code>GameEvents</code><span>Передаёт события между системами и UI.</span></div>
+              <div><code>GameplayInputGate</code><span>Блокирует управление при открытых окнах.</span></div>
+              <div><code>DayCycleService</code><span>Хранит день и сообщает о смене дня.</span></div>
+            </div>
+            <div class="module-connect"><b>Соединяет:</b> игровые системы и окна</div>
+          </button>
+
+          <button type="button" class="architecture-module accent-orange" data-jump="player" data-filter-module="player">
+            <span class="module-kicker"><span>ИГРОК</span><span>02</span></span>
+            <h3>Игрок и взаимодействие</h3>
+            <p class="module-purpose">Движение, выбор цели и действия по Space.</p>
+            <div class="script-role-list">
+              <div><code>PlayerController2D</code><span>Движение и направление.</span></div>
+              <div><code>PlayerInteractor</code><span>Находит ближайший объект у ног.</span></div>
+              <div><code>IInteractable</code><span>Общий вход для зданий и фермы.</span></div>
+              <div><code>IDirectionalInteractor</code><span>Передаёт направление взгляда.</span></div>
+              <div><code>InventorySelectionController</code><span>Выбор слота 1–9.</span></div>
+              <div><code>PlayerItemDropController</code><span>Выбрасывание на Q.</span></div>
+              <div><code>CameraFollow2D</code><span>Камера следует за игроком.</span></div>
+            </div>
+            <div class="module-connect"><b>Связи:</b> <code>GameServices</code> · <code>IInteractable</code> · <code>GameplayInputGate</code></div>
+          </button>
+
+          <button type="button" class="architecture-module accent-gold" data-jump="inventoryui" data-filter-module="inventory">
+            <span class="module-kicker"><span>ПРЕДМЕТЫ</span><span>03</span></span>
+            <h3>Инвентарь</h3>
+            <p class="module-purpose">Слоты, стопки, рюкзак, тележка и карточки.</p>
+            <div class="script-role-list">
+              <div><code>InventoryService</code><span>Добавить, убрать, переставить предмет.</span></div>
+              <div><code>InventorySlot</code><span>Один слот и его количество.</span></div>
+              <div><code>PickupItem</code><span>Подбор предмета в мире.</span></div>
+              <div><code>WorldItemPulse</code><span>Лёгкая анимация предмета.</span></div>
+              <div><code>InventoryHUDController</code><span>Создаёт и обновляет карточки.</span></div>
+              <div><code>InventorySlotCardView</code><span>Иконка, число, перетаскивание.</span></div>
+            </div>
+            <div class="module-connect"><b>Связи:</b> <code>GameServices</code> · <code>InventoryLayoutChangedEvent</code> · <code>CartStateChangedEvent</code></div>
+          </button>
+
+          <button type="button" class="architecture-module accent-green" data-jump="farm" data-filter-module="farm">
+            <span class="module-kicker"><span>ФЕРМА</span><span>04</span></span>
+            <h3>Ферма на Tilemap</h3>
+            <p class="module-purpose">Вспахивание → посадка → полив → рост → сбор.</p>
+            <div class="script-role-list">
+              <div><code>FarmTilemapController</code><span>Определяет действие на выбранной клетке.</span></div>
+              <div><code>FarmCropSystem</code><span>Состояние и правила растений.</span></div>
+              <div><code>FarmTileVisuals</code><span>Tile, стадии, затемнение после полива.</span></div>
+              <div><code>FarmTargetPreview</code><span>Подсветка клетки перед игроком.</span></div>
+              <div><code>CropDefinition</code><span>Семена, урожай и спрайты стадий.</span></div>
+            </div>
+            <div class="module-connect"><b>Связи:</b> <code>DayChangedEvent</code> · <code>InventoryService</code> · <code>Tilemap</code></div>
+          </button>
+
+          <button type="button" class="architecture-module accent-coral" data-jump="shops" data-filter-module="economy">
+            <span class="module-kicker"><span>ТОРГОВЛЯ</span><span>05</span></span>
+            <h3>Магазин и тележка</h3>
+            <p class="module-purpose">Покупки, продажи, улучшения и перевозка.</p>
+            <div class="script-role-list">
+              <div><code>WalletService</code><span>Баланс денег.</span></div>
+              <div><code>ShopService</code><span>Проверяет деньги и инвентарь, выполняет сделку.</span></div>
+              <div><code>ShopStation</code><span>Открывает каталог по Space.</span></div>
+              <div><code>ShopPanelController</code><span>Окно и список товаров.</span></div>
+              <div><code>ShopProductRowView</code><span>Кнопки покупки и продажи.</span></div>
+              <div><code>CartService</code><span>Тележка и бонус вместимости.</span></div>
+              <div><code>CartFollower</code><span>Следование/парковка тележки.</span></div>
+            </div>
+            <div class="module-connect"><b>Данные:</b> <code>ShopCatalog</code> · <code>ShopProductDefinition</code><br><b>События:</b> <code>ShopTransactionRequestedEvent</code> · <code>ShopTransactionEvent</code></div>
+          </button>
+
+          <button type="button" class="architecture-module accent-purple" data-jump="mailorders" data-filter-module="mailorders">
+            <span class="module-kicker"><span>ПОЧТА И ЗАКАЗЫ</span><span>06</span></span>
+            <h3>Спрос от зданий</h3>
+            <p class="module-purpose">Письмо открывает дневные заказы; здание принимает нужный товар.</p>
+            <div class="script-role-list">
+              <div><code>DailyOrderService</code><span>Создаёт заказы и выдаёт награды.</span></div>
+              <div><code>DemandSourceDefinition</code><span>Настройки спроса бизнеса.</span></div>
+              <div><code>SalesSourceStation</code><span>Сдача предметов в конкретный заказ.</span></div>
+              <div><code>MailboxService</code><span>Хранит письма и статус прочтения.</span></div>
+              <div><code>MailboxStation</code><span>Индикатор и открытие почты.</span></div>
+              <div><code>MailboxPanelController</code><span>Показывает письмо и отмечает прочтение.</span></div>
+            </div>
+            <div class="module-connect"><b>События:</b> <code>MailReceivedEvent</code> · <code>MailReadEvent</code> · <code>DailyOrdersChangedEvent</code></div>
+          </button>
+
+          <button type="button" class="architecture-module accent-blue" data-jump="storage" data-filter-module="storage">
+            <span class="module-kicker"><span>ХРАНИЛИЩЕ</span><span>07</span></span>
+            <h3>Отдельный склад</h3>
+            <p class="module-purpose">У каждого здания свой набор слотов; предметы перетаскиваются между панелями.</p>
+            <div class="script-role-list">
+              <div><code>StorageContainer</code><span>Содержимое и вместимость.</span></div>
+              <div><code>StorageSlot</code><span>Данные одного слота.</span></div>
+              <div><code>StorageStation</code><span>Открывает выбранное здание.</span></div>
+              <div><code>StoragePanelController</code><span>Скролл и перенос предметов.</span></div>
+              <div><code>StorageSlotCardView</code><span>Карточка предмета на складе.</span></div>
+            </div>
+            <div class="module-connect"><b>События:</b> <code>StorageOpenedEvent</code> · <code>StorageChangedEvent</code></div>
+          </button>
+
+          <button type="button" class="architecture-module accent-pink" data-jump="hud" data-filter-module="ui">
+            <span class="module-kicker"><span>ИНТЕРФЕЙС</span><span>08</span></span>
+            <h3>HUD и окна</h3>
+            <p class="module-purpose">Показывают состояние игры и отправляют запросы, но не решают игровые правила.</p>
+            <div class="script-role-list">
+              <div><code>HUDDisplayBridge</code><span>Переводит события в текст.</span></div>
+              <div><code>HUDPresenter</code><span>Находит текст по ключу.</span></div>
+              <div><code>HUDTextBinding</code><span>Выбирает назначение TMP-текста.</span></div>
+              <div><code>ShopPanelController</code><span>Окно магазина.</span></div>
+              <div><code>MailboxPanelController</code><span>Окно почты.</span></div>
+              <div><code>StoragePanelController</code><span>Окно хранилища.</span></div>
+            </div>
+            <div class="module-connect"><b>Связи:</b> <code>GameEvents</code> · <code>GameplayInputGate</code> · TextMeshPro</div>
+          </button>
+
+          <button type="button" class="architecture-module accent-data" data-jump="data" data-filter-module="data">
+            <span class="module-kicker"><span>НАСТРОЙКИ</span><span>09</span></span>
+            <h3>ScriptableObject-ассеты</h3>
+            <p class="module-purpose">Описывают варианты игры. Их создают через Create и заполняют в Inspector.</p>
+            <div class="script-role-list">
+              <div><code>ItemDefinition</code><span>Имя, иконка, размер стопки, prefab.</span></div>
+              <div><code>CropDefinition</code><span>Семена, урожай и стадии растения.</span></div>
+              <div><code>ShopProductDefinition</code><span>Тип товара и цены.</span></div>
+              <div><code>ShopCatalog</code><span>Список товаров магазина.</span></div>
+              <div><code>DemandSourceDefinition</code><span>Варианты спроса бизнеса.</span></div>
+              <div><code>CarvingRecipe</code><span>Рецепт вырезания; модуль пока отложен.</span></div>
+            </div>
+            <div class="module-connect"><b>Важно:</b> это данные, они не добавляются на сцену как компоненты.</div>
+          </button>
+        </div>
+
+        <div class="diagram-detail" id="diagramDetail"><strong>Главные связующие скрипты</strong><p><code>GameServices</code> находит сервисы. <code>GameEvents</code> рассылает сообщения. <code>IInteractable</code> связывает игрока с объектами мира. <code>GameplayInputGate</code> блокирует управление, пока открыта панель.</p></div>
+      </section>
+
+      <section class="content-section" id="scene">
+        <div class="section-heading"><div><div class="eyebrow">СБОРКА УРОВНЯ</div><h2>Собрать уровень из текущих префабов</h2><p>Используем уже собранные объекты из проекта, а не настраиваем всё с нуля.</p></div><span class="section-count">9 ШАГОВ</span></div>
+        <div class="prefab-folder-callout">
+          <div class="folder-icon">▣</div>
+          <div><strong>Где лежат заготовки</strong><p><code>Assets/Nikita2/Prefabs</code> — префабы объектов из твоего текущего рабочего уровня. Они помогают понять состав объектов и быстро восстановить похожую тестовую сцену. Это <b>не финальная библиотека универсальных префабов</b>; позже нужные повторяемые части можно будет привести к общему стандарту.</p></div>
+        </div>
+        <div class="notice warning-note"><span class="notice-symbol">!</span><div><strong>Чтобы не получить дубли</strong><p>Перед добавлением префаба открой его через <b>Open</b> и посмотри Hierarchy внутри. Если <code>Buildings.prefab</code> уже содержит магазин или почту, не добавляй эти же здания повторно отдельными вариантами.</p></div></div>
+        <div class="build-layout">
+          <div class="step-list" id="buildSteps">
+            <article class="build-step"><label><input type="checkbox" data-check="build-1"><span class="checkmark"></span></label><div class="step-index">01</div><div class="step-content"><h3>Создай отдельную сцену</h3><p>Создай новую сцену, например <code>Level_Test</code>, и сохрани её. Рабочую сцену не перезаписывай — так можно сравнить результат с текущим уровнем.</p><div class="step-meta"><span>Новая Scene</span><span>Сохрани до сборки</span></div></div></article>
+            <article class="build-step"><label><input type="checkbox" data-check="build-2"><span class="checkmark"></span></label><div class="step-index">02</div><div class="step-content"><h3>Добавь остров / карту</h3><p>Перетащи <code>GridsIsland.prefab</code> из <code>Assets/Nikita2/Prefabs</code> в Hierarchy. Открой его внутреннюю структуру и проверь, какие Grid и Tilemap уже включены. Не создавай дубликаты существующих слоёв.</p><div class="step-meta"><span>Основа мира</span><span>Проверить Prefab Mode</span></div></div></article>
+            <article class="build-step"><label><input type="checkbox" data-check="build-3"><span class="checkmark"></span></label><div class="step-index">03</div><div class="step-content"><h3>Добавь здания</h3><p>Для быстрого восстановления попробуй <code>Buildings.prefab</code>. Если нужен другой набор, используй <code>Supermarket Variant.prefab</code> и <code>Mailbox Variant.prefab</code> по отдельности. Не добавляй и группу, и её содержимое одновременно.</p><div class="step-meta"><span>Buildings.prefab</span><span>или отдельные варианты</span></div></div></article>
+            <article class="build-step"><label><input type="checkbox" data-check="build-4"><span class="checkmark"></span></label><div class="step-index">04</div><div class="step-content"><h3>Добавь GameSystems</h3><p>Перетащи <code>GameSystems Variant.prefab</code>. В сцене должен быть только один активный <code>GameServices</code>. Проверь, что <code>WalletService</code>, <code>DayCycleService</code>, <code>ShopService</code>, <code>CartService</code>, <code>MailboxService</code> и <code>DailyOrderService</code> включены и зарегистрированы.</p><div class="step-meta"><span>Один экземпляр</span><span>Сервисы</span></div></div></article>
+            <article class="build-step"><label><input type="checkbox" data-check="build-5"><span class="checkmark"></span></label><div class="step-index">05</div><div class="step-content"><h3>Добавь игрока</h3><p>Перетащи <code>Player Variant.prefab</code>. Проверь движение, <code>PlayerInteractor</code>, <code>InventoryService</code>, выбор слота, выбрасывание на Q и дочерний <code>InteractionPoint</code> у ног.</p><div class="step-meta"><span>Один игрок</span><span>PF_Player Variant</span></div></div></article>
+            <article class="build-step"><label><input type="checkbox" data-check="build-6"><span class="checkmark"></span></label><div class="step-index">06</div><div class="step-content"><h3>Подключи камеру</h3><p>Добавь <code>PlayerCamera.prefab</code>. В <code>CameraFollow2D → Target</code> назначь <b>экземпляр Player из этой сцены</b>. Проверь Orthographic и удали лишнюю камеру, если она уже входит в какой-либо префаб.</p><div class="step-meta"><span>Одна активная камера</span><span>Target → Player</span></div></div></article>
+            <article class="build-step"><label><input type="checkbox" data-check="build-7"><span class="checkmark"></span></label><div class="step-index">07</div><div class="step-content"><h3>Добавь HUD и EventSystem</h3><p>Перетащи <code>GameHUD Variant.prefab</code> и один <code>EventSystem.prefab</code>. Проверь ссылки у HUD, Canvas, TextMeshPro и панелей. Если EventSystem уже есть внутри HUD или другой группы — второй не добавляй.</p><div class="step-meta"><span>Один HUD</span><span>Один EventSystem</span></div></div></article>
+            <article class="build-step"><label><input type="checkbox" data-check="build-8"><span class="checkmark"></span></label><div class="step-index">08</div><div class="step-content"><h3>Проверь ферму и интерактивные объекты</h3><p>На карте должны быть настроены <code>FarmTilemapController</code>, <code>FarmCropSystem</code>, <code>FarmTileVisuals</code> и <code>FarmTargetPreview</code>. Проверь пустой <code>WaterOverlayTilemap</code> с совместимым материалом. Добавь <code>Hoe Variant.prefab</code>, почту, магазин и источники заказов, только если их ещё нет в группе зданий.</p><div class="step-meta"><span>Tilemap</span><span>Коллайдеры и ссылки</span></div></div></article>
+            <article class="build-step"><label><input type="checkbox" data-check="build-9"><span class="checkmark"></span></label><div class="step-index">09</div><div class="step-content"><h3>Проверь уровень</h3><p>В Play Mode проверь: движение → предметы → вспахивание → посадка и полив → смена дня → сбор → магазин → хранилище → почта и заказы. Исправь Missing-ссылки в Inspector до того, как добавлять новый контент.</p><div class="step-meta"><span>Play Mode</span><span>Console без ошибок</span></div></div></article>
+          </div>
+          <aside class="build-sidebar-card">
+            <div class="mini-heading">Пример Hierarchy</div>
+            <pre class="tree"><span>Level_Test</span>
+├─ GridsIsland
+├─ Buildings
+│  <span>или отдельные варианты</span>
+├─ GameSystems Variant
+├─ Player Variant
+├─ PlayerCamera
+├─ GameHUD Variant
+├─ EventSystem
+└─ Items / дополнительные здания</pre>
+            <p class="tree-note">Состав внутри префабов может отличаться. Главное — не создавать второй игрок, второй HUD, второй GameServices или лишние Tilemap.</p>
+            <div class="progress-wrap"><div class="progress-label"><span>Готовность уровня</span><strong id="buildProgressText">0 из 9</strong></div><div class="progress-track"><div class="progress-value" id="buildProgressBar"></div></div></div>
+            <button class="button secondary full-width" id="resetBuildChecks">Сбросить чек-лист</button>
+          </aside>
+        </div>
+      </section>
+
+      <section class="content-section" id="scripts">
+        <div class="section-heading"><div><div class="eyebrow">СПРАВОЧНИК КОДА</div><h2>Скрипты и классы</h2><p>Поиск по имени, назначению, методу или полю Inspector. Открой карточку, чтобы увидеть место на сцене и зависимости.</p></div><span class="section-count" id="scriptCount">0 КЛАССОВ</span></div>
+        <div class="script-tools">
+          <label class="search-box"><span>⌕</span><input type="search" id="scriptSearch" placeholder="Например: полив, TryWater, InventoryService…" autocomplete="off"><kbd>Поиск</kbd></label>
+          <div class="filter-row">
+            <label class="filter-label" for="moduleFilter">Модуль</label>
+            <select id="moduleFilter">
+              <option value="all">Все модули</option><option value="core">Основа</option><option value="player">Игрок / взаимодействие</option><option value="inventory">Предметы / инвентарь</option><option value="farm">Ферма</option><option value="economy">Магазин / экономика / тележка</option><option value="mailorders">Почта / заказы</option><option value="storage">Хранилище</option><option value="ui">UI / HUD</option><option value="data">Данные / ScriptableObject</option><option value="events">События / структуры данных</option><option value="test">Тестовые скрипты</option><option value="legacy">Старая кодовая база</option>
+            </select>
+            <button class="text-button" id="clearFilters">Сбросить</button>
+          </div>
+          <div class="quick-filters" id="quickFilters"><button class="chip active" data-module="all">Все</button><button class="chip" data-module="core">Core</button><button class="chip" data-module="player">Player</button><button class="chip" data-module="inventory">Inventory</button><button class="chip" data-module="farm">Farm</button><button class="chip" data-module="economy">Shop / Cart</button><button class="chip" data-module="mailorders">Mail / Orders</button><button class="chip" data-module="storage">Storage</button><button class="chip" data-module="ui">UI</button><button class="chip" data-module="data">Data</button></div>
+        </div>
+        <div class="results-info"><span id="resultsText">Показаны все классы</span><span class="kbd-hint">Можно искать по названию метода</span></div>
+        <div id="scriptGrid" class="script-grid" aria-live="polite"></div>
+        <div id="emptyResults" class="empty-results" hidden><span>⌕</span><strong>Ничего не найдено</strong><p>Попробуй другое имя или сбрось фильтры.</p></div>
+      </section>
+
+      <section class="content-section" id="prefabs">
+        <div class="section-heading"><div><div class="eyebrow">ТЕКУЩИЙ ПРОТОТИП</div><h2>Папка Prefabs</h2><p>Эти префабы помогают восстановить рабочий уровень и посмотреть, как собраны его объекты.</p></div><span class="section-count">Assets/Nikita2</span></div>
+        <div class="notice warm-note"><span class="notice-symbol">i</span><div><strong>Это заготовки текущего уровня, не финальная библиотека</strong><p>Их собрали из объектов рабочего варианта, чтобы команде было проще изучать структуру. Используй их для тестовой сборки и проверки. Не считай каждый объект готовым универсальным префабом для всех будущих уровней.</p></div></div>
+        <div class="prefab-table-wrap"><table class="prefab-table"><thead><tr><th>Файл</th><th>Для чего нужен</th><th>Что проверить</th></tr></thead><tbody>
+          <tr><td><code>GridsIsland.prefab</code></td><td>Большая часть карты / острова.</td><td>Открой через <b>Open</b> и посмотри, какие Grid и Tilemap уже входят внутрь. Не создавай копии тех же слоёв.</td></tr>
+          <tr><td><code>Buildings.prefab</code></td><td>Группа зданий рабочего уровня.</td><td>Проверь дочерние объекты. Если внутри уже есть магазин или почта, не ставь их варианты повторно.</td></tr>
+          <tr><td><code>Supermarket Variant.prefab</code></td><td>Отдельный вариант супермаркета / магазина.</td><td>Проверь <code>ShopStation → Catalog</code>. Используй отдельно, когда не нужна группа <code>Buildings</code> или магазин в ней отсутствует.</td></tr>
+          <tr><td><code>Mailbox Variant.prefab</code></td><td>Вариант почтового ящика.</td><td><code>MailboxStation → Unread Indicator</code> должен ссылаться на дочерний <code>MailIndicator</code> этого префаба.</td></tr>
+          <tr><td><code>GameSystems Variant.prefab</code></td><td>Объект с игровыми сервисами.</td><td>На сцене должен быть только один активный <code>GameServices</code>; проверь сервисы и префаб тележки.</td></tr>
+          <tr><td><code>GameHUD Variant.prefab</code></td><td>HUD и игровые окна.</td><td>Проверь ссылки панелей, Card Prefab, Card Root и ключи <code>HUDTextBinding</code>.</td></tr>
+          <tr><td><code>EventSystem.prefab</code></td><td>Ввод для UI: кнопки и Drag &amp; Drop.</td><td>В сцене нужен ровно один активный <code>EventSystem</code>.</td></tr>
+          <tr><td><code>Player Variant.prefab</code></td><td>Текущий вариант персонажа.</td><td>Проверь <code>PlayerController2D</code>, <code>PlayerInteractor</code>, <code>InventoryService</code> и <code>InteractionPoint</code>.</td></tr>
+          <tr><td><code>PlayerCamera.prefab</code></td><td>Камера, которая следует за игроком.</td><td>В <code>CameraFollow2D → Target</code> назначь экземпляр игрока из открытой сцены.</td></tr>
+          <tr><td><code>Hoe Variant.prefab</code></td><td>Текущий вариант мотыги.</td><td>Проверь, является ли это предметом в мире или только визуальным объектом; для подбора нужны <code>Collider2D</code> и <code>PickupItem</code>.</td></tr>
+        </tbody></table></div>
+        <div class="prefab-next-step"><span class="prefab-next-icon">↗</span><div><strong>На будущее</strong><p>Когда структура станет стабильной, выделим из этих заготовок настоящие переиспользуемые префабы: игрок, предмет, здание, почта, магазин, хранилище. Сейчас важнее понимать, что уже находится внутри текущего варианта.</p></div></div>
+      </section>
+
+      <section class="content-section" id="extend-content">
+        <div class="section-heading"><div><div class="eyebrow">ДАННЫЕ ВМЕСТО НОВОГО КОДА</div><h2>Как добавлять контент</h2><p>Большинство новых вариантов игры должно добавляться через ассеты и prefab-настройки. Пиши новый скрипт только если появилось новое поведение, а не просто новый предмет.</p></div><span class="section-count">NO CODE FIRST</span></div>
+        <div class="extension-grid">
+          <article class="extension-card"><span class="extension-icon">◉</span><div class="extension-kicker">НОВЫЙ ПРЕДМЕТ</div><h3>Сделать предмет</h3><ol><li>Создай <code>ItemDefinition</code> в <code>Data/Items</code>.</li><li>Заполни уникальный Item Id, English Display Name и Max Stack Size.</li><li>Создай pickup prefab со своим SpriteRenderer/Collider/PickupItem/WorldItemPulse.</li><li>Назначь этот prefab в поле <code>WorldPrefab</code> предмета.</li></ol><div class="extension-foot">Обычно не нужен новый класс.</div></article>
+          <article class="extension-card"><span class="extension-icon">♧</span><div class="extension-kicker">НОВАЯ КУЛЬТУРА</div><h3>Добавить растение</h3><ol><li>Создай ItemDefinition семян и урожая.</li><li>Создай <code>CropDefinition</code>, назначь Seed Item, Harvest Item, спрайты по порядку и Withered Sprite.</li><li>Добавь ассет в <code>FarmTilemapController → Available Crops</code>.</li><li>Проверь Tilemap, watering overlay и каждый этап роста.</li></ol><div class="extension-foot">FarmCropSystem остаётся общим для культур.</div></article>
+          <article class="extension-card"><span class="extension-icon">＄</span><div class="extension-kicker">НОВЫЙ МАГАЗИН</div><h3>Добавить товар</h3><ol><li>Создай <code>ShopProductDefinition</code>, назначь цену и доступность покупки/продажи.</li><li>Добавь ассет в <code>ShopCatalog → Products</code>.</li><li>Убедись, что ShopStation на здании ссылается на нужный Catalog.</li></ol><div class="extension-foot">ShopPanelController сам создаст строку товара.</div></article>
+          <article class="extension-card"><span class="extension-icon">✉</span><div class="extension-kicker">НОВЫЙ БИЗНЕС</div><h3>Добавить источник заказов</h3><ol><li>Создай <code>DemandSourceDefinition</code> с уникальным Source Id и вариантами заказов.</li><li>Добавь ассет в <code>DailyOrderService → Sources</code>.</li><li>На здании добавь <code>SalesSourceStation</code>, назначь Source и child ActiveOrderIndicator.</li><li>Проверь: пришло письмо → прочитал → индикатор показался → заказ можно выполнить.</li></ol><div class="extension-foot">У каждого бизнеса свой Source Id.</div></article>
+          <article class="extension-card"><span class="extension-icon">▣</span><div class="extension-kicker">НОВОЕ ХРАНИЛИЩЕ</div><h3>Добавить склад</h3><ol><li>Создай prefab здания с Collider2D, StorageContainer и StorageStation.</li><li>Настрой Display Name и Slot Count.</li><li>Поставь экземпляр в сцену.</li></ol><div class="extension-foot">Новая покупка и отдельный скрипт не нужны.</div></article>
+          <article class="extension-card extension-tip"><span class="extension-icon">✦</span><div class="extension-kicker">КОГДА НУЖЕН КОД</div><h3>Новое поведение</h3><p>Если объект делает то же самое, но с другими данными — сделай новый ассет. Если действие действительно новое, проверь существующие интерфейсы и события, затем добавь небольшой компонент с одной ответственностью.</p><div class="extension-foot">Не создавай новый Manager только ради одной ссылки.</div></article>
+        </div>
+      </section>
+
+      <section class="content-section" id="debug">
+        <div class="section-heading"><div><div class="eyebrow">КОГДА ЧТО-ТО НЕ РАБОТАЕТ</div><h2>Карта быстрой диагностики</h2><p>Проверь наиболее частые связи перед тем, как переписывать код.</p></div><span class="section-count">DEBUG</span></div>
+        <div class="accordion-list" id="debugAccordion">
+          <details><summary>Space ничего не делает</summary><div class="accordion-body"><p>Проверь: у объекта в мире есть <code>Collider2D</code>; активен <code>PlayerInteractor</code>; объект реализует <code>IInteractable</code>; расстояние до <code>InteractionPoint</code> внутри радиуса; на сцене один активный Player. Для Tilemap проверь <code>TilemapCollider2D</code> и Tile Collider Type.</p></div></details>
+          <details><summary>GameServices не находит сервис</summary><div class="accordion-body"><p>На сцене должен быть ровно один активный <code>GameServices</code>. Сам сервис должен быть активен и зарегистрироваться. Для сервисов обычно не нужно заполнять поля на каждом объекте — они берутся через <code>GameServices.Instance.TryGet&lt;T&gt;()</code>.</p></div></details>
+          <details><summary>HUD не обновился</summary><div class="accordion-body"><p>Проверь наличие <code>HUDDisplayBridge</code>, <code>HUDPresenter</code> и <code>HUDTextBinding</code> с правильным ключом. Для карточек инвентаря отдельно нужны <code>InventoryHUDController</code>, <code>InventoryLayoutChangedEvent</code>, назначенный Card Prefab и Card Root.</p></div></details>
+          <details><summary>Drag & Drop не работает</summary><div class="accordion-body"><p>Нужны Canvas с <code>GraphicRaycaster</code>, активный <code>EventSystem</code>, Raycast Target на карточке и корректные ссылки в Card Prefab. Дочерние иконки/тексты иногда стоит исключить из Raycast, чтобы события попадали в корень карточки. Для хранения/инвентаря проверь, что ScrollRect не перекрывает область перетаскивания.</p></div></details>
+          <details><summary>Не отображается затемнение политой тыквы</summary><div class="accordion-body"><p>Под <code>Grid</code> должен быть пустой дочерний Tilemap с точным именем <code>WaterOverlayTilemap</code>. Рисовать в нём не нужно. Его Tilemap Renderer должен использовать совместимый Sprite-материал (не пользовательский шейдер смешивания текстур, который игнорирует цвет/альфу). Слой сортировки обычно на 1 выше основного FarmTilemap.</p></div></details>
+          <details><summary>MailIndicator не пропадает</summary><div class="accordion-body"><p>В <code>MailboxStation → Unread Indicator</code> назначай дочерний объект <code>MailIndicator</code> из Prefab Mode или из экземпляра в сцене, а не сам Prefab Asset из Project. Индикатор должен реагировать на события MailReceived/MailRead. Убедись, что кнопка Read действительно вызывает <code>MailboxService.MarkRead()</code>.</p></div></details>
+          <details><summary>Покупка улучшения прошла, но слотов не прибавилось</summary><div class="accordion-body"><p>У <code>ShopProductDefinition</code> проверь Product Type, уникальный Product Id и Capacity Bonus &gt; 0. Для рюкзака — BackpackUpgrade; для тележки — CartUpgrade. <code>ShopService</code> должен быть зарегистрирован, а <code>CartService</code> должен иметь префаб тележки.</p></div></details>
+          <details><summary>Поле было исправлено на сцене, но потерялось в Prefab</summary><div class="accordion-body"><p>Если настройка сделана на экземпляре prefab в Hierarchy, используй Overrides → Apply, когда нужно сохранить её как настройку всех будущих экземпляров. Для ссылки на дочерний объект (например, MailIndicator) редактируй сам prefab в Prefab Mode.</p></div></details>
+        </div>
+        <div class="notice good-note"><span class="notice-symbol">✓</span><div><strong>Правило команды</strong><p>Если появилась ошибка после добавления одного компонента — сначала откати или отключи только это изменение. Не переписывай сразу целый модуль, который уже работал.</p></div></div>
+      </section>
+
+      <section class="content-section" id="legacy">
+        <div class="section-heading"><div><div class="eyebrow">ИСТОРИЯ ПРОЕКТА</div><h2>Старая кодовая база</h2><p>Эти файлы пришли в исходном <code>ScriptsZIP.zip</code>. Они могут оставаться в проекте, но новую сцену по ним собирать не нужно.</p></div><span class="section-count">LEGACY</span></div>
+        <div class="notice warning-note"><span class="notice-symbol">!</span><div><strong>Не удаляй их автоматически</strong><p>Старые сцены или prefab-объекты могут всё ещё ссылаться на эти классы. Удаление — только после проверки, что старые сцены больше не используются.</p></div></div>
+        <div class="legacy-table-wrap"><table class="legacy-table"><thead><tr><th>Файл / класс</th><th>Предполагаемая старая роль</th><th>Статус в новой архитектуре</th></tr></thead><tbody>
+          <tr><td><code>GameManager.cs</code></td><td>Центральная логика старой версии: день, деньги/ферма и общий игровой процесс.</td><td><span class="status old">Старая система</span> Сейчас использовать GameServices + отдельные сервисы.</td></tr>
+          <tr><td><code>TriggerController.cs</code></td><td>Триггеры и действия игрока.</td><td><span class="status old">Старая система</span> Новые объекты реализуют IInteractable.</td></tr>
+          <tr><td><code>PlayerMovement.cs</code></td><td>Старое управление игроком.</td><td><span class="status old">Не добавлять в PF_Player</span> Новое движение — PlayerController2D.</td></tr>
+          <tr><td><code>InventoryManager.cs</code>, <code>InventoryRenderer.cs</code>, <code>InvItem.cs</code></td><td>Старая модель и отрисовка инвентаря.</td><td><span class="status old">Заменено</span> InventoryService + InventoryHUDController + карточки.</td></tr>
+          <tr><td><code>PickUpItem.cs</code></td><td>Старый подбор предметов.</td><td><span class="status old">Заменено</span> PickupItem + ItemDefinition.</td></tr>
+          <tr><td><code>Plant.cs</code></td><td>Старая логика растения.</td><td><span class="status old">Заменено</span> FarmCropSystem на Tilemap.</td></tr>
+          <tr><td><code>PostManager.cs</code>, <code>AnoucmentBoardManager.cs</code>, <code>TodayDeliverPrefabScript.cs</code></td><td>Старые объявления, заказы и доставка.</td><td><span class="status old">Заменено частично</span> DailyOrderService + MailboxService + SalesSourceStation.</td></tr>
+          <tr><td><code>CarvingManager.cs</code>, <code>PumpkinInvButtonScript.cs</code>, <code>OrnamentsPrefabButtonClick.cs</code></td><td>Старая обработка/декор тыкв и UI.</td><td><span class="status future">Отложено</span> Есть CarvingRecipe, но новый модуль не подключён.</td></tr>
+          <tr><td><code>BuyPrefabScript.cs</code>, <code>SellPrefabScript.cs</code>, <code>Sell.cs</code></td><td>Старые покупки и продажи.</td><td><span class="status old">Заменено</span> ShopService + ShopProductDefinition.</td></tr>
+          <tr><td><code>CartFollow.cs</code>, <code>CameraFollow.cs</code></td><td>Старое следование тележки и камеры.</td><td><span class="status old">Не смешивать</span> Новые классы — CartFollower и CameraFollow2D.</td></tr>
+          <tr><td><code>Dialogs/Dialog.cs</code>, <code>DialogRenderer.cs</code>, <code>Npc.cs</code></td><td>Старая система NPC и диалогов.</td><td><span class="status future">Пока не перенесено</span> Не подключено к новой архитектуре.</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="closing-card">
+        <div class="closing-mark">P</div><div><div class="eyebrow">ЗАПОМНИ</div><h2>Сначала разберись в готовой сборке.</h2><p>Используй текущие префабы, чтобы восстановить и проверить уровень. Перед копированием смотри, что уже лежит внутри. Универсальные строительные блоки будем выделять постепенно, без переписывания работающих систем.</p></div><a class="button primary" href="#scene">Вернуться к сборке <span>↑</span></a>
+      </section>
+      <footer class="site-footer"><span>Pumpkin Farm · Справочник команды</span><span>HTML · CSS · JavaScript · Работает локально</span></footer>
+    </main>
+  </div>
+
+  <button id="backToTop" class="back-to-top" aria-label="Наверх">↑</button>
+</body>
+</html>
