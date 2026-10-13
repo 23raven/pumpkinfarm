@@ -489,15 +489,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.16470589}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 55e0827a2db9bd7469563432cfff10e8, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -544,8 +544,8 @@ MonoBehaviour:
   itemNameLabel: {fileID: 5626603292323531793}
   quantityLabel: {fileID: 6426247034089399860}
   selectionBorder: {fileID: 0}
-  normalColor: {r: 0.16, g: 0.19, b: 0.22, a: 0.96}
-  selectedColor: {r: 0.25, g: 0.34, b: 0.43, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 0.96}
+  selectedColor: {r: 1, g: 0.70000416, b: 0.5518868, a: 1}
   lockedColor: {r: 0.1, g: 0.11, b: 0.12, a: 0.88}
   selectedBorderColor: {r: 1, g: 0.78, b: 0.25, a: 1}
   selectedScale: 1.07

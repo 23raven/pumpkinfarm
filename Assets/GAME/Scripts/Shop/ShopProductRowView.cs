@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class ShopProductRowView : MonoBehaviour
 {
     [SerializeField] private TMP_Text productName;
+    [SerializeField] private Image productIcon;
     [SerializeField] private Button buyButton;
     [SerializeField] private Button sellButton;
 
@@ -37,6 +38,9 @@ public class ShopProductRowView : MonoBehaviour
 
         if (productName != null)
             productName.text = product.DisplayName;
+
+        if (productIcon != null)
+            productIcon.sprite = product.Icon;
 
         if (buyButton != null)
         {

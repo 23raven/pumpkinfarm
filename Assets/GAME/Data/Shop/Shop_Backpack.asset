@@ -16,6 +16,7 @@ MonoBehaviour:
   displayName: Backpack
   productType: 1
   item: {fileID: 0}
+  icon: {fileID: 3144314509466690173, guid: 88c9a25400a086f4a931e871ffa50060, type: 3}
   buyPrice: 10
   sellPrice: 0
   capacityBonus: 4

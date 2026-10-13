@@ -16,6 +16,7 @@ MonoBehaviour:
   displayName: Cart
   productType: 2
   item: {fileID: 0}
+  icon: {fileID: -3588054690232337906, guid: e2906d5c71053e646937ad01868297c6, type: 3}
   buyPrice: 10
   sellPrice: 5
   capacityBonus: 12

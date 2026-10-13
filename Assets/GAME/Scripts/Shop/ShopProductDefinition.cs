@@ -18,6 +18,7 @@ public class ShopProductDefinition : ScriptableObject
     [SerializeField] private string displayName;
     [SerializeField] private ShopProductType productType;
     [SerializeField] private ItemDefinition item;
+    [SerializeField] private Sprite icon;
 
     [Header("Prices")]
     [SerializeField, Min(0)] private int buyPrice = 10;
@@ -36,6 +37,7 @@ public class ShopProductDefinition : ScriptableObject
             ? displayName
             : item != null ? item.DisplayName : name;
 
+    public Sprite Icon => icon;
     public ShopProductType ProductType => productType;
     public ItemDefinition Item => item;
 

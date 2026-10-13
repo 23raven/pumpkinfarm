@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Shop_WateringCan
   m_EditorClassIdentifier: Assembly-CSharp::ShopProductDefinition
   productId: watering_can
+  displayName: 
+  productType: 0
   item: {fileID: 11400000, guid: 4f47152f01f785f40b076d27eb0bd93f, type: 2}
+  icon: {fileID: 2688690046039215365, guid: 2f92ffc682366804882bbe8709befb94, type: 3}
   buyPrice: 40
   sellPrice: 0
+  capacityBonus: 0
   canBuy: 1
   canSell: 0

@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Shop_Pumpkin
   m_EditorClassIdentifier: Assembly-CSharp::ShopProductDefinition
   productId: Shop_Pumpkin
+  displayName: 
+  productType: 0
   item: {fileID: 11400000, guid: 8ea429b081b8798498be4500dffefce8, type: 2}
+  icon: {fileID: 4303480455652667151, guid: 305e233002090784096982060bc2a609, type: 3}
   buyPrice: 30
   sellPrice: 15
+  capacityBonus: 0
   canBuy: 0
   canSell: 1
