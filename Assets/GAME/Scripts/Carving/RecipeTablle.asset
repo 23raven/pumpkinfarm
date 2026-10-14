@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de635b4d811e62f4da7e9580821a4feb, type: 3}
+  m_Name: RecipeTablle
+  m_EditorClassIdentifier: Assembly-CSharp::CarvingRecipeTable
+  recipes:
+  - source: {fileID: 11400000, guid: 42445940b30052942b81e5fe1e3a91c4, type: 2}
+    change:
+      icon: {fileID: 0}
+      editType: 0
+      ornament: 0
+      pumpkinColor: 0
+      decoration: 0
+    result: {fileID: 0}
