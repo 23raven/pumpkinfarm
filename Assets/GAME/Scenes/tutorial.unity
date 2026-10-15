@@ -205,6 +205,71 @@ MonoBehaviour:
   - {fileID: 252596703}
   isActive: 0
   isDone: 0
+--- !u!1 &261825345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 261825347}
+  - component: {fileID: 261825346}
+  m_Layer: 0
+  m_Name: 13_StorageCondition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &261825346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261825345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 0}
+  Player: {fileID: 0}
+  Panel: {fileID: 1714319722}
+  TextMeshPro: {fileID: 903667157}
+  canPlayerMove: 1
+  TutorialText: 'checking
+
+'
+  objectsToActivateOnStart:
+  - {fileID: 268502395}
+  objectsToDeactivateOnStart: []
+  nextStep: {fileID: 0}
+  conditions:
+  - {fileID: 0}
+  isActive: 0
+  isDone: 0
+--- !u!4 &261825347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261825345}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1747819824}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &268502395 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 657612176377007207, guid: 9d935a0694ca3734e874679cded77666, type: 3}
+  m_PrefabInstance: {fileID: 5022512401760406558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &282353256
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +342,11 @@ MonoBehaviour:
   - {fileID: 282353257}
   isActive: 0
   isDone: 0
+--- !u!1 &488194183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1689277748148214790, guid: 945203cfe6d1c1446a04e0638940b9ad, type: 3}
+  m_PrefabInstance: {fileID: 3009137505580672291}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &698742566
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,8 +356,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 698742567}
-  - component: {fileID: 698742569}
   - component: {fileID: 698742568}
+  - component: {fileID: 698742569}
   m_Layer: 0
   m_Name: 11_ChangeDayCondition
   m_TagString: Untagged
@@ -327,13 +397,22 @@ MonoBehaviour:
   Panel: {fileID: 1714319722}
   TextMeshPro: {fileID: 903667157}
   canPlayerMove: 1
-  TutorialText: 
+  TutorialText: 'Now you need to wait a day for the pumpkins to grow
+
+
+    You''ll
+    see a day counter in the upper-left corner
+
+
+    To advance the day, walk up
+    to the farm doors and press the spacebar'
   objectsToActivateOnStart:
   - {fileID: 161078483}
+  - {fileID: 488194183}
   objectsToDeactivateOnStart: []
-  nextStep: {fileID: 0}
+  nextStep: {fileID: 1877977339}
   conditions:
-  - {fileID: 0}
+  - {fileID: 698742569}
   isActive: 0
   isDone: 0
 --- !u!114 &698742569
@@ -345,11 +424,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 698742566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 448422aca024e94488c70e7fb359ba2c, type: 3}
+  m_Script: {fileID: 11500000, guid: be6841043e8c06140aab3b167a998724, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaterCropsCondition
-  farmCropSystem: {fileID: 1622234869}
-  farmTilemap: {fileID: 1622234874}
+  m_EditorClassIdentifier: Assembly-CSharp::NewDayCondition
 --- !u!1 &714186362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,7 +1237,7 @@ MonoBehaviour:
   objectsToActivateOnStart:
   - {fileID: 1273304081}
   objectsToDeactivateOnStart: []
-  nextStep: {fileID: 0}
+  nextStep: {fileID: 698742568}
   conditions:
   - {fileID: 1547757973}
   isActive: 0
@@ -1426,6 +1503,9 @@ Transform:
   - {fileID: 1068669893}
   - {fileID: 1547757974}
   - {fileID: 698742567}
+  - {fileID: 1877977341}
+  - {fileID: 261825347}
+  - {fileID: 2035239078}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1806551359
@@ -1495,6 +1575,88 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806551359}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1747819824}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1877977338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1877977341}
+  - component: {fileID: 1877977340}
+  - component: {fileID: 1877977339}
+  m_Layer: 0
+  m_Name: 12_SpaceCondition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1877977339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877977338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 0}
+  Player: {fileID: 2721193830592419794}
+  Panel: {fileID: 2023393339}
+  TextMeshPro: {fileID: 714186364}
+  canPlayerMove: 1
+  TutorialText: 'Each item type has its own quantity limit
+
+
+    For example, the
+    limit is 3 for seeds and 1 for pumpkins
+
+
+    You can''t hold everything in your
+    limited (two-handed) inventory
+
+
+    Spacebar to continue'
+  objectsToActivateOnStart:
+  - {fileID: 2023393339}
+  objectsToDeactivateOnStart: []
+  nextStep: {fileID: 261825346}
+  conditions:
+  - {fileID: 1877977340}
+  isActive: 0
+  isDone: 0
+--- !u!114 &1877977340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877977338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba67d84c45f69ac4ea2963be29f11bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PressSpaceCondition
+--- !u!4 &1877977341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877977338}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1620,6 +1782,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2023393339}
   m_CullTransparentMesh: 1
+--- !u!1 &2035239077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2035239078}
+  - component: {fileID: 2035239079}
+  m_Layer: 0
+  m_Name: CheckCondition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2035239078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035239077}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1747819824}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2035239079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035239077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 0}
+  Player: {fileID: 0}
+  Panel: {fileID: 1714319722}
+  TextMeshPro: {fileID: 903667157}
+  canPlayerMove: 1
+  TutorialText: 'checking
+
+'
+  objectsToActivateOnStart: []
+  objectsToDeactivateOnStart: []
+  nextStep: {fileID: 0}
+  conditions:
+  - {fileID: 0}
+  isActive: 0
+  isDone: 0
 --- !u!1 &2094481403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2290,6 +2511,10 @@ PrefabInstance:
       propertyPath: targetSearchRadiusInCells
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6872469343107060192, guid: eac55739472376a4baf818428f25ce0c, type: 3}
+      propertyPath: 'availableCrops.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1eb7a2492ddf9924d8eb5e9483311a9f, type: 2}
     - target: {fileID: 8576819001339317611, guid: eac55739472376a4baf818428f25ce0c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
