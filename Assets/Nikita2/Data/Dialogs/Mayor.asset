@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 711498cd887c575409890c2aacc2465f, type: 3}
+  m_Name: Mayor
+  m_EditorClassIdentifier: Assembly-CSharp::Dialog
+  dialog:
+  - icon: {fileID: -4569357066326794538, guid: 1ea425f96adc68947a381bf3fe74fd9a, type: 3}
+    text: Oh hello i saw you yesterday. Arent you newice there? i m a mayor of town.
+    Name: Mayor
+    Player: 0
+  - icon: {fileID: -4569357066326794538, guid: 1ea425f96adc68947a381bf3fe74fd9a, type: 3}
+    text: Good morning. You are right. i m an owner of pumpkin farm.
+    Name: Player
+    Player: 1
+  - icon: {fileID: -4569357066326794538, guid: 1ea425f96adc68947a381bf3fe74fd9a, type: 3}
+    text: Glad you came to town. And annoucment that you are a farmer is also good,
+      because hallowen is coming, and town have to be decorated. Can you grow some
+      pumpkins for town
+    Name: Mayor
+    Player: 1
+  - icon: {fileID: -4569357066326794538, guid: 1ea425f96adc68947a381bf3fe74fd9a, type: 3}
+    text: Hallowen i love it a lot, i will help.
+    Name: Player
+    Player: 1

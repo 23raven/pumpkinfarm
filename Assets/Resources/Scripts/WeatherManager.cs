@@ -31,6 +31,7 @@ public class WeatherManager : MonoBehaviour
             {
                 RainyLayer.SetActive(true);
                 RainyParticles.SetActive(true);
+                AudioManager.Instance.PlayRain(AudioManager.Instance.rainClip, 0.5f);
             }
         }
     }
@@ -40,6 +41,7 @@ public class WeatherManager : MonoBehaviour
         SunnyLayer.SetActive(false);
         RainyLayer.SetActive(false);
         RainyParticles.SetActive(false);
+        AudioManager.Instance.StopRain();
     }
 }
 

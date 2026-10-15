@@ -7,30 +7,33 @@ public class DialogRenderer : MonoBehaviour //скрипт для рендеринга диалогов
     public Dialog Current_dialog;
     public int CurrentPhrase;
 
-    [SerializeField] private GameObject PlayerPhrases;
-    [SerializeField] private GameObject NpcPhrases;
+    [SerializeField] private TMP_Text PlayerPhrases;
+    [SerializeField] private TMP_Text NpcPhrases;
+    [SerializeField] private Image NpcIcon;
+    [SerializeField] private Image PlayerIcon;
+    [SerializeField] private TMP_Text PlayerName;
+    [SerializeField] private TMP_Text NpcName;
+    [SerializeField] private GameObject MainObject;
 
     public void ShowDialog() //показываем фразу
     {
+        MainObject.SetActive(true);
         //очистка
-        PlayerPhrases.SetActive(false);
-        NpcPhrases.SetActive(false);
+        PlayerPhrases.text = "";
+        NpcPhrases.text = "";
+        PlayerName.text = "";
+        NpcName.text = "";
 
         if (Current_dialog.dialog[CurrentPhrase].Player)
         {
-            //настройка у игрока
-            PlayerPhrases.SetActive(true);
-            this.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = Current_dialog.dialog[CurrentPhrase].text;
-            this.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Current_dialog.dialog[CurrentPhrase].icon;
-            this.transform.GetChild(0).GetChild(2).GetComponent<TMP_Text>().text = Current_dialog.dialog[CurrentPhrase].Name;
+            PlayerPhrases.text = Current_dialog.dialog[CurrentPhrase].text;
+            PlayerName.text = Current_dialog.dialog[CurrentPhrase].Name;
         }
         else
         {
-            //у нпс
-            NpcPhrases.SetActive(true);
-            this.transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = Current_dialog.dialog[CurrentPhrase].text;
-            this.transform.GetChild(1).GetChild(1).GetComponent<Image>().sprite = Current_dialog.dialog[CurrentPhrase].icon;
-            this.transform.GetChild(1).GetChild(2).GetComponent<TMP_Text>().text = Current_dialog.dialog[CurrentPhrase].Name;
+            NpcPhrases.text = Current_dialog.dialog[CurrentPhrase].text;
+            NpcIcon.sprite = Current_dialog.dialog[CurrentPhrase].icon;
+            NpcName.text = Current_dialog.dialog[CurrentPhrase].Name;
         }
     }
 
@@ -38,22 +41,17 @@ public class DialogRenderer : MonoBehaviour //скрипт для рендеринга диалогов
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (CurrentPhrase + 1 != Current_dialog.dialog.Count)
+            if (Current_dialog != null && CurrentPhrase + 1 != Current_dialog.dialog.Count)
             {
                 CurrentPhrase++;
                 ShowDialog();
             }
             else
             {
-                this.gameObject.SetActive(false);
+                MainObject.SetActive(false);
                 CurrentPhrase = 0;
                 Current_dialog = null;
             }
         }
-    }
-
-    private void OnEnable()
-    {
-        ShowDialog();
     }
 }
