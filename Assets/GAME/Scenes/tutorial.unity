@@ -144,8 +144,9 @@ GameObject:
   m_Component:
   - component: {fileID: 252596702}
   - component: {fileID: 252596703}
+  - component: {fileID: 252596704}
   m_Layer: 0
-  m_Name: SpaceCondition
+  m_Name: 1_SpaceCondition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,6 +179,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba67d84c45f69ac4ea2963be29f11bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PressSpaceCondition
+--- !u!114 &252596704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252596701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 0}
+  Player: {fileID: 2721193830592419794}
+  Panel: {fileID: 2023393339}
+  TextMeshPro: {fileID: 714186364}
+  canPlayerMove: 1
+  TutorialText: "Hi, welcome to the pumpkin farm! \n\nPress the spacebar to continue!"
+  objectsToActivateOnStart:
+  - {fileID: 2023393339}
+  objectsToDeactivateOnStart: []
+  nextStep: {fileID: 2094481404}
+  conditions:
+  - {fileID: 252596703}
+  isActive: 0
+  isDone: 0
 --- !u!1 &282353256
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,8 +215,9 @@ GameObject:
   m_Component:
   - component: {fileID: 282353258}
   - component: {fileID: 282353257}
+  - component: {fileID: 282353259}
   m_Layer: 0
-  m_Name: WASDCondition
+  m_Name: 3_WASDCondition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,6 +250,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1747819824}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &282353259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282353256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 1888350524}
+  Player: {fileID: 2721193830592419794}
+  Panel: {fileID: 2023393339}
+  TextMeshPro: {fileID: 714186364}
+  canPlayerMove: 1
+  TutorialText: Use WASD to Move
+  objectsToActivateOnStart:
+  - {fileID: 2721193830592419794}
+  objectsToDeactivateOnStart:
+  - {fileID: 161078483}
+  nextStep: {fileID: 1483806679}
+  conditions:
+  - {fileID: 282353257}
+  isActive: 0
+  isDone: 0
 --- !u!1 &714186362
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,8 +455,9 @@ GameObject:
   m_Component:
   - component: {fileID: 784261500}
   - component: {fileID: 784261501}
+  - component: {fileID: 784261502}
   m_Layer: 0
-  m_Name: TillSoilCondition
+  m_Name: 8_TillSoilCondition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -436,6 +492,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TillSoilCondition
   farmTilemap: {fileID: 1622234874}
   tilledTile: {fileID: 11400000, guid: bcb5c285a4b899e43bdf819d4eb2dd61, type: 2}
+--- !u!114 &784261502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784261499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 0}
+  Player: {fileID: 2721193830592419794}
+  Panel: {fileID: 1714319722}
+  TextMeshPro: {fileID: 903667157}
+  canPlayerMove: 1
+  TutorialText: "Use a hoe to till fertile soil\r\nSelect the hoe from your inventory\n\nWalk
+    up to the soil - it will be highlighted automatically \nand then press the spacebar"
+  objectsToActivateOnStart: []
+  objectsToDeactivateOnStart: []
+  nextStep: {fileID: 1068669895}
+  conditions:
+  - {fileID: 784261501}
+  isActive: 0
+  isDone: 0
 --- !u!224 &847499791 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8761694035587082085, guid: 945203cfe6d1c1446a04e0638940b9ad, type: 3}
@@ -588,8 +670,9 @@ GameObject:
   m_Component:
   - component: {fileID: 915124563}
   - component: {fileID: 915124564}
+  - component: {fileID: 915124565}
   m_Layer: 0
-  m_Name: PickUp_Seeds
+  m_Name: 6_PickUpSeeds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -623,6 +706,171 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickUpItemCondition
   targetPickup: {fileID: 1746505652}
+--- !u!114 &915124565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915124562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 0}
+  Player: {fileID: 2721193830592419794}
+  Panel: {fileID: 1714319722}
+  TextMeshPro: {fileID: 903667157}
+  canPlayerMove: 1
+  TutorialText: 'Pick up pumpkin seeds '
+  objectsToActivateOnStart:
+  - {fileID: 1746505651}
+  objectsToDeactivateOnStart: []
+  nextStep: {fileID: 1703688500}
+  conditions:
+  - {fileID: 915124564}
+  isActive: 0
+  isDone: 0
+--- !u!1 &1068669892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1068669893}
+  - component: {fileID: 1068669894}
+  - component: {fileID: 1068669895}
+  m_Layer: 0
+  m_Name: 9_PlantSeedCondition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1068669893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068669892}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1747819824}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1068669894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068669892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eb42418ed56bce41930ee38af3e6c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlantSeedCondition
+  farmCropSystem: {fileID: 1622234869}
+  farmTilemap: {fileID: 1622234874}
+--- !u!114 &1068669895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068669892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 0}
+  Player: {fileID: 0}
+  Panel: {fileID: 1714319722}
+  TextMeshPro: {fileID: 903667157}
+  canPlayerMove: 1
+  TutorialText: "Good job! Now select the pumpkin seeds from your inventory \n\nand
+    press the space bar to plant them in the plowed soil"
+  objectsToActivateOnStart: []
+  objectsToDeactivateOnStart: []
+  nextStep: {fileID: 1547757975}
+  conditions:
+  - {fileID: 1068669894}
+  isActive: 0
+  isDone: 0
+--- !u!1001 &1273304080
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1007500848816847793, guid: 36c30ebdd37c6eb42b7bbd51fb52840c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.939188
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007500848816847793, guid: 36c30ebdd37c6eb42b7bbd51fb52840c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3502952
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007500848816847793, guid: 36c30ebdd37c6eb42b7bbd51fb52840c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007500848816847793, guid: 36c30ebdd37c6eb42b7bbd51fb52840c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007500848816847793, guid: 36c30ebdd37c6eb42b7bbd51fb52840c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007500848816847793, guid: 36c30ebdd37c6eb42b7bbd51fb52840c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007500848816847793, guid: 36c30ebdd37c6eb42b7bbd51fb52840c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007500848816847793, guid: 36c30ebdd37c6eb42b7bbd51fb52840c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007500848816847793, guid: 36c30ebdd37c6eb42b7bbd51fb52840c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007500848816847793, guid: 36c30ebdd37c6eb42b7bbd51fb52840c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372552632160611157, guid: 36c30ebdd37c6eb42b7bbd51fb52840c, type: 3}
+      propertyPath: m_Name
+      value: WateringCan Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372552632160611157, guid: 36c30ebdd37c6eb42b7bbd51fb52840c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 36c30ebdd37c6eb42b7bbd51fb52840c, type: 3}
+--- !u!1 &1273304081 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4372552632160611157, guid: 36c30ebdd37c6eb42b7bbd51fb52840c, type: 3}
+  m_PrefabInstance: {fileID: 1273304080}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1331336222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7296919773014594176, guid: 747e9fec1a6fd3d4bb6680a07f229a21, type: 3}
@@ -699,8 +947,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1483806678}
   - component: {fileID: 1483806677}
+  - component: {fileID: 1483806679}
   m_Layer: 0
-  m_Name: PickUp_Hoe
+  m_Name: 4_PickUpHoe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -734,21 +983,216 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1747819824}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1483806679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483806676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 0}
+  Player: {fileID: 2721193830592419794}
+  Panel: {fileID: 1714319722}
+  TextMeshPro: {fileID: 903667157}
+  canPlayerMove: 1
+  TutorialText: "Pick up the \u201CHoe\u201D item\nWalk up to it and press Space "
+  objectsToActivateOnStart:
+  - {fileID: 1745166824}
+  - {fileID: 1714319722}
+  - {fileID: 122819988}
+  objectsToDeactivateOnStart:
+  - {fileID: 2023393339}
+  nextStep: {fileID: 1806551360}
+  conditions:
+  - {fileID: 1483806677}
+  isActive: 0
+  isDone: 0
 --- !u!4 &1508539383 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 126170591935598566, guid: 9d935a0694ca3734e874679cded77666, type: 3}
   m_PrefabInstance: {fileID: 5022512401760406558}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1547757972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1547757974}
+  - component: {fileID: 1547757973}
+  - component: {fileID: 1547757975}
+  m_Layer: 0
+  m_Name: 10_WateredCondition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1547757973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547757972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448422aca024e94488c70e7fb359ba2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaterCropsCondition
+  farmCropSystem: {fileID: 1622234869}
+  farmTilemap: {fileID: 1622234874}
+--- !u!4 &1547757974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547757972}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1747819824}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1547757975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547757972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 0}
+  Player: {fileID: 0}
+  Panel: {fileID: 1714319722}
+  TextMeshPro: {fileID: 903667157}
+  canPlayerMove: 1
+  TutorialText: 'Now pick up the watering can
+
+    Walk up to the plant and press
+    the spacebar
+
+
+    You can drop an item by pressing the Q key'
+  objectsToActivateOnStart:
+  - {fileID: 1273304081}
+  objectsToDeactivateOnStart: []
+  nextStep: {fileID: 0}
+  conditions:
+  - {fileID: 1547757973}
+  isActive: 0
+  isDone: 0
 --- !u!1 &1622234866 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8803720710591228843, guid: eac55739472376a4baf818428f25ce0c, type: 3}
   m_PrefabInstance: {fileID: 6137839525064618689}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1622234869 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 815826696739134286, guid: eac55739472376a4baf818428f25ce0c, type: 3}
+  m_PrefabInstance: {fileID: 6137839525064618689}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622234866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126508c2e91fb344cbabe7fbf7fcf7b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FarmCropSystem
 --- !u!1839735485 &1622234874 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 1690194976871561997, guid: eac55739472376a4baf818428f25ce0c, type: 3}
   m_PrefabInstance: {fileID: 6137839525064618689}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1703688499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1703688502}
+  - component: {fileID: 1703688501}
+  - component: {fileID: 1703688500}
+  m_Layer: 0
+  m_Name: 7_SpaceCondition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1703688500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703688499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 717928292}
+  Player: {fileID: 2721193830592419794}
+  Panel: {fileID: 1714319722}
+  TextMeshPro: {fileID: 903667157}
+  canPlayerMove: 0
+  TutorialText: 'Now let''s learn how to prepare the soil, plant pumpkin seeds and
+    grow your very own pumpkins!
+
+
+    spacebar to continue'
+  objectsToActivateOnStart:
+  - {fileID: 1622234866}
+  - {fileID: 92036818}
+  objectsToDeactivateOnStart: []
+  nextStep: {fileID: 784261502}
+  conditions:
+  - {fileID: 252596703}
+  isActive: 0
+  isDone: 0
+--- !u!114 &1703688501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703688499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba67d84c45f69ac4ea2963be29f11bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PressSpaceCondition
+--- !u!4 &1703688502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703688499}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1747819824}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1714319722
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,15 +1311,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1747819824}
   - component: {fileID: 1747819823}
-  - component: {fileID: 1747819822}
-  - component: {fileID: 1747819830}
-  - component: {fileID: 1747819826}
-  - component: {fileID: 1747819828}
-  - component: {fileID: 1747819827}
-  - component: {fileID: 1747819831}
-  - component: {fileID: 1747819832}
-  - component: {fileID: 1747819833}
-  - component: {fileID: 1747819834}
   m_Layer: 0
   m_Name: TutorialManager
   m_TagString: Untagged
@@ -883,32 +1318,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1747819822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747819821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
-  StartingPosition: {fileID: 0}
-  Player: {fileID: 2721193830592419794}
-  Panel: {fileID: 2023393339}
-  TextMeshPro: {fileID: 714186364}
-  canPlayerMove: 1
-  TutorialText: "Hi, welcome to the pumpkin farm! \n\nPress the spacebar to continue!"
-  objectsToActivateOnStart:
-  - {fileID: 2023393339}
-  objectsToDeactivateOnStart: []
-  nextStep: {fileID: 1747819830}
-  conditions:
-  - {fileID: 252596703}
-  isActive: 0
-  isDone: 0
 --- !u!114 &1747819823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,7 +1331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialManager
   tutorialSteps:
-  - {fileID: 1747819822}
+  - {fileID: 252596704}
   activateFirstStepOnStart: 1
 --- !u!4 &1747819824
 Transform:
@@ -938,46 +1347,42 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 252596702}
+  - {fileID: 2094481406}
   - {fileID: 282353258}
   - {fileID: 1483806678}
+  - {fileID: 1806551362}
   - {fileID: 915124563}
+  - {fileID: 1703688502}
   - {fileID: 784261500}
+  - {fileID: 1068669893}
+  - {fileID: 1547757974}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1747819826
+--- !u!1 &1806551359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1806551362}
+  - component: {fileID: 1806551361}
+  - component: {fileID: 1806551360}
+  m_Layer: 0
+  m_Name: 5_SpaceCondition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1806551360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747819821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
-  StartingPosition: {fileID: 1888350524}
-  Player: {fileID: 2721193830592419794}
-  Panel: {fileID: 2023393339}
-  TextMeshPro: {fileID: 714186364}
-  canPlayerMove: 1
-  TutorialText: Use WASD to Move
-  objectsToActivateOnStart:
-  - {fileID: 2721193830592419794}
-  objectsToDeactivateOnStart:
-  - {fileID: 161078483}
-  nextStep: {fileID: 1747819828}
-  conditions:
-  - {fileID: 282353257}
-  isActive: 0
-  isDone: 0
---- !u!114 &1747819827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747819821}
+  m_GameObject: {fileID: 1806551359}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
@@ -996,176 +1401,38 @@ MonoBehaviour:
     continue'
   objectsToActivateOnStart: []
   objectsToDeactivateOnStart: []
-  nextStep: {fileID: 1747819831}
+  nextStep: {fileID: 915124565}
   conditions:
   - {fileID: 252596703}
   isActive: 0
   isDone: 0
---- !u!114 &1747819828
+--- !u!114 &1806551361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747819821}
+  m_GameObject: {fileID: 1806551359}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Script: {fileID: 11500000, guid: ba67d84c45f69ac4ea2963be29f11bfc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
-  StartingPosition: {fileID: 0}
-  Player: {fileID: 2721193830592419794}
-  Panel: {fileID: 1714319722}
-  TextMeshPro: {fileID: 903667157}
-  canPlayerMove: 1
-  TutorialText: "Pick up the \u201CHoe\u201D item\nWalk up to it and press Space "
-  objectsToActivateOnStart:
-  - {fileID: 1745166824}
-  - {fileID: 1714319722}
-  - {fileID: 122819988}
-  objectsToDeactivateOnStart:
-  - {fileID: 2023393339}
-  nextStep: {fileID: 1747819827}
-  conditions:
-  - {fileID: 1483806677}
-  isActive: 0
-  isDone: 0
---- !u!114 &1747819830
-MonoBehaviour:
+  m_EditorClassIdentifier: Assembly-CSharp::PressSpaceCondition
+--- !u!4 &1806551362
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747819821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
-  StartingPosition: {fileID: 0}
-  Player: {fileID: 2721193830592419794}
-  Panel: {fileID: 2023393339}
-  TextMeshPro: {fileID: 714186364}
-  canPlayerMove: 1
-  TutorialText: 'Let''s go over the game''s main mechanics
-
-
-    spacebar to continue'
-  objectsToActivateOnStart:
-  - {fileID: 2023393339}
-  objectsToDeactivateOnStart: []
-  nextStep: {fileID: 1747819826}
-  conditions:
-  - {fileID: 252596703}
-  isActive: 0
-  isDone: 0
---- !u!114 &1747819831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747819821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
-  StartingPosition: {fileID: 0}
-  Player: {fileID: 2721193830592419794}
-  Panel: {fileID: 1714319722}
-  TextMeshPro: {fileID: 903667157}
-  canPlayerMove: 1
-  TutorialText: 'Pick up pumpkin seeds '
-  objectsToActivateOnStart:
-  - {fileID: 1746505651}
-  objectsToDeactivateOnStart: []
-  nextStep: {fileID: 1747819832}
-  conditions:
-  - {fileID: 915124564}
-  isActive: 0
-  isDone: 0
---- !u!114 &1747819832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747819821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
-  StartingPosition: {fileID: 717928292}
-  Player: {fileID: 2721193830592419794}
-  Panel: {fileID: 1714319722}
-  TextMeshPro: {fileID: 903667157}
-  canPlayerMove: 0
-  TutorialText: 'Now let''s learn how to prepare the soil, plant pumpkin seeds and
-    grow your very own pumpkins!
-
-
-    spacebar to continue'
-  objectsToActivateOnStart:
-  - {fileID: 1622234866}
-  - {fileID: 92036818}
-  objectsToDeactivateOnStart: []
-  nextStep: {fileID: 1747819833}
-  conditions:
-  - {fileID: 252596703}
-  isActive: 0
-  isDone: 0
---- !u!114 &1747819833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747819821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
-  StartingPosition: {fileID: 0}
-  Player: {fileID: 2721193830592419794}
-  Panel: {fileID: 1714319722}
-  TextMeshPro: {fileID: 903667157}
-  canPlayerMove: 1
-  TutorialText: "Use a hoe to till fertile soil\r\nSelect the hoe from your inventory\nWalk
-    up to the soil - it will be highlighted automatically \nand then press the spacebar"
-  objectsToActivateOnStart: []
-  objectsToDeactivateOnStart: []
-  nextStep: {fileID: 1747819834}
-  conditions:
-  - {fileID: 784261501}
-  isActive: 0
-  isDone: 0
---- !u!114 &1747819834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747819821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
-  StartingPosition: {fileID: 0}
-  Player: {fileID: 0}
-  Panel: {fileID: 1714319722}
-  TextMeshPro: {fileID: 903667157}
-  canPlayerMove: 1
-  TutorialText: check last
-  objectsToActivateOnStart: []
-  objectsToDeactivateOnStart: []
-  nextStep: {fileID: 0}
-  conditions: []
-  isActive: 0
-  isDone: 0
+  m_GameObject: {fileID: 1806551359}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1747819824}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1888350523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,6 +1550,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2023393339}
   m_CullTransparentMesh: 1
+--- !u!1 &2094481403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2094481406}
+  - component: {fileID: 2094481405}
+  - component: {fileID: 2094481404}
+  m_Layer: 0
+  m_Name: 2_SpaceCondition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2094481404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094481403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 0}
+  Player: {fileID: 2721193830592419794}
+  Panel: {fileID: 2023393339}
+  TextMeshPro: {fileID: 714186364}
+  canPlayerMove: 1
+  TutorialText: 'Let''s go over the game''s main mechanics
+
+
+    spacebar to continue'
+  objectsToActivateOnStart:
+  - {fileID: 2023393339}
+  objectsToDeactivateOnStart: []
+  nextStep: {fileID: 282353259}
+  conditions:
+  - {fileID: 252596703}
+  isActive: 0
+  isDone: 0
+--- !u!114 &2094481405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094481403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba67d84c45f69ac4ea2963be29f11bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PressSpaceCondition
+--- !u!4 &2094481406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094481403}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1747819824}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1830717304255942721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2065,6 +2406,7 @@ SceneRoots:
   - {fileID: 3009137505580672291}
   - {fileID: 2026815563755517696}
   - {fileID: 8040309891415391728}
+  - {fileID: 1273304080}
   - {fileID: 4077989032600200891}
   - {fileID: 1446425284}
   - {fileID: 1747819824}

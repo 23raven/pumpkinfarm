@@ -329,4 +329,20 @@ public sealed class FarmCropSystem : MonoBehaviour
     {
         return initialized && tilemap != null && visuals != null;
     }
+
+    public bool IsWateredToday(Vector3Int cell)
+    {
+        if (!plantedCells.TryGetValue(cell, out PlantedCrop crop) || crop.IsWithered)
+            return false;
+
+        GameServices services = GameServices.Instance;
+        if (services == null ||
+            !services.TryGet<DayCycleService>(out DayCycleService dayCycle))
+        {
+            return false;
+        }
+
+        return crop.LastWateredDay == dayCycle.CurrentDay;
+    }
+
 }
