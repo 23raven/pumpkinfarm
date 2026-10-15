@@ -22,6 +22,9 @@ public sealed class FarmTilemapController : MonoBehaviour, IInteractable
     [SerializeField] private Transform player;
     [SerializeField] private SpriteRenderer targetPreview;
 
+    [SerializeField, Min(1f)]
+    private float targetSearchRadiusInCells = 1.75f;
+
     private FarmTileVisuals visuals;
     private FarmCropSystem cropSystem;
     private FarmTargetPreview preview;
@@ -199,13 +202,126 @@ public sealed class FarmTilemapController : MonoBehaviour, IInteractable
 
     private Vector3Int GetTargetCell(Vector3 position, Vector2 direction)
     {
-        Vector3Int cell = tilemap.WorldToCell(position);
+        Vector3Int playerCell = tilemap.WorldToCell(position);
 
-        if (Mathf.Abs(direction.x) >= Mathf.Abs(direction.y))
-            cell.x += direction.x >= 0 ? 1 : -1;
+        if (direction.sqrMagnitude < 0.001f)
+            direction = Vector2.left;
+
+        bool horizontal =
+            Mathf.Abs(direction.x) >= Mathf.Abs(direction.y);
+
+        Vector3Int preferredCell = playerCell;
+
+        if (horizontal)
+            preferredCell.x += direction.x >= 0f ? 1 : -1;
         else
-            cell.y += direction.y >= 0 ? 1 : -1;
+            preferredCell.y += direction.y >= 0f ? 1 : -1;
 
-        return cell;
+        // Сначала используем привычную клетку перед игроком.
+        if (CanInteractWithCell(preferredCell))
+            return preferredCell;
+
+        // Если она недоступна, ищем ближайшую подходящую.
+        return FindNearestAvailableTarget(
+            position,
+            playerCell,
+            preferredCell,
+            direction,
+            horizontal
+        );
+    }
+
+    private Vector3Int FindNearestAvailableTarget(
+        Vector3 position,
+        Vector3Int playerCell,
+        Vector3Int preferredCell,
+        Vector2 direction,
+        bool horizontal)
+    {
+        float cellSize = Mathf.Max(
+            Mathf.Abs(tilemap.cellSize.x),
+            Mathf.Abs(tilemap.cellSize.y)
+        );
+
+        float maxDistance =
+            cellSize * targetSearchRadiusInCells;
+
+        int scanRadius =
+            Mathf.CeilToInt(targetSearchRadiusInCells) + 1;
+
+        Vector3Int bestCell = preferredCell;
+        float bestScore = Mathf.Infinity;
+        bool found = false;
+
+        for (int x = preferredCell.x - scanRadius;
+             x <= preferredCell.x + scanRadius; x++)
+        {
+            for (int y = preferredCell.y - scanRadius;
+                 y <= preferredCell.y + scanRadius; y++)
+            {
+                Vector3Int candidate = new Vector3Int(x, y, playerCell.z);
+
+                if (candidate == preferredCell)
+                    continue;
+
+                if (!CanInteractWithCell(candidate))
+                    continue;
+
+                int forwardDistance;
+                int lateralDistance;
+
+                if (horizontal)
+                {
+                    forwardDistance =
+                        (candidate.x - playerCell.x) *
+                        (direction.x >= 0f ? 1 : -1);
+
+                    lateralDistance =
+                        Mathf.Abs(candidate.y - playerCell.y);
+                }
+                else
+                {
+                    forwardDistance =
+                        (candidate.y - playerCell.y) *
+                        (direction.y >= 0f ? 1 : -1);
+
+                    lateralDistance =
+                        Mathf.Abs(candidate.x - playerCell.x);
+                }
+
+                // Не выбираем клетки позади игрока.
+                if (forwardDistance <= 0)
+                    continue;
+
+                float distance = Vector2.Distance(
+                    position,
+                    tilemap.GetCellCenterWorld(candidate)
+                );
+
+                if (distance > maxDistance)
+                    continue;
+
+                int gridDistance =
+                    Mathf.Abs(candidate.x - preferredCell.x) +
+                    Mathf.Abs(candidate.y - preferredCell.y);
+
+                // Ближайшие клетки имеют приоритет.
+                // При равенстве предпочитаем продолжение текущего направления.
+                float score =
+                    gridDistance * 100f +
+                    lateralDistance * 10f +
+                    forwardDistance +
+                    distance * 0.01f;
+
+                if (score < bestScore)
+                {
+                    bestScore = score;
+                    bestCell = candidate;
+                    found = true;
+                }
+            }
+        }
+
+        return found ? bestCell : preferredCell;
     }
 }
