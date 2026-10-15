@@ -246,6 +246,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1095423211375102515, guid: 9ce8b731b20dc934e967e7eaca4c2810, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5133647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095423211375102515, guid: 9ce8b731b20dc934e967e7eaca4c2810, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.1433178
+      objectReference: {fileID: 0}
     - target: {fileID: 1530700402015875121, guid: 9ce8b731b20dc934e967e7eaca4c2810, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -497,9 +505,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5747552667699888569, guid: 9d935a0694ca3734e874679cded77666, type: 3}
+      propertyPath: m_Size.y
+      value: 1.7680097
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747552667699888569, guid: 9d935a0694ca3734e874679cded77666, type: 3}
+      propertyPath: m_Offset.y
+      value: -2.9301155
+      objectReference: {fileID: 0}
     - target: {fileID: 5799042257307381962, guid: 9d935a0694ca3734e874679cded77666, type: 3}
       propertyPath: m_Name
       value: Buildings
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997485632328824165, guid: 9d935a0694ca3734e874679cded77666, type: 3}
+      propertyPath: m_Size.y
+      value: 5.614078
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997485632328824165, guid: 9d935a0694ca3734e874679cded77666, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.1809781
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865093641116526739, guid: 9d935a0694ca3734e874679cded77666, type: 3}
+      propertyPath: m_Size.y
+      value: 6.2346144
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865093641116526739, guid: 9d935a0694ca3734e874679cded77666, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.7593446
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -679,6 +711,14 @@ PrefabInstance:
     - target: {fileID: 7296919773014594176, guid: 747e9fec1a6fd3d4bb6680a07f229a21, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211583291771818915, guid: 747e9fec1a6fd3d4bb6680a07f229a21, type: 3}
+      propertyPath: m_Size.y
+      value: 3.5377436
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211583291771818915, guid: 747e9fec1a6fd3d4bb6680a07f229a21, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.06197852
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
