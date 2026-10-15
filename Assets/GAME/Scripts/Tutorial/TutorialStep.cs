@@ -10,6 +10,10 @@ public class TutorialStep : MonoBehaviour
     public GameObject Panel;
     public TMP_Text TextMeshPro;
 
+    [Header("Player control")]
+    [Tooltip("If enabled, the player can move while this step is active.")]
+    public bool canPlayerMove = true;
+
     [Header("Instruction")]
     [TextArea(2, 5)]
     public string TutorialText;
@@ -54,6 +58,7 @@ public class TutorialStep : MonoBehaviour
             TextMeshPro.text = TutorialText;
 
         MovePlayerToStartingPosition();
+        ApplyPlayerMovementPermission(canPlayerMove);
     }
 
     public void Deactivate()
@@ -62,6 +67,9 @@ public class TutorialStep : MonoBehaviour
 
         if (Panel != null)
             Panel.SetActive(false);
+
+        // Restore movement when this step stops. The next step will apply its own setting.
+        ApplyPlayerMovementPermission(true);
     }
 
     private void ApplyObjectsToActivate()
@@ -131,6 +139,24 @@ public class TutorialStep : MonoBehaviour
         }
 
         tutorialManager.ActivateTutorial(tstep);
+    }
+
+
+    private void ApplyPlayerMovementPermission(bool canMove)
+    {
+        if (Player == null)
+            return;
+
+        PlayerController2D playerController = Player.GetComponent<PlayerController2D>();
+        if (playerController == null)
+        {
+            Debug.LogWarning(
+                $"TutorialStep '{name}' cannot control movement because the assigned Player has no PlayerController2D component.",
+                this);
+            return;
+        }
+
+        playerController.SetTutorialMovementAllowed(canMove);
     }
 
     private void MovePlayerToStartingPosition()

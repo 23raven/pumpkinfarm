@@ -11,8 +11,21 @@ public class PlayerController2D : MonoBehaviour, IDirectionalInteractor
     private SpriteRenderer spriteRenderer;
     private Vector2 movement;
     private bool cartHitched;
+    private bool tutorialMovementAllowed = true;
 
     public Vector2 FacingDirection { get; private set; } = Vector2.left;
+
+    public void SetTutorialMovementAllowed(bool canMove)
+    {
+        tutorialMovementAllowed = canMove;
+
+        if (!canMove)
+        {
+            movement = Vector2.zero;
+            if (rb != null)
+                rb.linearVelocity = Vector2.zero;
+        }
+    }
 
     private void Awake()
     {
@@ -40,7 +53,7 @@ public class PlayerController2D : MonoBehaviour, IDirectionalInteractor
 
     private void Update()
     {
-        if (GameplayInputGate.IsBlocked)
+        if (GameplayInputGate.IsBlocked || !tutorialMovementAllowed)
         {
             movement = Vector2.zero;
             return;
@@ -64,8 +77,11 @@ public class PlayerController2D : MonoBehaviour, IDirectionalInteractor
 
     private void FixedUpdate()
     {
-        if (GameplayInputGate.IsBlocked)
+        if (GameplayInputGate.IsBlocked || !tutorialMovementAllowed)
+        {
+            movement = Vector2.zero;
             return;
+        }
 
         float speed = moveSpeed * (cartHitched ? cartSpeedMultiplier : 1f);
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
