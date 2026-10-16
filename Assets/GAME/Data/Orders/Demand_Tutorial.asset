@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b71757a7b8885214cb5aa0e1c23889ab, type: 3}
   m_Name: Demand_Tutorial
   m_EditorClassIdentifier: Assembly-CSharp::DemandSourceDefinition
-  sourceId: 
-  displayName: Cafe
-  dailyOrderChance: 0.75
-  possibleOrders: []
+  sourceId: tutorial
+  displayName: Tutorial
+  dailyOrderChance: 1
+  possibleOrders:
+  - item: {fileID: 11400000, guid: 8ea429b081b8798498be4500dffefce8, type: 2}
+    minQuantity: 1
+    maxQuantity: 1
+    rewardPerItem: 20

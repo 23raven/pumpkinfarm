@@ -15,7 +15,18 @@ public class CartFollower : MonoBehaviour
 
     public bool IsHitched { get; private set; }
 
+    // Existing behavior retained for callers that explicitly initialize a newly spawned cart.
     public void Initialize(Transform followTarget, float distance = -1f)
+    {
+        BindOwner(followTarget, distance, startHitched: true, snapBehindOwner: true);
+    }
+
+    // Registers the owner without requiring a purchase. Scene carts can remain where they were placed.
+    public void BindOwner(
+        Transform followTarget,
+        float distance = -1f,
+        bool startHitched = false,
+        bool snapBehindOwner = false)
     {
         ownerTarget = followTarget;
 
@@ -23,15 +34,21 @@ public class CartFollower : MonoBehaviour
             followDistance = distance;
 
         if (ownerTarget == null)
+        {
+            SetHitched(false);
             return;
+        }
 
-        Vector3 initialPosition = ownerTarget.position
-            - (Vector3)(lastMoveDirection * followDistance)
-            + positionOffset;
-        initialPosition.z = transform.position.z;
-        transform.position = initialPosition;
+        if (snapBehindOwner)
+        {
+            Vector3 initialPosition = ownerTarget.position
+                - (Vector3)(lastMoveDirection * followDistance)
+                + positionOffset;
+            initialPosition.z = transform.position.z;
+            transform.position = initialPosition;
+        }
 
-        SetHitched(true);
+        SetHitched(startHitched);
     }
 
     public void SetHitched(bool hitched)

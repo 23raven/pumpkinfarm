@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DemandSourceDefinition
   sourceId: supermarket
   displayName: Supermarket
-  dailyOrderChance: 1
+  dailyOrderChance: 0.573
   possibleOrders:
   - item: {fileID: 11400000, guid: 8ea429b081b8798498be4500dffefce8, type: 2}
     minQuantity: 1

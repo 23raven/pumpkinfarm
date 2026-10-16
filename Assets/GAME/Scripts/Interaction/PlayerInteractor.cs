@@ -30,6 +30,9 @@ public class PlayerInteractor : MonoBehaviour
 
         foreach (Collider2D hit in hits)
         {
+            if (hit == null)
+                continue;
+
             MonoBehaviour[] components =
                 hit.GetComponentsInParent<MonoBehaviour>();
 
@@ -51,9 +54,16 @@ public class PlayerInteractor : MonoBehaviour
             }
         }
 
-        if (nearest != null)
-            nearest.Interact(gameObject);
-        AudioManager.Instance.PlaySFX(pickupsound, 3f);
+        if (nearest == null)
+            return;
+
+        nearest.Interact(gameObject);
+
+        // Audio is optional. Interaction works without AudioManager.
+        if (pickupsound != null && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(pickupsound, 3f);
+        }
     }
 
     private void OnDrawGizmosSelected()

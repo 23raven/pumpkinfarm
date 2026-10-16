@@ -130,6 +130,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc421fe6178902a458f84407c1106e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StorageContainer
+--- !u!1001 &87825084
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1400916505}
+    m_Modifications:
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822892840035358679, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361417035676280796, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_Name
+      value: PumpkinSeed (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361417035676280796, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+--- !u!4 &87825085 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+  m_PrefabInstance: {fileID: 87825084}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &92036818 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5578928435592812161, guid: eac55739472376a4baf818428f25ce0c, type: 3}
@@ -207,9 +289,11 @@ MonoBehaviour:
   Panel: {fileID: 2023393339}
   TextMeshPro: {fileID: 714186364}
   canPlayerMove: 1
-  TutorialText: "Hi, welcome to the pumpkin farm! \n\nPress the spacebar to continue!"
+  TutorialText: "01/20\n\nHi, welcome to the pumpkin farm! \n\nPress the spacebar
+    to continue!"
   objectsToActivateOnStart:
   - {fileID: 2023393339}
+  - {fileID: 2094481403}
   objectsToDeactivateOnStart: []
   nextStep: {fileID: 2094481404}
   conditions:
@@ -251,14 +335,18 @@ MonoBehaviour:
   Panel: {fileID: 1714319722}
   TextMeshPro: {fileID: 903667157}
   canPlayerMove: 1
-  TutorialText: 'Now put the pumpkin in Storage
+  TutorialText: '13/20
 
 
-    Go to the door and press the
-    spacebar
+    Now put the pumpkin in Storage
 
 
-    Drag and drop the item from your inventory into the storage slot'
+    Go to the door
+    and press the spacebar
+
+
+    Drag and drop the item from your inventory into
+    the storage slot'
   objectsToActivateOnStart:
   - {fileID: 268502395}
   objectsToDeactivateOnStart: []
@@ -363,7 +451,10 @@ MonoBehaviour:
   Panel: {fileID: 2023393339}
   TextMeshPro: {fileID: 714186364}
   canPlayerMove: 1
-  TutorialText: Use WASD to Move
+  TutorialText: '03/20
+
+
+    Use WASD to Move'
   objectsToActivateOnStart:
   - {fileID: 2721193830592419794}
   objectsToDeactivateOnStart:
@@ -408,13 +499,14 @@ MonoBehaviour:
   Panel: {fileID: 1714319722}
   TextMeshPro: {fileID: 903667157}
   canPlayerMove: 1
-  TutorialText: "Great!\r\n\r\nNow we need to check our email\r\n\r\nGo to the mailbox
-    and press the spacebar\n\r\nThen click the \u201CRead All Messages\u201D button"
+  TutorialText: "14/20\n\nGreat! \nPress button \"Close\" left-top\r\n\r\nNow we
+    need to check our email\r\n\r\nGo to the mailbox and press the spacebar\n\r\nThen
+    click the \u201CRead\u201D button"
   objectsToActivateOnStart:
   - {fileID: 1830717304255942722}
   - {fileID: 7674742741870048132}
   objectsToDeactivateOnStart: []
-  nextStep: {fileID: 0}
+  nextStep: {fileID: 1378748537}
   conditions:
   - {fileID: 400528335}
   isActive: 0
@@ -431,8 +523,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 522941063}
+  m_Children: []
   m_Father: {fileID: 1747819824}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &400528335
@@ -447,58 +538,98 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da45bd17f4efdb4599b64526cd17238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MailReadCondition
-  requiredMessageId: tutorial-buy-pumpkin
+--- !u!1 &459256943 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2078067127261449539, guid: 945203cfe6d1c1446a04e0638940b9ad, type: 3}
+  m_PrefabInstance: {fileID: 3009137505580672291}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &488194183 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1689277748148214790, guid: 945203cfe6d1c1446a04e0638940b9ad, type: 3}
   m_PrefabInstance: {fileID: 3009137505580672291}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &522941062
-GameObject:
+--- !u!1001 &638385105
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 522941063}
-  - component: {fileID: 522941064}
-  m_Layer: 0
-  m_Name: MailSender
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &522941063
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 522941062}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 400528334}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &522941064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1400916505}
+    m_Modifications:
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.7200003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.8599997
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822892840035358679, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361417035676280796, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_Name
+      value: PumpkinSeed (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361417035676280796, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+--- !u!4 &638385106 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+  m_PrefabInstance: {fileID: 638385105}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 522941062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5474c7fdcbb021c43966c2f1511b23a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialPurchaseMailSender
-  targetShop: {fileID: 11400000, guid: 9242cd4884719364285183e59df2ba60, type: 2}
-  pumpkinProduct: {fileID: 11400000, guid: b82109fbd34140c4ba174b01f2d77d49, type: 2}
 --- !u!1 &698742566
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +680,10 @@ MonoBehaviour:
   Panel: {fileID: 1714319722}
   TextMeshPro: {fileID: 903667157}
   canPlayerMove: 1
-  TutorialText: 'Now you need to wait a day for the pumpkins to grow
+  TutorialText: '11/20
+
+
+    Now you need to wait a day for the pumpkins to grow
 
 
     You''ll
@@ -811,8 +945,9 @@ MonoBehaviour:
   Panel: {fileID: 1714319722}
   TextMeshPro: {fileID: 903667157}
   canPlayerMove: 1
-  TutorialText: "Use a hoe to till fertile soil\r\nSelect the hoe from your inventory\n\nWalk
-    up to the soil - it will be highlighted automatically \nand then press the spacebar"
+  TutorialText: "08/20\n\nUse a hoe to till fertile soil\r\nSelect the hoe from your
+    inventory\n\nWalk up to the soil - it will be highlighted automatically \nand
+    then press the spacebar\n\n*You can move"
   objectsToActivateOnStart: []
   objectsToDeactivateOnStart: []
   nextStep: {fileID: 1068669895}
@@ -1025,7 +1160,10 @@ MonoBehaviour:
   Panel: {fileID: 1714319722}
   TextMeshPro: {fileID: 903667157}
   canPlayerMove: 1
-  TutorialText: 'Pick up pumpkin seeds '
+  TutorialText: '06/20
+
+
+    Pick up pumpkin seeds '
   objectsToActivateOnStart:
   - {fileID: 1746505651}
   objectsToDeactivateOnStart: []
@@ -1098,8 +1236,8 @@ MonoBehaviour:
   Panel: {fileID: 1714319722}
   TextMeshPro: {fileID: 903667157}
   canPlayerMove: 1
-  TutorialText: "Good job! Now select the pumpkin seeds from your inventory \n\nand
-    press the space bar to plant them in the plowed soil"
+  TutorialText: "09/20\n\nGood job! Now select the pumpkin seeds from your inventory
+    \n\nand press the space bar to plant them in the plowed soil"
   objectsToActivateOnStart: []
   objectsToDeactivateOnStart: []
   nextStep: {fileID: 1547757975}
@@ -1107,6 +1245,93 @@ MonoBehaviour:
   - {fileID: 1068669894}
   isActive: 0
   isDone: 0
+--- !u!1001 &1132523751
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1400916505}
+    m_Modifications:
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.52999973
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822892840035358679, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361417035676280796, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_Name
+      value: PumpkinSeed (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361417035676280796, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+--- !u!4 &1132523752 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+  m_PrefabInstance: {fileID: 1132523751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1263175550 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7262602434298754049, guid: 945203cfe6d1c1446a04e0638940b9ad, type: 3}
+  m_PrefabInstance: {fileID: 3009137505580672291}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1273304080
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1178,6 +1403,191 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7296919773014594176, guid: 747e9fec1a6fd3d4bb6680a07f229a21, type: 3}
   m_PrefabInstance: {fileID: 7674742741870048131}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1378748534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1378748535}
+  - component: {fileID: 1378748537}
+  - component: {fileID: 1378748536}
+  m_Layer: 0
+  m_Name: 15_UIMailWatch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1378748535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378748534}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1747819824}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1378748536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378748534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba67d84c45f69ac4ea2963be29f11bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PressSpaceCondition
+--- !u!114 &1378748537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378748534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 0}
+  Player: {fileID: 0}
+  Panel: {fileID: 1714319722}
+  TextMeshPro: {fileID: 903667157}
+  canPlayerMove: 1
+  TutorialText: '15/20
+
+
+    At the top-left
+
+
+    Order Progress shows your current
+    order progress
+
+
+    While Active Orders lists all orders waiting to be completed
+
+
+    Press
+    spacebar to continue'
+  objectsToActivateOnStart:
+  - {fileID: 2057215232}
+  - {fileID: 459256943}
+  objectsToDeactivateOnStart: []
+  nextStep: {fileID: 2010010249}
+  conditions:
+  - {fileID: 1378748536}
+  isActive: 0
+  isDone: 0
+--- !u!1 &1400916504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1400916505}
+  m_Layer: 0
+  m_Name: PumpkinTutSeeds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1400916505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400916504}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.62, y: -13.25, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 638385106}
+  - {fileID: 1132523752}
+  - {fileID: 1594561821}
+  - {fileID: 1925186375}
+  - {fileID: 87825085}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1420035685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1420035687}
+  - component: {fileID: 1420035686}
+  m_Layer: 0
+  m_Name: 19_
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1420035686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420035685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 0}
+  Player: {fileID: 0}
+  Panel: {fileID: 1714319722}
+  TextMeshPro: {fileID: 903667157}
+  canPlayerMove: 1
+  TutorialText: 'Use the mouse to move items around
+
+    Drag and drop items between
+    slots
+
+
+    Press spacebar to continue'
+  objectsToActivateOnStart: []
+  objectsToDeactivateOnStart: []
+  nextStep: {fileID: 0}
+  conditions:
+  - {fileID: 0}
+  isActive: 0
+  isDone: 0
+--- !u!4 &1420035687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420035685}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1747819824}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1446425284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1187,12 +1597,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3786714
+      value: -2.76
       objectReference: {fileID: 0}
     - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.72
+      value: 6.48
       objectReference: {fileID: 0}
     - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1226,6 +1648,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7822892840035358679, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: amount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8361417035676280796, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
       propertyPath: m_Name
       value: PumpkinSeed
@@ -1239,6 +1665,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+--- !u!1 &1478355577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1478355578}
+  m_Layer: 0
+  m_Name: WayPoint 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1478355578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478355577}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.91, y: -9.23, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1483806676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,7 +1759,8 @@ MonoBehaviour:
   Panel: {fileID: 1714319722}
   TextMeshPro: {fileID: 903667157}
   canPlayerMove: 1
-  TutorialText: "Pick up the \u201CHoe\u201D item\nWalk up to it and press Space "
+  TutorialText: "04/20\n\nPick up the \u201CHoe\u201D item\nWalk up to it and press
+    Space "
   objectsToActivateOnStart:
   - {fileID: 1745166824}
   - {fileID: 1714319722}
@@ -1383,9 +1841,14 @@ MonoBehaviour:
   Panel: {fileID: 1714319722}
   TextMeshPro: {fileID: 903667157}
   canPlayerMove: 1
-  TutorialText: "Now pick up the watering can\nWalk up to the plant and press the
-    spacebar\n\nYou can drop an item and free up an inventory slot\n by pressing
-    the \"Q\" key"
+  TutorialText: '10/20
+
+
+    Now pick up the watering can
+
+
+    Then walk up to the
+    plant and press the spacebar'
   objectsToActivateOnStart:
   - {fileID: 1273304081}
   objectsToDeactivateOnStart: []
@@ -1394,6 +1857,88 @@ MonoBehaviour:
   - {fileID: 1547757973}
   isActive: 0
   isDone: 0
+--- !u!1001 &1594561820
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1400916505}
+    m_Modifications:
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.0100002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4099998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822892840035358679, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361417035676280796, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_Name
+      value: PumpkinSeed (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361417035676280796, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+--- !u!4 &1594561821 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+  m_PrefabInstance: {fileID: 1594561820}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1622234866 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8803720710591228843, guid: eac55739472376a4baf818428f25ce0c, type: 3}
@@ -1414,6 +1959,11 @@ MonoBehaviour:
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 1690194976871561997, guid: eac55739472376a4baf818428f25ce0c, type: 3}
   m_PrefabInstance: {fileID: 6137839525064618689}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1626636997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5796718550649110127, guid: 9d935a0694ca3734e874679cded77666, type: 3}
+  m_PrefabInstance: {fileID: 5022512401760406558}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1703688499
 GameObject:
@@ -1450,11 +2000,14 @@ MonoBehaviour:
   Panel: {fileID: 1714319722}
   TextMeshPro: {fileID: 903667157}
   canPlayerMove: 0
-  TutorialText: 'Now let''s learn how to prepare the soil, plant pumpkin seeds and
-    grow your very own pumpkins!
+  TutorialText: '07/20
 
 
-    spacebar to continue'
+    Now let''s learn how to prepare the soil, plant pumpkin
+    seeds and grow your very own pumpkins!
+
+
+    Press spacebar to continue'
   objectsToActivateOnStart:
   - {fileID: 1622234866}
   - {fileID: 92036818}
@@ -1526,7 +2079,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 486, y: 556}
+  m_AnchoredPosition: {x: 727, y: 556}
   m_SizeDelta: {x: 500, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1714319724
@@ -1658,7 +2211,11 @@ Transform:
   - {fileID: 1877977341}
   - {fileID: 261825347}
   - {fileID: 400528334}
+  - {fileID: 1378748535}
+  - {fileID: 2010010250}
+  - {fileID: 1914984595}
   - {fileID: 2035239078}
+  - {fileID: 1420035687}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1806551359
@@ -1696,12 +2253,15 @@ MonoBehaviour:
   Panel: {fileID: 1714319722}
   TextMeshPro: {fileID: 903667157}
   canPlayerMove: 0
-  TutorialText: 'You can view the entire list of your items in the bottom inventory
-    menu and switch between them by clicking the buttons (1-9)
+  TutorialText: '05/20
 
 
-    spacebar to
-    continue'
+    You can view the entire list of your items in the bottom
+    inventory menu and switch between them by clicking the buttons (1-9)
+
+
+    Press
+    spacebar to continue'
   objectsToActivateOnStart: []
   objectsToDeactivateOnStart: []
   nextStep: {fileID: 915124565}
@@ -1771,16 +2331,19 @@ MonoBehaviour:
   Panel: {fileID: 1714319722}
   TextMeshPro: {fileID: 903667157}
   canPlayerMove: 1
-  TutorialText: 'You may have noticed that the day has changed in the upper-left
-    corner.
+  TutorialText: '12/20
 
 
+    You may have noticed that the day has changed in the
+    upper-left corner.
 
-    Now, free up some space in your inventory by pressing **Q** to
-    drop the pumpkins
+
+    Now, free up some space in your inventory by pressing
+    **Q** to drop the pumpkins
 
 
-    Walk up to the ripe pumpkin and press the space bar'
+    Walk up to the ripe pumpkin and press the space
+    bar'
   objectsToActivateOnStart: []
   objectsToDeactivateOnStart: []
   nextStep: {fileID: 261825346}
@@ -1848,6 +2411,177 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1914984593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1914984595}
+  - component: {fileID: 1914984594}
+  - component: {fileID: 1914984596}
+  m_Layer: 0
+  m_Name: 17_BuySeed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1914984594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914984593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 0}
+  Player: {fileID: 2721193830592419794}
+  Panel: {fileID: 1714319722}
+  TextMeshPro: {fileID: 903667157}
+  canPlayerMove: 1
+  TutorialText: '17/20
+
+
+    You''ve got some money!
+
+    
+
+    Now you can spend
+    it at the store
+
+    
+
+    Go to the doors of the Hobbies Craft Store
+
+    press
+    the spacebar and buy seeds'
+  objectsToActivateOnStart:
+  - {fileID: 1626636997}
+  - {fileID: 1263175550}
+  objectsToDeactivateOnStart: []
+  nextStep: {fileID: 2035239079}
+  conditions:
+  - {fileID: 1914984596}
+  isActive: 0
+  isDone: 0
+--- !u!4 &1914984595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914984593}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1747819824}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1914984596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914984593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7931a20a71cf0444b9a9bbea24cf809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuyPumpkinSeedsCondition
+  targetShop: {fileID: 11400000, guid: 9242cd4884719364285183e59df2ba60, type: 2}
+  pumpkinSeedsProduct: {fileID: 11400000, guid: b68820b3ca421224ab0f3359df15fc41, type: 2}
+--- !u!1001 &1925186374
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1400916505}
+    m_Modifications:
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822892840035358679, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361417035676280796, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_Name
+      value: PumpkinSeed (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361417035676280796, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+--- !u!4 &1925186375 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6497848806982060279, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
+  m_PrefabInstance: {fileID: 1925186374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1925854317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2305216151736202678, guid: 2cb2cf0255079c745b08b6a2f4c05d40, type: 3}
@@ -1858,6 +2592,88 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1530700402015875121, guid: 9ce8b731b20dc934e967e7eaca4c2810, type: 3}
   m_PrefabInstance: {fileID: 2721193830592419793}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2010010248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2010010250}
+  - component: {fileID: 2010010249}
+  - component: {fileID: 2010010251}
+  m_Layer: 0
+  m_Name: 16_SellYourPumpkin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2010010249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010010248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 0}
+  Player: {fileID: 2721193830592419794}
+  Panel: {fileID: 1714319722}
+  TextMeshPro: {fileID: 903667157}
+  canPlayerMove: 1
+  TutorialText: '16/20
+
+
+    Now we''ll need to sell our pumpkin
+
+
+    Take the pumpkin
+    back from the warehouse
+
+
+    Go to the supermarket doors, near the coin and
+    press the space bar'
+  objectsToActivateOnStart: []
+  objectsToDeactivateOnStart: []
+  nextStep: {fileID: 1914984594}
+  conditions:
+  - {fileID: 2010010251}
+  isActive: 0
+  isDone: 0
+--- !u!4 &2010010250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010010248}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1747819824}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2010010251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010010248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad81d303a0e925409e3da06944ec642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FulfillOrderCondition
+  targetSource: {fileID: 11400000, guid: 0c8663c9b2269dc4e92f8805fb1ec721, type: 2}
 --- !u!1 &2023393339
 GameObject:
   m_ObjectHideFlags: 0
@@ -1944,8 +2760,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2035239078}
   - component: {fileID: 2035239079}
+  - component: {fileID: 2035239080}
   m_Layer: 0
-  m_Name: CheckCondition
+  m_Name: 18_PutItemInCart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1960,7 +2777,7 @@ Transform:
   m_GameObject: {fileID: 2035239077}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 9.36, y: -8.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1978,21 +2795,126 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
-  StartingPosition: {fileID: 0}
-  Player: {fileID: 0}
+  StartingPosition: {fileID: 1478355578}
+  Player: {fileID: 2721193830592419794}
   Panel: {fileID: 1714319722}
   TextMeshPro: {fileID: 903667157}
   canPlayerMove: 1
-  TutorialText: 'checking
+  TutorialText: '18/20
 
-'
-  objectsToActivateOnStart: []
+
+    Sometimes there are a lot of things
+
+    Use the cart
+    to carry a large number of items
+
+
+    Press G to have it follow you or to leave
+    it behind'
+  objectsToActivateOnStart:
+  - {fileID: 1400916504}
+  - {fileID: 2065494388}
   objectsToDeactivateOnStart: []
-  nextStep: {fileID: 0}
+  nextStep: {fileID: 1420035686}
   conditions:
-  - {fileID: 0}
+  - {fileID: 2035239080}
   isActive: 0
   isDone: 0
+--- !u!114 &2035239080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035239077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f20ad750142eb45b1987b33acdc6da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TravelWithCartCondition
+  requiredDistance: 3
+--- !u!1 &2057215232 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5331422091793466911, guid: 945203cfe6d1c1446a04e0638940b9ad, type: 3}
+  m_PrefabInstance: {fileID: 3009137505580672291}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2065494387
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1560044058851806495, guid: 47ed70b871871a342ae2b1c98ead13df, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.89242
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560044058851806495, guid: 47ed70b871871a342ae2b1c98ead13df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.971252
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560044058851806495, guid: 47ed70b871871a342ae2b1c98ead13df, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560044058851806495, guid: 47ed70b871871a342ae2b1c98ead13df, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560044058851806495, guid: 47ed70b871871a342ae2b1c98ead13df, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560044058851806495, guid: 47ed70b871871a342ae2b1c98ead13df, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560044058851806495, guid: 47ed70b871871a342ae2b1c98ead13df, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560044058851806495, guid: 47ed70b871871a342ae2b1c98ead13df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560044058851806495, guid: 47ed70b871871a342ae2b1c98ead13df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560044058851806495, guid: 47ed70b871871a342ae2b1c98ead13df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195117672375668741, guid: 47ed70b871871a342ae2b1c98ead13df, type: 3}
+      propertyPath: m_Name
+      value: Cart
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195117672375668741, guid: 47ed70b871871a342ae2b1c98ead13df, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 47ed70b871871a342ae2b1c98ead13df, type: 3}
+--- !u!1 &2065494388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8195117672375668741, guid: 47ed70b871871a342ae2b1c98ead13df, type: 3}
+  m_PrefabInstance: {fileID: 2065494387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2065494389 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9155470630447761819, guid: 47ed70b871871a342ae2b1c98ead13df, type: 3}
+  m_PrefabInstance: {fileID: 2065494387}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065494388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83519644c52a7724691344dccc0cd06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CartFollower
 --- !u!1 &2094481403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2028,16 +2950,21 @@ MonoBehaviour:
   Panel: {fileID: 2023393339}
   TextMeshPro: {fileID: 714186364}
   canPlayerMove: 1
-  TutorialText: 'Let''s go over the game''s main mechanics
+  TutorialText: '02/20
 
 
+    Let''s go over the game''s main mechanics
+
+
+    Press
     spacebar to continue'
   objectsToActivateOnStart:
   - {fileID: 2023393339}
+  - {fileID: 282353256}
   objectsToDeactivateOnStart: []
   nextStep: {fileID: 282353259}
   conditions:
-  - {fileID: 252596703}
+  - {fileID: 2094481405}
   isActive: 0
   isDone: 0
 --- !u!114 &2094481405
@@ -2208,11 +3135,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1530700402015875121, guid: 9ce8b731b20dc934e967e7eaca4c2810, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.51
+      value: -10.64
       objectReference: {fileID: 0}
     - target: {fileID: 1530700402015875121, guid: 9ce8b731b20dc934e967e7eaca4c2810, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.19
+      value: 5.1
       objectReference: {fileID: 0}
     - target: {fileID: 1530700402015875121, guid: 9ce8b731b20dc934e967e7eaca4c2810, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2246,6 +3173,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4734710590809809452, guid: 9ce8b731b20dc934e967e7eaca4c2810, type: 3}
+      propertyPath: pickupsound
+      value: 
+      objectReference: {fileID: 8300000, guid: be8f6475ec701984bba4c313148353db, type: 3}
     - target: {fileID: 6994940206490257266, guid: 9ce8b731b20dc934e967e7eaca4c2810, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2516,6 +3447,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2351729252844641364, guid: 9d935a0694ca3734e874679cded77666, type: 3}
+      propertyPath: catalog
+      value: 
+      objectReference: {fileID: 11400000, guid: 9242cd4884719364285183e59df2ba60, type: 2}
     - target: {fileID: 5747552667699888569, guid: 9d935a0694ca3734e874679cded77666, type: 3}
       propertyPath: m_Size.y
       value: 1.7680097
@@ -2585,7 +3520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3926624506817690885, guid: 053884a03faaa574eafa467a37fecea1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.08
+      value: 5.36
       objectReference: {fileID: 0}
     - target: {fileID: 3926624506817690885, guid: 053884a03faaa574eafa467a37fecea1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2739,11 +3674,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7296919773014594176, guid: 747e9fec1a6fd3d4bb6680a07f229a21, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.517
+      value: 12.18
       objectReference: {fileID: 0}
     - target: {fileID: 7296919773014594176, guid: 747e9fec1a6fd3d4bb6680a07f229a21, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.45665002
+      value: 9.58
       objectReference: {fileID: 0}
     - target: {fileID: 7296919773014594176, guid: 747e9fec1a6fd3d4bb6680a07f229a21, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2777,6 +3712,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8789716577949434072, guid: 747e9fec1a6fd3d4bb6680a07f229a21, type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 11400000, guid: 0c8663c9b2269dc4e92f8805fb1ec721, type: 2}
     - target: {fileID: 9211583291771818915, guid: 747e9fec1a6fd3d4bb6680a07f229a21, type: 3}
       propertyPath: m_Size.y
       value: 3.5377436
@@ -2803,9 +3742,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1526118182302484687, guid: dd6da79c40322ad42bc05eb033db8b1b, type: 3}
+      propertyPath: sceneCart
+      value: 
+      objectReference: {fileID: 2065494389}
     - target: {fileID: 1971505954256761799, guid: dd6da79c40322ad42bc05eb033db8b1b, type: 3}
       propertyPath: m_Name
       value: GameSystems
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262596727208358010, guid: dd6da79c40322ad42bc05eb033db8b1b, type: 3}
+      propertyPath: startingBalance
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4378064680785294345, guid: dd6da79c40322ad42bc05eb033db8b1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2847,6 +3794,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9061336950004607492, guid: dd6da79c40322ad42bc05eb033db8b1b, type: 3}
+      propertyPath: 'sources.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0c8663c9b2269dc4e92f8805fb1ec721, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2866,6 +3817,9 @@ SceneRoots:
   - {fileID: 1273304080}
   - {fileID: 4077989032600200891}
   - {fileID: 1446425284}
+  - {fileID: 1400916505}
+  - {fileID: 2065494387}
   - {fileID: 1747819824}
   - {fileID: 1888350524}
   - {fileID: 717928292}
+  - {fileID: 1478355578}

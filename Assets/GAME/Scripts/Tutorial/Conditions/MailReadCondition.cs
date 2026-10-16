@@ -3,8 +3,13 @@ using UnityEngine;
 
 public class MailReadCondition : TutorialCondition
 {
-    private TutorialStep activeStep;
+    private TutorialStep step;
     private bool ordersMailWasRead;
+
+    private void Awake()
+    {
+        step = GetComponent<TutorialStep>();
+    }
 
     private void OnEnable()
     {
@@ -16,15 +21,17 @@ public class MailReadCondition : TutorialCondition
         GameEvents.Unsubscribe<MailReadEvent>(OnMailRead);
     }
 
-    public override bool IsMet(TutorialStep step)
+    public override bool IsMet(TutorialStep tutorialStep)
     {
-        activeStep = step;
+        if (step == null)
+            step = tutorialStep;
+
         return ordersMailWasRead;
     }
 
     private void OnMailRead(MailReadEvent message)
     {
-        if (activeStep == null || !activeStep.isActive)
+        if (step == null || !step.isActive)
             return;
 
         string messageId = message.Message.Id;
