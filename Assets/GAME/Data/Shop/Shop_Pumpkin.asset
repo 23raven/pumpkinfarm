@@ -15,7 +15,7 @@ MonoBehaviour:
   productId: Shop_Pumpkin
   displayName: 
   productType: 0
-  item: {fileID: 11400000, guid: 8ea429b081b8798498be4500dffefce8, type: 2}
+  item: {fileID: 11400000, guid: ebb319d2175f80e45a9a4a4845939fab, type: 2}
   icon: {fileID: 4303480455652667151, guid: 305e233002090784096982060bc2a609, type: 3}
   buyPrice: 30
   sellPrice: 15

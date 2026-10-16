@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ca30969065f63419adc8b3eb54fc23, type: 3}
+  m_Name: Pumpkin_Puking_NoCandle
+  m_EditorClassIdentifier: Assembly-CSharp::PumpkinItemDefinition
+  itemId: pumpkin_puking_nocandle
+  displayName: Puking face Pumpkin
+  description: 
+  icon: {fileID: -5246374249420691459, guid: 2b0800cc3931db54485103007e21dbfc, type: 3}
+  worldPrefab: {fileID: 2117937790895669250, guid: 85395e48294c3254388ebc6030dc5467, type: 3}
+  maxStackSize: 1
+  face: 3
+  hasCandle: 0

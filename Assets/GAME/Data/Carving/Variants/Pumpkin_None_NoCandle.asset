@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ca30969065f63419adc8b3eb54fc23, type: 3}
+  m_Name: Pumpkin_None_NoCandle
+  m_EditorClassIdentifier: Assembly-CSharp::PumpkinItemDefinition
+  itemId: pumpkin_none_nocandle
+  displayName: Pumpkin
+  description: 
+  icon: {fileID: 4303480455652667151, guid: cbdaeb0a4fe647247a0a4c790a2a2687, type: 3}
+  worldPrefab: {fileID: 2117937790895669250, guid: 85395e48294c3254388ebc6030dc5467, type: 3}
+  maxStackSize: 1
+  face: 0
+  hasCandle: 0

@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: Supermarket
   dailyOrderChance: 0.573
   possibleOrders:
-  - item: {fileID: 11400000, guid: 8ea429b081b8798498be4500dffefce8, type: 2}
+  - item: {fileID: 11400000, guid: ebb319d2175f80e45a9a4a4845939fab, type: 2}
     minQuantity: 1
     maxQuantity: 1
     rewardPerItem: 20
