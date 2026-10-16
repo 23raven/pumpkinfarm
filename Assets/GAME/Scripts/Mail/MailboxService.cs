@@ -81,6 +81,19 @@ public class MailboxService : MonoBehaviour
 
     public bool TryGetNextUnread(out MailMessageData message)
     {
+        // Tutorial mail must be shown before randomized daily order mail.
+        foreach (MailMessageData candidate in messages)
+        {
+            if (readMessageIds.Contains(candidate.Id))
+                continue;
+
+            if (!IsTutorialMail(candidate))
+                continue;
+
+            message = candidate;
+            return true;
+        }
+
         // Prefer the latest unread daily order email.
         MailMessageData latestDailyMail = default;
         bool foundDailyMail = false;
@@ -155,6 +168,12 @@ public class MailboxService : MonoBehaviour
         }
 
         return false;
+    }
+
+    private bool IsTutorialMail(MailMessageData message)
+    {
+        return !string.IsNullOrEmpty(message.Id) &&
+               message.Id.StartsWith("tutorial-", StringComparison.Ordinal);
     }
 
     private bool IsDailyOrderMail(MailMessageData message)

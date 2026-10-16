@@ -5,6 +5,7 @@ public class PlayerInteractor : MonoBehaviour
     [Header("Interaction")]
     [SerializeField] private Transform interactionPoint;
     [SerializeField, Min(0.1f)] private float interactionRadius = 0.8f;
+    [SerializeField] private AudioClip pickupsound;
 
     public Vector3 InteractionPosition =>
         interactionPoint != null
@@ -52,6 +53,7 @@ public class PlayerInteractor : MonoBehaviour
 
         if (nearest != null)
             nearest.Interact(gameObject);
+        AudioManager.Instance.PlaySFX(pickupsound, 3f);
     }
 
     private void OnDrawGizmosSelected()

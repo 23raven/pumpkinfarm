@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &5037193 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8197642866151228571, guid: 9d935a0694ca3734e874679cded77666, type: 3}
+  m_PrefabInstance: {fileID: 5022512401760406558}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc421fe6178902a458f84407c1106e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StorageContainer
 --- !u!1 &92036818 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5578928435592812161, guid: eac55739472376a4baf818428f25ce0c, type: 3}
@@ -215,6 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 261825347}
   - component: {fileID: 261825346}
+  - component: {fileID: 261825348}
   m_Layer: 0
   m_Name: 13_StorageCondition
   m_TagString: Untagged
@@ -235,19 +247,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
   StartingPosition: {fileID: 0}
-  Player: {fileID: 0}
+  Player: {fileID: 2721193830592419794}
   Panel: {fileID: 1714319722}
   TextMeshPro: {fileID: 903667157}
   canPlayerMove: 1
-  TutorialText: 'checking
+  TutorialText: 'Now put the pumpkin in Storage
 
-'
+
+    Go to the door and press the
+    spacebar
+
+
+    Drag and drop the item from your inventory into the storage slot'
   objectsToActivateOnStart:
   - {fileID: 268502395}
   objectsToDeactivateOnStart: []
-  nextStep: {fileID: 0}
+  nextStep: {fileID: 400528331}
   conditions:
-  - {fileID: 0}
+  - {fileID: 261825348}
   isActive: 0
   isDone: 0
 --- !u!4 &261825347
@@ -265,6 +282,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1747819824}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &261825348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261825345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d56a20ed59030f448f559e44ae847e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StorePumpkinInStorageCondition
+  targetStorage: {fileID: 5037193}
+  pumpkinItem: {fileID: 11400000, guid: 8ea429b081b8798498be4500dffefce8, type: 2}
 --- !u!1 &268502395 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 657612176377007207, guid: 9d935a0694ca3734e874679cded77666, type: 3}
@@ -342,11 +373,132 @@ MonoBehaviour:
   - {fileID: 282353257}
   isActive: 0
   isDone: 0
+--- !u!1 &400528330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 400528334}
+  - component: {fileID: 400528331}
+  - component: {fileID: 400528335}
+  m_Layer: 0
+  m_Name: 14_MailCondition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &400528331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400528330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60574978824b3cc4a8f02447c38dc9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
+  StartingPosition: {fileID: 0}
+  Player: {fileID: 2721193830592419794}
+  Panel: {fileID: 1714319722}
+  TextMeshPro: {fileID: 903667157}
+  canPlayerMove: 1
+  TutorialText: "Great!\r\n\r\nNow we need to check our email\r\n\r\nGo to the mailbox
+    and press the spacebar\n\r\nThen click the \u201CRead All Messages\u201D button"
+  objectsToActivateOnStart:
+  - {fileID: 1830717304255942722}
+  - {fileID: 7674742741870048132}
+  objectsToDeactivateOnStart: []
+  nextStep: {fileID: 0}
+  conditions:
+  - {fileID: 400528335}
+  isActive: 0
+  isDone: 0
+--- !u!4 &400528334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400528330}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 522941063}
+  m_Father: {fileID: 1747819824}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &400528335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400528330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0da45bd17f4efdb4599b64526cd17238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MailReadCondition
+  requiredMessageId: tutorial-buy-pumpkin
 --- !u!1 &488194183 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1689277748148214790, guid: 945203cfe6d1c1446a04e0638940b9ad, type: 3}
   m_PrefabInstance: {fileID: 3009137505580672291}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &522941062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 522941063}
+  - component: {fileID: 522941064}
+  m_Layer: 0
+  m_Name: MailSender
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &522941063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522941062}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 400528334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &522941064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522941062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5474c7fdcbb021c43966c2f1511b23a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialPurchaseMailSender
+  targetShop: {fileID: 11400000, guid: 9242cd4884719364285183e59df2ba60, type: 2}
+  pumpkinProduct: {fileID: 11400000, guid: b82109fbd34140c4ba174b01f2d77d49, type: 2}
 --- !u!1 &698742566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,6 +1657,7 @@ Transform:
   - {fileID: 698742567}
   - {fileID: 1877977341}
   - {fileID: 261825347}
+  - {fileID: 400528334}
   - {fileID: 2035239078}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1592,10 +1745,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1877977341}
-  - component: {fileID: 1877977340}
   - component: {fileID: 1877977339}
+  - component: {fileID: 1877977342}
   m_Layer: 0
-  m_Name: 12_SpaceCondition
+  m_Name: 12_PumpkinInInventoryCondition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1615,41 +1768,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TutorialStep
   StartingPosition: {fileID: 0}
   Player: {fileID: 2721193830592419794}
-  Panel: {fileID: 2023393339}
-  TextMeshPro: {fileID: 714186364}
+  Panel: {fileID: 1714319722}
+  TextMeshPro: {fileID: 903667157}
   canPlayerMove: 1
-  TutorialText: 'Each item type has its own quantity limit
+  TutorialText: 'You may have noticed that the day has changed in the upper-left
+    corner.
 
 
-    For example, the
-    limit is 3 for seeds and 1 for pumpkins
+
+    Now, free up some space in your inventory by pressing **Q** to
+    drop the pumpkins
 
 
-    You can''t hold everything in your
-    limited (two-handed) inventory
-
-
-    Spacebar to continue'
-  objectsToActivateOnStart:
-  - {fileID: 2023393339}
+    Walk up to the ripe pumpkin and press the space bar'
+  objectsToActivateOnStart: []
   objectsToDeactivateOnStart: []
   nextStep: {fileID: 261825346}
   conditions:
-  - {fileID: 1877977340}
+  - {fileID: 1877977342}
   isActive: 0
   isDone: 0
---- !u!114 &1877977340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877977338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba67d84c45f69ac4ea2963be29f11bfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PressSpaceCondition
 --- !u!4 &1877977341
 Transform:
   m_ObjectHideFlags: 0
@@ -1665,6 +1803,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1747819824}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1877977342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877977338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c522469519d9a4996fab8318bc3e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PumpkinInInventoryCondition
+  pumpkinItem: {fileID: 11400000, guid: 8ea429b081b8798498be4500dffefce8, type: 2}
+  requiredAmount: 1
 --- !u!1 &1888350523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1976,6 +2128,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cb2cf0255079c745b08b6a2f4c05d40, type: 3}
+--- !u!1 &1830717304255942722 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1584388873719588771, guid: 2cb2cf0255079c745b08b6a2f4c05d40, type: 3}
+  m_PrefabInstance: {fileID: 1830717304255942721}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2026815563755517696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2633,6 +2790,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 747e9fec1a6fd3d4bb6680a07f229a21, type: 3}
+--- !u!1 &7674742741870048132 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6912300849291899598, guid: 747e9fec1a6fd3d4bb6680a07f229a21, type: 3}
+  m_PrefabInstance: {fileID: 7674742741870048131}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8040309891415391728
 PrefabInstance:
   m_ObjectHideFlags: 0

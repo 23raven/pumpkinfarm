@@ -215,6 +215,7 @@ public sealed class FarmCropSystem : MonoBehaviour
             return false;
         }
 
+
         if (crop.LastWateredDay == dayCycle.CurrentDay)
         {
             Debug.Log("This crop is already watered today.");
@@ -289,6 +290,13 @@ public sealed class FarmCropSystem : MonoBehaviour
             if (crop.IsWithered)
                 continue;
 
+            // Mature crops no longer need watering.
+            if (crop.IsReady)
+            {
+                visuals.ResetColor(cell);
+                continue;
+            }
+
             if (crop.LastWateredDay != previousDay)
             {
                 crop.IsWithered = true;
@@ -302,9 +310,6 @@ public sealed class FarmCropSystem : MonoBehaviour
             }
 
             visuals.ResetColor(cell);
-
-            if (crop.IsReady)
-                continue;
 
             int nextStage = Mathf.Min(
                 crop.GrowthStage + 1,

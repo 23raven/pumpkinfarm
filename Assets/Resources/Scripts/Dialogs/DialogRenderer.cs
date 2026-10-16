@@ -15,6 +15,8 @@ public class DialogRenderer : MonoBehaviour //скрипт для рендеринга диалогов
     [SerializeField] private TMP_Text NpcName;
     [SerializeField] private GameObject MainObject;
 
+    [SerializeField] private AudioClip talksound;
+
     public void ShowDialog() //показываем фразу
     {
         MainObject.SetActive(true);
@@ -23,6 +25,8 @@ public class DialogRenderer : MonoBehaviour //скрипт для рендеринга диалогов
         NpcPhrases.text = "";
         PlayerName.text = "";
         NpcName.text = "";
+
+        AudioManager.Instance.PlaySFX(talksound, 2f);
 
         if (Current_dialog.dialog[CurrentPhrase].Player)
         {
