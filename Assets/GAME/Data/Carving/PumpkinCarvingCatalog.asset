@@ -38,6 +38,7 @@ MonoBehaviour:
     buttonIcon: {fileID: 0}
     pumpkinIcon: {fileID: -5246374249420691459, guid: 2b0800cc3931db54485103007e21dbfc, type: 3}
     pumpkinIconWithCandle: {fileID: 3135797611668794747, guid: 1021cf5d7e7d758418dfa92c0e70a226, type: 3}
+  candleItem: {fileID: 11400000, guid: 3ecdbcf2b64390b4a8b66047d96e9d8b, type: 2}
   baseName: Pumpkin
   worldPrefab: {fileID: 2117937790895669250, guid: 85395e48294c3254388ebc6030dc5467, type: 3}
   maxStackSize: 1
