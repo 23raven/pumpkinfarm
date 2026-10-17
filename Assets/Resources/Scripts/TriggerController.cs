@@ -54,10 +54,10 @@ public class TriggerController : MonoBehaviour
         {
             NearCarvingTable = true;
         }
-        else if (other.CompareTag("npc"))
-        {
-            dialog = other.gameObject.GetComponent<Npc>().dialog;
-        }
+        //else if (other.CompareTag("npc"))
+        //{
+        //    dialog = other.gameObject.GetComponent<Npc>().dialog;
+        //}
         else if (other.CompareTag("EventArea"))
         {
             NearEventBoard = true;

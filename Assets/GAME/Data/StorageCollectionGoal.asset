@@ -14,14 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StorageCollectionGoal
   goalTitle: Halloween Preparation
   requiredItems:
-  - item: {fileID: 11400000, guid: 17b90a6a359369e4bb911c969e4b9bd9, type: 2}
-    requiredQuantity: 1
-  - item: {fileID: 11400000, guid: 1ea9910505b029247b6ee94cd263fa56, type: 2}
-    requiredQuantity: 1
-  - item: {fileID: 11400000, guid: f7629b74f434bc24a833992c7855399f, type: 2}
-    requiredQuantity: 1
-  - item: {fileID: 11400000, guid: 110472a4655c7c845ab1660f70d9bcb9, type: 2}
-    requiredQuantity: 1
   - item: {fileID: 11400000, guid: 788a46157b3bf084c88bed981e303ae1, type: 2}
     requiredQuantity: 1
   - item: {fileID: 11400000, guid: 6e04f688fc6803c4fb3f3e6dbd7a9347, type: 2}
