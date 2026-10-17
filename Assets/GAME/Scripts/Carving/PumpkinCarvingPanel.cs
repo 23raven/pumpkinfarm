@@ -6,6 +6,7 @@ using UnityEngine.UI;
 // Окно резьбы.
 // Слева - тыквы из инвентаря. Нажали на тыкву -> справа появляется меню изменения:
 // сменить лицо или добавить/убрать свечу.
+//  - Свеча: при добавлении тратится предмет-свеча, при снятии свеча возвращается в инвентарь.
 // Открывается по PumpkinCarvingOpenedEvent и блокирует управление игроком, пока открыто.
 public class PumpkinCarvingPanel : MonoBehaviour
 {
@@ -158,8 +159,32 @@ public class PumpkinCarvingPanel : MonoBehaviour
             if (button != null) button.SetCurrent(button.Face == selectedItem.Face);
         }
 
+        RefreshCandleButton();
+    }
+
+    private void RefreshCandleButton()
+    {
+        ItemDefinition candle = catalog.CandleItem;
+
+        int candlesInBag = 0;
+        if (candle != null && TryGetInventory(out InventoryService inventory, true))
+            candlesInBag = inventory.GetItemCount(candle);
+
         if (candleButtonLabel != null)
-            candleButtonLabel.text = selectedItem.HasCandle ? "Remove candle" : "Add candle";
+        {
+            if (selectedItem.HasCandle)
+                candleButtonLabel.text = "Remove candle";
+            else if (candle != null)
+                candleButtonLabel.text = "Add candle (" + candlesInBag + " in bag)";
+            else
+                candleButtonLabel.text = "Add candle";
+        }
+
+        if (candleButton != null)
+        {
+            // Убрать свечу можно всегда. Добавить - если свеча есть в сумке (или она бесплатная).
+            candleButton.interactable = selectedItem.HasCandle || candle == null || candlesInBag > 0;
+        }
     }
 
     private void BuildFaceButtons()
@@ -218,7 +243,7 @@ public class PumpkinCarvingPanel : MonoBehaviour
     {
         if (selectedItem == null) return;
 
-        if (!TryGetInventory(out InventoryService inventory) ||
+        if (!TryGetInventory(out InventoryService inventory, true) ||
             !inventory.TryGetSlotContents(selectedSlotIndex, out ItemDefinition item, out int quantity) ||
             item != selectedItem || quantity <= 0)
         {
@@ -274,38 +299,73 @@ public class PumpkinCarvingPanel : MonoBehaviour
             return;
         }
 
+        ItemDefinition candle = catalog.CandleItem;
+        bool addingCandle = newCandle && !source.HasCandle && candle != null;
+        bool removingCandle = !newCandle && source.HasCandle && candle != null;
+
+        // 1. Проверяем, что есть свеча
+        if (addingCandle && !inventory.HasItem(candle, 1))
+        {
+            SetMessage("You need a candle: " + candle.DisplayName);
+            return;
+        }
+
+        // 2. Забираем старую тыкву
         if (!inventory.RemoveItem(source, 1))
         {
             SetMessage("Pumpkin not found in inventory.");
             return;
         }
 
-        // AddItem возвращает, сколько НЕ поместилось (0 = всё хорошо)
-        int leftover = inventory.AddItem(result, 1);
-        if (leftover > 0)
+        // 3. Тратим свечу
+        if (addingCandle && !inventory.RemoveItem(candle, 1))
         {
-            inventory.AddItem(source, 1); // возвращаем старую тыкву
+            inventory.AddItem(source, 1);
+            SelectItemInInventory(inventory, source);
+            RefreshAll();
+            SetMessage("Could not use the candle.");
+            return;
+        }
+
+        // 4. Выдаём новую тыкву (AddItem возвращает, сколько НЕ поместилось; 0 = всё хорошо)
+        if (inventory.AddItem(result, 1) > 0)
+        {
+            if (addingCandle) inventory.AddItem(candle, 1);   // возвращаем свечу
+            inventory.AddItem(source, 1);                     // возвращаем старую тыкву
             SelectItemInInventory(inventory, source);
             RefreshAll();
             SetMessage("No room in inventory.");
             return;
         }
 
+        // 5. Если свечу достали из тыквы - возвращаем её в сумку
+        if (removingCandle && inventory.AddItem(candle, 1) > 0)
+        {
+            inventory.RemoveItem(result, 1);
+            inventory.AddItem(source, 1);
+            SelectItemInInventory(inventory, source);
+            RefreshAll();
+            SetMessage("No room for the candle.");
+            return;
+        }
+
         SelectItemInInventory(inventory, result);
         RefreshAll();
         SetMessage("Done: " + result.DisplayName);
+
+        GameEvents.Publish(new PumpkinCarvedEvent(source, result));
     }
 
     // ---------- Вспомогательное ----------
 
-    private bool TryGetInventory(out InventoryService inventory)
+    private bool TryGetInventory(out InventoryService inventory, bool silent = false)
     {
         inventory = null;
         GameServices services = GameServices.Instance;
         if (services != null && services.TryGet<InventoryService>(out inventory))
             return true;
 
-        SetMessage("Player inventory is unavailable.");
+        if (!silent) SetMessage("Player inventory is unavailable.");
         return false;
     }
 

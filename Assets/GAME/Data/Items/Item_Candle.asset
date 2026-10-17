@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0491e2037f7afa408fa0f4c44c4c206, type: 3}
+  m_Name: Item_Candle
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDefinition
+  itemId: candle
+  displayName: Candle
+  description: 
+  icon: {fileID: -631536273, guid: c1c6573327786f7488f0490769d6b39b, type: 3}
+  worldPrefab: {fileID: 6454188634081428165, guid: c25fc3bc82a750545a6de75cee0c9318, type: 3}
+  maxStackSize: 5

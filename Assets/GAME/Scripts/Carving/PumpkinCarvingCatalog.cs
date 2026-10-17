@@ -6,7 +6,8 @@ using System.IO;
 using UnityEditor;
 #endif
 
-// Каталог резьбы: какие бывают лица (иконки, названия) и список всех готовых вариантов тыквы.
+// Каталог резьбы: какие бывают лица, какой предмет - свеча
+// и список всех готовых вариантов тыквы.
 // Варианты (лицо x свеча) создаются автоматически: ПКМ по заголовку компонента -> Generate Variants.
 [CreateAssetMenu(
     fileName = "PumpkinCarvingCatalog",
@@ -28,8 +29,12 @@ public class PumpkinCarvingCatalog : ScriptableObject
         public Sprite pumpkinIconWithCandle;
     }
 
-    [Header("Faces (добавьте по одной записи на КАЖДОЕ значение PumpkinFace, включая None)")]
+    [Header("Faces (по одной записи на КАЖДОЕ значение PumpkinFace, включая None)")]
     [SerializeField] private List<FaceVisual> faces = new List<FaceVisual>();
+
+    [Header("Candle")]
+    [Tooltip("Предмет-свеча. Тратится при добавлении свечи в тыкву. Пусто = свеча бесплатная.")]
+    [SerializeField] private ItemDefinition candleItem;
 
     [Header("Generation settings")]
     [SerializeField] private string baseName = "Pumpkin";
@@ -40,6 +45,7 @@ public class PumpkinCarvingCatalog : ScriptableObject
     [SerializeField] private List<PumpkinItemDefinition> variants = new List<PumpkinItemDefinition>();
 
     public IReadOnlyList<FaceVisual> Faces => faces;
+    public ItemDefinition CandleItem => candleItem;
 
     public FaceVisual GetFaceVisual(PumpkinFace face)
     {
