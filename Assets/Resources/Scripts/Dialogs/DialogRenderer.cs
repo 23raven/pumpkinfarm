@@ -2,12 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Displays one phrase at a time from a Dialog ScriptableObject.
-/// Space advances the dialogue; Space on the final phrase closes it.
-/// GameplayInputGate blocks movement and other gameplay input while open.
-/// Keep this component on an always-active controller, outside MainObject.
-/// </summary>
 public sealed class DialogRenderer : MonoBehaviour
 {
     [Header("Dialog State")]
@@ -25,7 +19,10 @@ public sealed class DialogRenderer : MonoBehaviour
 
     private bool dialogOpen;
     private bool previousInputGateState;
+    private bool waitForSpaceRelease;
+
     private int openedFrame = -1;
+    private int closedFrame = -1;
 
     public bool IsOpen => dialogOpen;
 
@@ -36,6 +33,7 @@ public sealed class DialogRenderer : MonoBehaviour
 
         MainObject.SetActive(false);
         ClearUI();
+
         Current_dialog = null;
         CurrentPhrase = 0;
     }
@@ -45,15 +43,18 @@ public sealed class DialogRenderer : MonoBehaviour
         if (dialogOpen)
             return;
 
+        if (Time.frameCount == closedFrame || waitForSpaceRelease)
+            return;
+
         if (dialog == null)
         {
-            Debug.LogWarning("DialogRenderer: Cannot start a null Dialog asset.", this);
+            Debug.LogWarning("DialogRenderer: Dialog is null.", this);
             return;
         }
 
         if (dialog.dialog == null || dialog.dialog.Count == 0)
         {
-            Debug.LogWarning($"DialogRenderer: '{dialog.name}' contains no phrases.", dialog);
+            Debug.LogWarning($"DialogRenderer: '{dialog.name}' has no phrases.", dialog);
             return;
         }
 
@@ -62,17 +63,24 @@ public sealed class DialogRenderer : MonoBehaviour
 
         Current_dialog = dialog;
         CurrentPhrase = 0;
+
         OpenAndDisplayCurrentPhrase();
     }
 
-    // Kept for compatibility with older UnityEvents that call ShowDialog.
+    // Compatibility with existing NPC scripts and UnityEvents.
     public void ShowDialog()
     {
+        if (!dialogOpen &&
+            (Time.frameCount == closedFrame || waitForSpaceRelease))
+        {
+            return;
+        }
+
         if (Current_dialog == null ||
             Current_dialog.dialog == null ||
             Current_dialog.dialog.Count == 0)
         {
-            Debug.LogWarning("DialogRenderer: No valid dialogue is assigned as current.", this);
+            Debug.LogWarning("DialogRenderer: No valid dialogue assigned.", this);
             return;
         }
 
@@ -81,20 +89,31 @@ public sealed class DialogRenderer : MonoBehaviour
             if (!ValidateReferences())
                 return;
 
-            CurrentPhrase = Mathf.Clamp(CurrentPhrase, 0, Current_dialog.dialog.Count - 1);
-            OpenAndDisplayCurrentPhrase();
-            return;
-        }
+            CurrentPhrase = Mathf.Clamp(
+                CurrentPhrase, 0, Current_dialog.dialog.Count - 1);
 
-        DisplayCurrentPhrase();
+            OpenAndDisplayCurrentPhrase();
+        }
+        else
+        {
+            DisplayCurrentPhrase();
+        }
     }
 
     public void CloseDialog()
     {
+        if (!dialogOpen)
+            return;
+
+        // Prevent the same Space press from reopening the dialogue.
+        closedFrame = Time.frameCount;
+        waitForSpaceRelease = Input.GetKey(KeyCode.Space);
+
         if (MainObject != null)
             MainObject.SetActive(false);
 
         ClearUI();
+
         dialogOpen = false;
         Current_dialog = null;
         CurrentPhrase = 0;
@@ -105,11 +124,23 @@ public sealed class DialogRenderer : MonoBehaviour
 
     private void Update()
     {
+        // Wait until Space is released before allowing another dialogue.
+        if (waitForSpaceRelease)
+        {
+            if (Input.GetKey(KeyCode.Space))
+                return;
+
+            waitForSpaceRelease = false;
+        }
+
         if (!dialogOpen || Current_dialog == null)
             return;
 
-        // Do not advance on the same Space press that opened the dialogue.
-        if (Time.frameCount <= openedFrame || !Input.GetKeyDown(KeyCode.Space))
+        // Ignore the Space press that opened the dialogue.
+        if (Time.frameCount <= openedFrame)
+            return;
+
+        if (!Input.GetKeyDown(KeyCode.Space))
             return;
 
         if (CurrentPhrase < Current_dialog.dialog.Count - 1)
@@ -126,11 +157,14 @@ public sealed class DialogRenderer : MonoBehaviour
     private void OpenAndDisplayCurrentPhrase()
     {
         previousInputGateState = GameplayInputGate.IsBlocked;
+
         GameplayInputGate.SetBlocked(true);
 
         dialogOpen = true;
         openedFrame = Time.frameCount;
+
         MainObject.SetActive(true);
+
         DisplayCurrentPhrase();
     }
 
@@ -144,30 +178,48 @@ public sealed class DialogRenderer : MonoBehaviour
             return;
         }
 
-        CurrentPhrase = Mathf.Clamp(CurrentPhrase, 0, Current_dialog.dialog.Count - 1);
+        CurrentPhrase = Mathf.Clamp(
+            CurrentPhrase, 0, Current_dialog.dialog.Count - 1);
+
         Phrase phrase = Current_dialog.dialog[CurrentPhrase];
+
         ClearUI();
 
         if (phrase.Player)
         {
-            if (PlayerPhrases != null) PlayerPhrases.text = phrase.text;
-            if (PlayerName != null) PlayerName.text = phrase.Name;
+            if (PlayerPhrases != null)
+                PlayerPhrases.text = phrase.text;
+
+            if (PlayerName != null)
+                PlayerName.text = phrase.Name;
+
             SetIcon(PlayerIcon, phrase.icon);
         }
         else
         {
-            if (NpcPhrases != null) NpcPhrases.text = phrase.text;
-            if (NpcName != null) NpcName.text = phrase.Name;
+            if (NpcPhrases != null)
+                NpcPhrases.text = phrase.text;
+
+            if (NpcName != null)
+                NpcName.text = phrase.Name;
+
             SetIcon(NpcIcon, phrase.icon);
         }
     }
 
     private void ClearUI()
     {
-        if (PlayerPhrases != null) PlayerPhrases.text = string.Empty;
-        if (NpcPhrases != null) NpcPhrases.text = string.Empty;
-        if (PlayerName != null) PlayerName.text = string.Empty;
-        if (NpcName != null) NpcName.text = string.Empty;
+        if (PlayerPhrases != null)
+            PlayerPhrases.text = string.Empty;
+
+        if (NpcPhrases != null)
+            NpcPhrases.text = string.Empty;
+
+        if (PlayerName != null)
+            PlayerName.text = string.Empty;
+
+        if (NpcName != null)
+            NpcName.text = string.Empty;
 
         SetIcon(PlayerIcon, null);
         SetIcon(NpcIcon, null);
@@ -186,15 +238,16 @@ public sealed class DialogRenderer : MonoBehaviour
     {
         if (MainObject == null)
         {
-            Debug.LogError("DialogRenderer: Main Object (dialog panel root) is not assigned.", this);
+            Debug.LogError(
+                "DialogRenderer: Main Object is not assigned.", this);
             return false;
         }
 
-        if (MainObject == gameObject || transform.IsChildOf(MainObject.transform))
+        if (MainObject == gameObject ||
+            transform.IsChildOf(MainObject.transform))
         {
             Debug.LogError(
-                "DialogRenderer must stay on an always-active object outside the dialogue panel. " +
-                "Assign the panel to Main Object, not this controller object.", this);
+                "DialogRenderer must be outside the dialogue panel.", this);
             return false;
         }
 
@@ -206,10 +259,14 @@ public sealed class DialogRenderer : MonoBehaviour
         if (!dialogOpen)
             return;
 
+        closedFrame = Time.frameCount;
+        waitForSpaceRelease = Input.GetKey(KeyCode.Space);
+
         dialogOpen = false;
         Current_dialog = null;
         CurrentPhrase = 0;
         openedFrame = -1;
+
         ClearUI();
 
         if (MainObject != null)
