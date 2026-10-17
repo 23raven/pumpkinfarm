@@ -17,7 +17,5 @@ MonoBehaviour:
   harvestAmount: 1
   growthSprites:
   - {fileID: 865198075, guid: 84bfdd326696a7f42868b91e4e6727da, type: 3}
-  - {fileID: 2086572445, guid: 84bfdd326696a7f42868b91e4e6727da, type: 3}
-  - {fileID: 360618159, guid: 2ef0ef882fff72c4fbf1409850ecbbec, type: 3}
   - {fileID: 1532752074, guid: 84bfdd326696a7f42868b91e4e6727da, type: 3}
   witheredSprite: {fileID: 584469128, guid: 2ef0ef882fff72c4fbf1409850ecbbec, type: 3}
