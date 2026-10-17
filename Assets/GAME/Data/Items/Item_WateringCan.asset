@@ -15,6 +15,6 @@ MonoBehaviour:
   itemId: watering_can
   displayName: Watering Can
   description: Used to water growing crops
-  icon: {fileID: 2688690046039215365, guid: 2f92ffc682366804882bbe8709befb94, type: 3}
+  icon: {fileID: 21300000, guid: 000eb10c17863c44ab6cde635be382fd, type: 3}
   worldPrefab: {fileID: 5419355005352158648, guid: 36c30ebdd37c6eb42b7bbd51fb52840c, type: 3}
   maxStackSize: 1

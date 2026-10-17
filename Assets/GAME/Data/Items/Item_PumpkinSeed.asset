@@ -15,6 +15,6 @@ MonoBehaviour:
   itemId: pumpkin_seed
   displayName: Pumpkin Seed
   description: Seeds for growing pumpkins
-  icon: {fileID: -3828917805364943387, guid: 72f76484c3182c645a8ce6e8784359ad, type: 3}
+  icon: {fileID: 21300000, guid: 9d4384a367d3f634fa9536d316675017, type: 3}
   worldPrefab: {fileID: 7822892840035358679, guid: b54e2af8ce7d8204fa003b9e9967cf87, type: 3}
-  maxStackSize: 3
+  maxStackSize: 6
