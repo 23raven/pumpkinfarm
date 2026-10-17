@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 171036055}
   - component: {fileID: 171036054}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: ExitYaHz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 335239049}
   - component: {fileID: 335239048}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -335,10 +335,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1813459755}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1813459757}
+        m_TargetAssemblyTypeName: ScenesManager, Assembly-CSharp
+        m_MethodName: Tutorial
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -833,16 +833,22 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1 &1211369975 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1576176933562953647, guid: f59665ec09e1b8c42b5bacbc63748135, type: 3}
-  m_PrefabInstance: {fileID: 1524258938450908953}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1211369976 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6569683606759332941, guid: f59665ec09e1b8c42b5bacbc63748135, type: 3}
   m_PrefabInstance: {fileID: 1524258938450908953}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1211369977 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8800186787858182000, guid: f59665ec09e1b8c42b5bacbc63748135, type: 3}
+  m_PrefabInstance: {fileID: 1524258938450908953}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69bd0bf42c0e9d147bd3c791dd9f74e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScenesManager
 --- !u!1 &1322579227
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,7 +1138,7 @@ GameObject:
   - component: {fileID: 1635481248}
   - component: {fileID: 1635481247}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1202,10 +1208,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1211369975}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1211369977}
+        m_TargetAssemblyTypeName: ScenesManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

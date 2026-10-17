@@ -1,0 +1,442 @@
+fileFormatVersion: 2
+guid: 2e9831779a66bad4984213c3cd6c9ff2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2750549480563995333
+    second: TREE_GRN_BTM_0
+  - first:
+      213: -6931274433499147727
+    second: TREE_GRN_BTM_1
+  - first:
+      213: -6175010773961662424
+    second: TREE_GRN_BTM_2
+  - first:
+      213: -5370908410905998616
+    second: TREE_GRN_BTM_3
+  - first:
+      213: 5724746115664466196
+    second: TREE_GRN_BTM_4
+  - first:
+      213: 5099307330565010671
+    second: TREE_GRN_BTM_5
+  - first:
+      213: 7023686641178999130
+    second: TREE_GRN_BTM_6
+  - first:
+      213: 4867300355315217887
+    second: TREE_GRN_BTM_7
+  - first:
+      213: -4841992598304910341
+    second: TREE_GRN_BTM_8
+  - first:
+      213: 2742924648840748645
+    second: TREE_GRN_BTM_9
+  - first:
+      213: -1777295247337024430
+    second: TREE_GRN_BTM_10
+  - first:
+      213: 1404310899276984237
+    second: TREE_GRN_BTM_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TREE_GRN_BTM_0
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 120
+        width: 163
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c2f626fd2aeb2620800000000000000
+      internalID: 2750549480563995333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_GRN_BTM_1
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 316
+        width: 14
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 132598e40aa2fcf90800000000000000
+      internalID: -6931274433499147727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_GRN_BTM_2
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 277
+        width: 44
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8202ecdea64fd4aa0800000000000000
+      internalID: -6175010773961662424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_GRN_BTM_3
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 245
+        width: 43
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ea4acea143b675b0800000000000000
+      internalID: -5370908410905998616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_GRN_BTM_4
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 202
+        width: 68
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4115a7dd242627f40800000000000000
+      internalID: 5724746115664466196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_GRN_BTM_5
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 183
+        width: 58
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe47fd6fff064c640800000000000000
+      internalID: 5099307330565010671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_GRN_BTM_6
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 183
+        width: 59
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a59712d79c5297160800000000000000
+      internalID: 7023686641178999130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_GRN_BTM_7
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 168
+        width: 46
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd532b592ef1c8340800000000000000
+      internalID: 4867300355315217887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_GRN_BTM_8
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 78
+        width: 137
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf317f4c269cdccb0800000000000000
+      internalID: -4841992598304910341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_GRN_BTM_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 87
+        width: 50
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56ed0db7f63d01620800000000000000
+      internalID: 2742924648840748645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_GRN_BTM_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 107
+        width: 79
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2549c799367c557e0800000000000000
+      internalID: -1777295247337024430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_GRN_BTM_11
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 53
+        width: 65
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daf2d91925d1d7310800000000000000
+      internalID: 1404310899276984237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      TREE_GRN_BTM_0: 2750549480563995333
+      TREE_GRN_BTM_1: -6931274433499147727
+      TREE_GRN_BTM_10: -1777295247337024430
+      TREE_GRN_BTM_11: 1404310899276984237
+      TREE_GRN_BTM_2: -6175010773961662424
+      TREE_GRN_BTM_3: -5370908410905998616
+      TREE_GRN_BTM_4: 5724746115664466196
+      TREE_GRN_BTM_5: 5099307330565010671
+      TREE_GRN_BTM_6: 7023686641178999130
+      TREE_GRN_BTM_7: 4867300355315217887
+      TREE_GRN_BTM_8: -4841992598304910341
+      TREE_GRN_BTM_9: 2742924648840748645
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

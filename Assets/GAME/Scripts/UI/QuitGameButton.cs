@@ -1,13 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class QuitGameButton : MonoBehaviour
 {
     public void QuitGame()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        GameplayInputGate.SetBlocked(false);
+        SceneManager.LoadScene("MainMenu");
     }
 }

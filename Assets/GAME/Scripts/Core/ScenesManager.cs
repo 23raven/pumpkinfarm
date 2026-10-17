@@ -3,9 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManager : MonoBehaviour
 {
-    public void ChangeScene(int id)
+    public void Play()
     {
-        SceneManager.LoadScene(id);
+        SceneManager.LoadScene("MainScene");
+    }
+
+    public void Tutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+    }
+
+    public void ChangeScene()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Quit()

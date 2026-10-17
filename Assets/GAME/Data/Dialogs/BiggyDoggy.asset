@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 711498cd887c575409890c2aacc2465f, type: 3}
+  m_Name: BiggyDoggy
+  m_EditorClassIdentifier: Assembly-CSharp::Dialog
+  dialog:
+  - icon: {fileID: -3803061401465435349, guid: 96fed736dc7c7d945b10ad8154fe8aaf, type: 3}
+    text: Hey, you can buy everything you need at this supermarket
+    Name: Biggy Doggy
+    Player: 0
+  - icon: {fileID: 21300000, guid: a1b3a469b32e8d34eb31afe9f0bfd4fd, type: 3}
+    text: Thanks. I may be from the countryside, but I know what a supermarket is
+    Name: Player
+    Player: 1

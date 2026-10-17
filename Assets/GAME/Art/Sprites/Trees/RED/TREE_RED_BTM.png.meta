@@ -1,0 +1,442 @@
+fileFormatVersion: 2
+guid: 24ad0157a11ed1841ab2d7d302926d9f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -781817518634985546
+    second: TREE_RED_BTM_0
+  - first:
+      213: -2463830023275714223
+    second: TREE_RED_BTM_1
+  - first:
+      213: -8499313174834501971
+    second: TREE_RED_BTM_2
+  - first:
+      213: 6263134287601435296
+    second: TREE_RED_BTM_3
+  - first:
+      213: -9076177700322336931
+    second: TREE_RED_BTM_4
+  - first:
+      213: -4590823002760593165
+    second: TREE_RED_BTM_5
+  - first:
+      213: -5700876624001939322
+    second: TREE_RED_BTM_6
+  - first:
+      213: -3286420907583839819
+    second: TREE_RED_BTM_7
+  - first:
+      213: 2232273882911702109
+    second: TREE_RED_BTM_8
+  - first:
+      213: -5993719917201314345
+    second: TREE_RED_BTM_9
+  - first:
+      213: 3252620687520823764
+    second: TREE_RED_BTM_10
+  - first:
+      213: 2472187572460107097
+    second: TREE_RED_BTM_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TREE_RED_BTM_0
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 120
+        width: 164
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b7959aeb1d6625f0800000000000000
+      internalID: -781817518634985546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_RED_BTM_1
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 316
+        width: 14
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15965b3d5a7becdd0800000000000000
+      internalID: -2463830023275714223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_RED_BTM_2
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 277
+        width: 43
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da62133e2bf5c0a80800000000000000
+      internalID: -8499313174834501971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_RED_BTM_3
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 245
+        width: 42
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a28d09737f1be650800000000000000
+      internalID: 6263134287601435296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_RED_BTM_4
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 202
+        width: 67
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5f17fd1870fa0280800000000000000
+      internalID: -9076177700322336931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_RED_BTM_5
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 183
+        width: 57
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f043cd5dce1a40c0800000000000000
+      internalID: -4590823002760593165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_RED_BTM_6
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 183
+        width: 59
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 688490e3aea62e0b0800000000000000
+      internalID: -5700876624001939322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_RED_BTM_7
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 168
+        width: 47
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b16c05c8994462d0800000000000000
+      internalID: -3286420907583839819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_RED_BTM_8
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 78
+        width: 138
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5c7558f441aafe10800000000000000
+      internalID: 2232273882911702109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_RED_BTM_9
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 87
+        width: 50
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dd280ccd7702dca0800000000000000
+      internalID: -5993719917201314345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_RED_BTM_10
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 107
+        width: 80
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d9f3cc3841a32d20800000000000000
+      internalID: 3252620687520823764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TREE_RED_BTM_11
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 53
+        width: 66
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 955be9abf79fe4220800000000000000
+      internalID: 2472187572460107097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      TREE_RED_BTM_0: -781817518634985546
+      TREE_RED_BTM_1: -2463830023275714223
+      TREE_RED_BTM_10: 3252620687520823764
+      TREE_RED_BTM_11: 2472187572460107097
+      TREE_RED_BTM_2: -8499313174834501971
+      TREE_RED_BTM_3: 6263134287601435296
+      TREE_RED_BTM_4: -9076177700322336931
+      TREE_RED_BTM_5: -4590823002760593165
+      TREE_RED_BTM_6: -5700876624001939322
+      TREE_RED_BTM_7: -3286420907583839819
+      TREE_RED_BTM_8: 2232273882911702109
+      TREE_RED_BTM_9: -5993719917201314345
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
