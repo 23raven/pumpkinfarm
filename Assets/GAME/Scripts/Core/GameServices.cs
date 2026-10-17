@@ -12,8 +12,17 @@ public sealed class GameServices : MonoBehaviour
 
     public static GameServices Instance => instance;
 
-    [RuntimeInitializeOnLoadMethod(
-        RuntimeInitializeLoadType.SubsystemRegistration)]
+    /// <summary>
+    /// Clears the old scene's static singleton reference before a deliberate
+    /// scene reload. The outgoing instance's OnDestroy will not clear the new
+    /// instance if it has already been assigned.
+    /// </summary>
+    public static void PrepareForSceneReload()
+    {
+        instance = null;
+    }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ResetStatics()
     {
         instance = null;
@@ -24,7 +33,7 @@ public sealed class GameServices : MonoBehaviour
         if (instance != null && instance != this)
         {
             Debug.LogError(
-                "Only one GameServices instance is allowed.",
+                "Only one GameServices instance is allowed. Check the scene for duplicate GameServices components.",
                 this
             );
 
@@ -39,33 +48,22 @@ public sealed class GameServices : MonoBehaviour
     {
         if (service == null)
         {
-            Debug.LogError(
-                $"Cannot register null service: {typeof(T).Name}",
-                this
-            );
-
+            Debug.LogError($"Cannot register null service: {typeof(T).Name}", this);
             return false;
         }
 
         Type type = typeof(T);
-
         if (services.TryGetValue(type, out object existing))
         {
             if (ReferenceEquals(existing, service))
                 return true;
 
-            Debug.LogError(
-                $"Service already registered: {type.Name}",
-                this
-            );
-
+            Debug.LogError($"Service already registered: {type.Name}", this);
             return false;
         }
 
         services.Add(type, service);
-
         Debug.Log($"Service registered: {type.Name}", this);
-
         return true;
     }
 
@@ -75,7 +73,6 @@ public sealed class GameServices : MonoBehaviour
             return;
 
         Type type = typeof(T);
-
         if (services.TryGetValue(type, out object existing) &&
             ReferenceEquals(existing, service))
         {
@@ -85,8 +82,7 @@ public sealed class GameServices : MonoBehaviour
 
     public bool TryGet<T>(out T service) where T : class
     {
-        if (services.TryGetValue(typeof(T), out object registered) &&
-            registered is T typed)
+        if (services.TryGetValue(typeof(T), out object registered) && registered is T typed)
         {
             service = typed;
             return true;
