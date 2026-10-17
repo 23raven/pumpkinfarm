@@ -15,8 +15,6 @@ MonoBehaviour:
   displayName: General Store
   products:
   - {fileID: 11400000, guid: 68bf6018a76433047b180379b7b667e4, type: 2}
-  - {fileID: 11400000, guid: b82109fbd34140c4ba174b01f2d77d49, type: 2}
   - {fileID: 11400000, guid: b7653e346da37d840bf2ece6759c50fb, type: 2}
   - {fileID: 11400000, guid: bc844761ce8d26a49a70207443da16b8, type: 2}
-  - {fileID: 11400000, guid: d77820fb1d741604ebd50102f46d3685, type: 2}
   - {fileID: 11400000, guid: b87348c866d83fe479ef97cbc91ea4b4, type: 2}
