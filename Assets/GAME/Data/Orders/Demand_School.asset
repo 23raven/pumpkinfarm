@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DemandSourceDefinition
   sourceId: school
   displayName: School
-  dailyOrderChance: 0.3
+  dailyOrderChance: 0.6
   possibleOrders:
   - item: {fileID: 11400000, guid: ebb319d2175f80e45a9a4a4845939fab, type: 2}
     minQuantity: 1
     maxQuantity: 5
-    rewardPerItem: 10
+    rewardPerItem: 20

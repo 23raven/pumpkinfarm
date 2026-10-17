@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pumpkin_None_Candle
   m_EditorClassIdentifier: Assembly-CSharp::PumpkinItemDefinition
   itemId: pumpkin_none_candle
-  displayName: Pumpkin (candle)
+  displayName: Pumpkin (Candle)
   description: 
   icon: {fileID: 4303480455652667151, guid: cbdaeb0a4fe647247a0a4c790a2a2687, type: 3}
   worldPrefab: {fileID: 2117937790895669250, guid: 85395e48294c3254388ebc6030dc5467, type: 3}
