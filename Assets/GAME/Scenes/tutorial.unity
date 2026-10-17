@@ -2315,7 +2315,7 @@ MonoBehaviour:
   objectsToDeactivateOnStart: []
   nextStep: {fileID: 477840989}
   conditions:
-  - {fileID: 0}
+  - {fileID: 477840988}
   isActive: 0
   isDone: 0
 --- !u!4 &1392866772
