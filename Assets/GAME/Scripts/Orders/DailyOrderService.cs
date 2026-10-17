@@ -225,6 +225,10 @@ public class DailyOrderService : MonoBehaviour
 
         if (!inventory.HasItem(order.Item, order.Quantity))
         {
+            GameEvents.Publish(new InsufficientItemsWarningEvent(
+                $"Not enough {order.Item.DisplayName}! Need {order.Quantity}."
+            ));
+
             Debug.Log($"Bring {order.Quantity} {order.Item.DisplayName} to {order.SourceName} to complete this order.");
             return false;
         }
